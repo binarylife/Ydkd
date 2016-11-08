@@ -1,0 +1,4 @@
+include ':app'
+include ':library:common'
+include ':library:oneKeyShareSDK'
+include ':library:selectordialog'

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_scenery_item"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:clickable="true"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="20dp"
+    android:background="#e3e3e3"
+    >
+  <!--景点名称-->
+  <TextView
+      android:id="@+id/tv_scenic_name"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="15dp"
+      android:textColor="#222222"
+      android:textSize="15sp"
+      tools:text="景点名称" />
+  <!--评论星级-->
+  <!--景点简介-->
+
+</RelativeLayout>

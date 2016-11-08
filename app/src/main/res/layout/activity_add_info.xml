@@ -1,0 +1,302 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    >
+  <android.support.v7.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      android:paddingLeft="16dp"
+      android:paddingRight="16dp"
+      app:contentInsetLeft="0dp"
+      app:contentInsetStart="0dp"
+      >
+
+    <RelativeLayout
+        android:id="@+id/toolbar_RL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerInParent="true"
+          android:text="新建工单"
+          android:textSize="17sp"
+          />
+
+      <ImageView
+          android:id="@+id/title_back"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_centerVertical="true"
+          android:layout_gravity="center_vertical"
+          android:scaleType="fitXY"
+          android:src="@drawable/title_back_icon"
+          />
+      <TextView
+          android:id="@+id/tv_save"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentRight="true"
+          android:layout_centerVertical="true"
+          android:gravity="center"
+          android:text="保存"
+          android:textColor="@color/black"
+          android:textSize="16dp"
+          />
+    </RelativeLayout>
+  </android.support.v7.widget.Toolbar>
+  <View
+      android:id="@+id/view_line"
+      android:layout_width="match_parent"
+      android:layout_height="1px"
+      android:layout_below="@+id/toolbar"
+      android:background="#cccccc"/>
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/view_line"
+      android:orientation="vertical"
+      android:paddingLeft="10dp"
+      android:paddingRight="10dp"
+      android:scrollbars="none"
+      >
+
+    <LinearLayout
+        android:id="@+id/rl_changeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+      <TextView
+          android:id="@+id/tv_username"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerVertical="true"
+          android:gravity="center"
+          android:paddingBottom="15dp"
+          android:paddingTop="15dp"
+          android:text="工单编号"
+          style="@style/usercenter_l"
+          />
+
+      <com.bei.yd.widget.ClearEditText
+          android:id="@+id/et_nickname"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_centerVertical="true"
+          android:layout_marginLeft="22dp"
+          android:layout_toRightOf="@+id/tv_username"
+          android:background="@null"
+          android:cursorVisible="false"
+          android:paddingBottom="15dp"
+          android:paddingRight="10dp"
+          android:paddingTop="15dp"
+          android:singleLine="true"
+          android:hint="请输入单号"
+          android:textColor="#666666"
+          android:textCursorDrawable="@drawable/shape_edit_text"
+          android:textSize="14sp"
+          />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/view04"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#DDDDDD"
+        />
+
+    <RelativeLayout
+        android:id="@+id/rl_changesex"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        >
+
+      <TextView
+          android:id="@+id/tv_usersex"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerVertical="true"
+          android:gravity="center"
+          android:text="区        县"
+          style="@style/usercenter_l"
+          />
+
+      <com.bei.yd.widget.ClearEditText
+          android:id="@+id/tv_area"
+          android:layout_toRightOf="@+id/tv_usersex"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_centerVertical="true"
+          android:layout_marginLeft="20dp"
+          android:background="@null"
+          android:cursorVisible="false"
+          android:paddingBottom="15dp"
+          android:paddingRight="10dp"
+          android:paddingTop="15dp"
+          android:singleLine="true"
+          android:hint="区县"
+          android:textColor="#666666"
+          android:textCursorDrawable="@drawable/shape_edit_text"
+          android:textSize="14sp"
+          />
+
+      <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentRight="true"
+          android:layout_centerVertical="true"
+          android:src="@drawable/public_new_right_trigle"
+          />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/view05"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#DDDDDD"
+        />
+
+
+    <RelativeLayout
+        android:id="@+id/rl_brithday"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        >
+
+      <TextView
+          android:id="@+id/tv_brithday"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerVertical="true"
+          android:gravity="center"
+          android:text="详细地址"
+          style="@style/usercenter_l"
+          />
+
+      <com.bei.yd.widget.ClearEditText
+          android:id="@+id/tv_brith"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_centerVertical="true"
+          android:layout_marginLeft="22dp"
+          android:layout_toRightOf="@id/tv_brithday"
+          android:textColor="#666666"
+          android:hint="街道地址"
+          style="@style/usercenter_l"
+          />
+
+      <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentRight="true"
+          android:layout_centerVertical="true"
+          android:src="@drawable/public_new_right_trigle"
+          />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/view17"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#DDDDDD"
+        />
+
+    <RelativeLayout
+        android:id="@+id/rl_city"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        >
+
+      <TextView
+          android:id="@+id/tv_city"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerVertical="true"
+          android:gravity="center"
+          android:text="工单类型"
+          style="@style/usercenter_l"
+          />
+
+      <com.bei.yd.widget.ClearEditText
+          android:id="@+id/tv_cityText"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_centerVertical="true"
+          android:layout_marginLeft="22dp"
+          android:layout_toRightOf="@id/tv_city"
+          android:hint="选择工单类型"
+          android:textColor="#666666"
+          style="@style/usercenter_l"
+          />
+
+      <ImageView
+          android:layout_width="24dp"
+          android:layout_height="24dp"
+          android:visibility="gone"
+          android:layout_alignParentRight="true"
+          android:layout_centerVertical="true"
+          android:src="@drawable/gotoright"
+          />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/view07"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#DDDDDD"
+        />
+
+    <LinearLayout
+        android:id="@+id/rl_email"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        >
+
+      <TextView
+          android:id="@+id/tv_email_name"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerVertical="true"
+          android:gravity="center"
+          android:text="电        话"
+          style="@style/usercenter_l"
+          />
+
+      <com.bei.yd.widget.ClearEditText
+          android:id="@+id/et_phone"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_centerVertical="true"
+          android:layout_marginLeft="22dp"
+          android:layout_toRightOf="@+id/tv_email_name"
+          android:background="@null"
+          android:paddingRight="10dp"
+          android:singleLine="true"
+          android:textColor="#666666"
+          android:textCursorDrawable="@drawable/shape_edit_text"
+          android:textSize="12sp"
+          android:hint="电话"
+          />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/view08"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#DDDDDD"
+        />
+
+  </LinearLayout>
+
+
+</RelativeLayout>
