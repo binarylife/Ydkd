@@ -143,18 +143,18 @@ public class MineFragment extends BaseLoadFragment implements View.OnClickListen
       //  @Override public void onItemClick(View view, int position) {
       //  }
       //});
-      rvList.setLoadingListener(new XRecyclerView.LoadingListener() {
-        @Override public void onRefresh() {
-          //上拉刷新
-          pn = 1;
-          onLoadData();
-        }
-
-        @Override public void onLoadMore() {
-          pn++;
-          onLoadData();
-        }
-      });
+      //rvList.setLoadingListener(new XRecyclerView.LoadingListener() {
+      //  @Override public void onRefresh() {
+      //    //上拉刷新
+      //    pn = 1;
+      //    onLoadData();
+      //  }
+      //
+      //  @Override public void onLoadMore() {
+      //    pn++;
+      //    onLoadData();
+      //  }
+      //});
     }
   }
 }
