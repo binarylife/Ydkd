@@ -24,6 +24,7 @@ public class MainPresenterImpl implements IMainPresenter {
     private MainModelImpl model;
     /**
      * View层引用
+     * ceshi
      */
     private IMainView view;
 
