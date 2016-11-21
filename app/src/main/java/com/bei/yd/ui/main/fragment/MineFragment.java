@@ -25,6 +25,7 @@ import com.bei.yd.ui.main.activity.AddWorkOrderActivity;
 import com.bei.yd.ui.main.adapter.MainAdapter;
 import com.bei.yd.ui.main.bean.MainBean;
 import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
+import com.bei.yd.ui.main.bean.UserInfoBean;
 import com.bei.yd.ui.main.presenter.iml.MainPresenterImpl;
 import com.bei.yd.ui.main.view.IMainView;
 import com.bei.yd.utils.InvokeStartActivityUtils;
@@ -42,7 +43,6 @@ public class MineFragment extends BaseLoadFragment implements View.OnClickListen
   //  设置按钮
 
   // 用户足迹
-  @Bind(R.id.bt_test) TextView mFoot;
   @Bind(R.id.rv_wait_order) XRecyclerView rvList;
   private MainPresenterImpl mainPresenter;
   private MainAdapter adapter;
@@ -67,7 +67,7 @@ public class MineFragment extends BaseLoadFragment implements View.OnClickListen
 
   @Override public int getContentResouceId() {
     //        showStatusBar(false);
-    return R.layout.fragment_login;
+    return R.layout.fragment_main;
   }
 
   @Override public void dealLogicBeforeInitView() {
@@ -111,6 +111,10 @@ public class MineFragment extends BaseLoadFragment implements View.OnClickListen
 
   @Override public void onGetNewGDList(MainItemNewOrderBean bean) {
     adapter.updateItems(bean.getData());
+  }
+
+  @Override public void onLoginSuccess(UserInfoBean bean) {
+
   }
 
   @Override public void showProgress() {

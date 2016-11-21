@@ -3,6 +3,7 @@ package com.bei.yd.ui.main.view;
 import com.bei.yd.ui.base.view.IBaseView;
 import com.bei.yd.ui.main.bean.MainBean;
 import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
+import com.bei.yd.ui.main.bean.UserInfoBean;
 
 /**
  * 精彩景点
@@ -22,4 +23,9 @@ public interface IMainView extends IBaseView {
      * @param bean
      */
     void onGetNewGDList(MainItemNewOrderBean bean);
+    /**
+     * 登录成功的bean
+     * @param bean
+     */
+    void onLoginSuccess(UserInfoBean bean);
 }

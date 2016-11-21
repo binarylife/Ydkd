@@ -2,6 +2,7 @@ package com.bei.yd.ui.main.model;
 
 import com.bei.yd.ui.main.bean.MainBean;
 import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
+import com.bei.yd.ui.main.bean.UserInfoBean;
 import rx.Subscriber;
 
 /**
@@ -22,4 +23,11 @@ public interface MainModel {
    */
   void getAllNewWOList( int role,int account,int pageIndex ,
       Subscriber<MainItemNewOrderBean> callback);
+
+  /**
+   * 登录
+   */
+  void login(String userName,String passWord,
+      Subscriber<UserInfoBean> callback);
+
 }

@@ -5,6 +5,7 @@ import com.bei.yd.api.IApiConfig;
 import com.bei.yd.ui.main.api.MainFragmentApi;
 import com.bei.yd.ui.main.bean.MainBean;
 import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
+import com.bei.yd.ui.main.bean.UserInfoBean;
 import com.bei.yd.ui.main.model.MainModel;
 import com.bei.yd.ui.main.presenter.iml.MainPresenterImpl;
 import com.bei.yd.utils.RestAdapterUtils;
@@ -33,6 +34,14 @@ public class MainModelImpl implements MainModel, IApiConfig {
         this.mPresenter = presenter;
     }
 
+    /**
+     * 新建工单
+     * @param arae
+     * @param account
+     * @param address
+     * @param phone
+     * @param callback
+   */
     @Override public void addNewWO(String arae, int account, String address, int phone,
         Subscriber<MainBean> callback) {
         MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
@@ -42,6 +51,13 @@ public class MainModelImpl implements MainModel, IApiConfig {
             .subscribe(callback);
     }
 
+    /**
+     * 获取全部工单
+     * @param role
+     * @param account
+     * @param pageIndex
+     * @param callback
+   */
     @Override public void getAllNewWOList(int role, int account, int pageIndex,
         Subscriber<MainItemNewOrderBean> callback) {
         MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
@@ -50,4 +66,22 @@ public class MainModelImpl implements MainModel, IApiConfig {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(callback);
     }
+
+    @Override public void login(String userName, String passWord, Subscriber<UserInfoBean> callback) {
+        MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
+            api.login(userName, userName)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(callback);
+    }
+
+    //@Override public void login(String ){
+    //    Subscriber<MainItemNewOrderBean> callback) {
+    //    MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
+    //    api.getAllNewWorkOrderList(role, account,pageIndex,PAGESIZE)
+    //        .subscribeOn(Schedulers.io())
+    //        .observeOn(AndroidSchedulers.mainThread())
+    //        .subscribe(callback);
+    //}
+
 }

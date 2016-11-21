@@ -13,4 +13,8 @@ public interface IMainPresenter {
      * 获取工单列表
      */
     void getAllNewWorkOrderList(int role, int account,int pn);
+    /**
+     * 登录
+     */
+    void login(String userName, String PassWord);
 }

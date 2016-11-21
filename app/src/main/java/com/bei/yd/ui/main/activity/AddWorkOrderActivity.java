@@ -13,6 +13,7 @@ import com.bei.yd.R;
 import com.bei.yd.ui.base.activity.BackBaseActivity;
 import com.bei.yd.ui.main.bean.MainBean;
 import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
+import com.bei.yd.ui.main.bean.UserInfoBean;
 import com.bei.yd.ui.main.presenter.iml.MainPresenterImpl;
 import com.bei.yd.ui.main.view.IMainView;
 import com.bei.yd.utils.ToastUtil;
@@ -135,6 +136,10 @@ public class AddWorkOrderActivity extends BackBaseActivity
   }
 
   @Override public void onGetNewGDList(MainItemNewOrderBean bean) {
+
+  }
+
+  @Override public void onLoginSuccess(UserInfoBean bean) {
 
   }
 

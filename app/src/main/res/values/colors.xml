@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <color name="toolbar_bg_color">#FFFFFF</color>
-  <color name="colorPrimary">#3F51B5</color>
-  <color name="colorPrimaryDark">#303F9F</color>
-  <color name="colorAccent">#FF4081</color>
   <color name="windowBackground">#EDEDED</color>
   <color name="primary_text">#212121</color>
   <color name="primary_light">#727272</color>
   <color name="secondary_text">#9E9E9E</color>
   <color name="divider">#E6E6E6</color>
   <color name="divider_dark">#B6B6B6</color>
-
+  <color name="colorPrimary">#009688</color>
+  <color name="colorPrimaryDark">#00796B</color>
+  <color name="colorAccent">#009688</color>
+  <color name="colorStatusBarDark">#1e282d</color>
+  <color name="colorStatusBarLight">#00796B</color>
   <drawable name="transparent">@android:color/transparent</drawable>
 
   <!-- basic colors -->

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     >
 
   <android.support.design.widget.AppBarLayout
@@ -27,8 +25,6 @@
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:gravity="center_vertical"
-          android:paddingLeft="10dp"
-          android:paddingRight="10dp"
           >
 
         <TextView
@@ -37,73 +33,69 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="登录"
-            android:textSize="15sp"
-            android:textColor="@color/white"
+            android:text="测试01"
+            android:textSize="14sp"
             />
 
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="测试"
+            android:textSize="13sp"
+            android:textColor="#666666"
+             />
         <!--large_font_size-->
       </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
   </android.support.design.widget.AppBarLayout>
 
-
-  <com.bei.yd.widget.ClearEditText
+  <com.jcodecraeer.xrecyclerview.XRecyclerView
+      android:layout_below="@+id/app_bar"
+      android:id="@+id/rv_wait_order"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      ></com.jcodecraeer.xrecyclerview.XRecyclerView>
+  <EditText
       android:id="@+id/et_phoneNum"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_below="@+id/app_bar"
+      android:layout_below="@+id/view_line"
       android:layout_marginLeft="20dp"
       android:layout_marginRight="20dp"
       android:layout_marginTop="10dp"
       android:background="@null"
-      android:hint="请输入用户名"
+      android:hint="测试"
       android:inputType="phone"
       android:maxLength="11"
       android:paddingBottom="20dp"
       android:paddingTop="20dp"
-      android:textColor="@color/gray_light"
-      android:textColorHint="@color/gray_light"
-      android:textSize="@dimen/large_font_size"
+      android:textColor="#222222"
+      android:textColorHint="#222222"
+      android:textSize="14sp"
+      android:visibility="gone"
       />
 
-
-  <com.bei.yd.widget.ClearEditText
-      android:id="@+id/et_password"
+  <TextView
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+      android:layout_height="0.5dp"
       android:layout_below="@+id/et_phoneNum"
       android:layout_marginLeft="20dp"
       android:layout_marginRight="20dp"
-      android:background="@null"
-      android:hint="请输入密码"
-      android:inputType="textPassword"
-      android:maxLength="16"
-      android:paddingBottom="20dp"
-      android:paddingTop="20dp"
-      android:textColor="@color/gray_light"
-      android:textColorHint="@color/gray_light"
-      android:textSize="@dimen/large_font_size"
+      android:background="#222222"
       />
 
-
-  <TextView
-      android:id="@+id/bt_login"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_centerHorizontal="true"
-      android:layout_marginLeft="20dp"
+  <Button
+      android:layout_alignParentRight="true"
       android:layout_alignParentBottom="true"
-      android:layout_marginRight="20dp"
-      android:elevation="0dp"
-      android:gravity="center"
-      android:paddingBottom="11dp"
-      android:paddingTop="11dp"
-      android:background="@color/colorPrimary"
-      android:text="登录"
-      android:layout_marginBottom="20dp"
-      android:textColor="@color/white"
-      android:textSize="15sp"
+      android:id="@+id/bt_test"
+      android:layout_marginBottom="60dp"
+      android:layout_width="60dp"
+      android:layout_height="60dp"
+      android:text="测试"
       />
 </RelativeLayout>
