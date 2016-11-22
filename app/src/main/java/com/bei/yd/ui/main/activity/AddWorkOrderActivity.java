@@ -17,6 +17,7 @@ import com.bei.yd.ui.main.bean.UserInfoBean;
 import com.bei.yd.ui.main.presenter.iml.MainPresenterImpl;
 import com.bei.yd.ui.main.view.IMainView;
 import com.bei.yd.utils.ToastUtil;
+import com.jaredrummler.materialspinner.MaterialSpinner;
 
 /**
  * 新建工单
@@ -28,7 +29,7 @@ public class AddWorkOrderActivity extends BackBaseActivity
   @Bind(R.id.rl_brithday) RelativeLayout rlBrithday;
   // 用户头像
   @Bind(R.id.et_nickname) EditText mNickName;
-  @Bind(R.id.tv_area) EditText tvarea;
+  @Bind(R.id.tv_area) MaterialSpinner tvarea;
   @Bind(R.id.tv_brith) EditText tvAddress;
   @Bind(R.id.et_phone) EditText tvPhone;
   @Bind(R.id.tv_cityText) EditText cityText;
@@ -37,27 +38,7 @@ public class AddWorkOrderActivity extends BackBaseActivity
   private final static int FILECHOOSER_RESULTCODE = 4;
   private ValueCallback<Uri> mUploadMessage;
   //  网络交互的逻辑层
-  private MainPresenterImpl mineInfoPresenter;
-  //  时间选择器
-  //TimePickerView pvTime;
-  private String userPhotoUrl;
-  private String userNickName;
-  private int userGender;
-  private String userBirthday;
-  private String userEmail;
-  private String userTag;
-  private EditText nickName;
-  private String newNickname;
-  private String newSex;
-  private String newBrithday;
-  private String newEmail;
-  private String photoUrl;
-  /**
-   * 地址p
-   */
 
-  private int selectCityId;
-  private String[] userTags;
   private MainPresenterImpl mainPresenter;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -120,13 +101,13 @@ public class AddWorkOrderActivity extends BackBaseActivity
   /**
    * 提交修改后的数据
    */
-  private void postUserInfoData() {
-    newNickname = mNickName.getText().toString();
-
-    //mineInfoPresenter.loadInfosData(SharedPreferenceHelper.getUserToken(), newNickname,
-    //    selectCityId + "", newSex, newEmail, newBrithday);
-    //LogUtils.LOGE(BaiDaiApp.mContext.getToken());
-  }
+  //private void postUserInfoData() {
+  //  newNickname = mNickName.getText().toString();
+  //
+  //  //mineInfoPresenter.loadInfosData(SharedPreferenceHelper.getUserToken(), newNickname,
+  //  //    selectCityId + "", newSex, newEmail, newBrithday);
+  //  //LogUtils.LOGE(BaiDaiApp.mContext.getToken());
+  //}
 
   @Override public void onAddGD(MainBean bean) {
       if (bean.isSuccessful()){

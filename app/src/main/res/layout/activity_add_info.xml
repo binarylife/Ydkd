@@ -130,7 +130,7 @@
           style="@style/usercenter_l"
           />
 
-      <com.bei.yd.widget.ClearEditText
+      <com.jaredrummler.materialspinner.MaterialSpinner
           android:id="@+id/tv_area"
           android:layout_toRightOf="@+id/tv_usersex"
           android:layout_width="match_parent"

@@ -30,4 +30,9 @@ public interface MainFragmentApi {
    */
   @POST("login") Observable<UserInfoBean> login(
       @Query("account") String userName, @Query("pwd") String passWord);
+  /**
+   * 获取所有区县
+   * @return
+   */
+  @POST("queryArea") Observable<UserInfoBean> getArae();
 }

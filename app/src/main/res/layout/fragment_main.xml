@@ -5,97 +5,35 @@
     android:layout_height="match_parent"
     >
 
-  <android.support.design.widget.AppBarLayout
-      android:id="@+id/app_bar"
-      android:layout_width="match_parent"
-      android:layout_height="?attr/actionBarSize"
-      android:layout_alignParentTop="true"
-      >
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:contentInsetLeft="0dp"
-        app:contentInsetStart="0dp"
-        >
-
-      <RelativeLayout
-          android:id="@+id/login_fragment_title_rl"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:gravity="center_vertical"
-          >
-
-        <TextView
-            android:id="@+id/login_fragment_title_name_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:text="测试01"
-            android:textSize="14sp"
-            />
-
-        <TextView
-            android:id="@+id/tv_register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:text="测试"
-            android:textSize="13sp"
-            android:textColor="#666666"
-             />
-        <!--large_font_size-->
-      </RelativeLayout>
-
-    </android.support.v7.widget.Toolbar>
-  </android.support.design.widget.AppBarLayout>
-
-  <com.jcodecraeer.xrecyclerview.XRecyclerView
-      android:layout_below="@+id/app_bar"
-      android:id="@+id/rv_wait_order"
+  <android.support.design.widget.TabLayout
+      android:id="@+id/tab_layout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      ></com.jcodecraeer.xrecyclerview.XRecyclerView>
-  <EditText
-      android:id="@+id/et_phoneNum"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/view_line"
-      android:layout_marginLeft="20dp"
-      android:layout_marginRight="20dp"
-      android:layout_marginTop="10dp"
-      android:background="@null"
-      android:hint="测试"
-      android:inputType="phone"
-      android:maxLength="11"
-      android:paddingBottom="20dp"
-      android:paddingTop="20dp"
-      android:textColor="#222222"
-      android:textColorHint="#222222"
-      android:textSize="14sp"
-      android:visibility="gone"
+      android:background="@color/colorPrimary"
+      app:tabIndicatorColor="@color/white"
+      app:tabSelectedTextColor="@color/gray"
+      app:tabTextColor="@color/white"
       />
 
-  <TextView
-      android:layout_width="match_parent"
-      android:layout_height="0.5dp"
-      android:layout_below="@+id/et_phoneNum"
-      android:layout_marginLeft="20dp"
-      android:layout_marginRight="20dp"
-      android:background="#222222"
+
+  <android.support.v4.view.ViewPager
+      android:id="@+id/vp_FindFragment_pager"
+      android:layout_below="@+id/view_pager"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
       />
+
 
   <Button
       android:layout_alignParentRight="true"
       android:layout_alignParentBottom="true"
       android:id="@+id/bt_test"
-      android:layout_marginBottom="60dp"
+      android:layout_marginBottom="30dp"
+      android:layout_marginRight="30dp"
       android:layout_width="60dp"
       android:layout_height="60dp"
-      android:text="测试"
+      android:text="新建工单"
       />
 </RelativeLayout>
