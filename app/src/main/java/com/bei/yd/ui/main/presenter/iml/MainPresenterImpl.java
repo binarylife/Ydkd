@@ -1,6 +1,7 @@
 package com.bei.yd.ui.main.presenter.iml;
 
 import android.content.Context;
+import com.bei.yd.ui.main.bean.AreaBean;
 import com.bei.yd.ui.main.bean.MainBean;
 import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
 import com.bei.yd.ui.main.bean.UserInfoBean;
@@ -53,7 +54,7 @@ public class MainPresenterImpl implements IMainPresenter {
     });
   }
 
-  @Override public void getAllNewWorkOrderList(int role, int account, int pn) {
+  @Override public void getAllNewWorkOrderList(String role, int account, int pn) {
     view.showProgress();
     model.getAllNewWOList(role, account, pn, new Subscriber<MainItemNewOrderBean>() {
       @Override public void onCompleted() {
@@ -85,6 +86,29 @@ public class MainPresenterImpl implements IMainPresenter {
       @Override public void onNext(UserInfoBean userInfoBean) {
         view.hideProgress();
         view.onLoginSuccess(userInfoBean);
+      }
+    });
+  }
+
+  /**
+   * 获取区县
+   * @param userName
+   * @param PassWord
+   */
+  @Override public void getArea() {
+    view.showProgress();
+    model.getArea(new Subscriber<AreaBean>() {
+      @Override public void onCompleted() {
+
+      }
+
+      @Override public void onError(Throwable e) {
+
+      }
+
+      @Override public void onNext(AreaBean areaBean) {
+        view.hideProgress();
+        view.onGetAreaSuccess(areaBean);
       }
     });
   }

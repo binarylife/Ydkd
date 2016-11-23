@@ -287,4 +287,9 @@ public class MainItemNewOrderBean  extends BaseBean<ArrayList<MainItemNewOrderBe
         dest.writeInt(visitDuration);
         dest.writeInt(visitWarning);
     }
+
+    public MainItemNewOrderBean(String address, int id) {
+        this.address = address;
+        this.id = id;
+    }
 }

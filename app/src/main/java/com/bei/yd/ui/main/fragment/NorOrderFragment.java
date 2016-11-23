@@ -9,16 +9,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import butterknife.Bind;
+import butterknife.OnClick;
 import com.bei.yd.R;
 import com.bei.yd.ui.base.fragment.BaseLoadFragment;
 import com.bei.yd.ui.main.activity.AddWorkOrderActivity;
 import com.bei.yd.ui.main.adapter.MainAdapter;
+import com.bei.yd.ui.main.bean.AreaBean;
 import com.bei.yd.ui.main.bean.MainBean;
 import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
 import com.bei.yd.ui.main.bean.UserInfoBean;
 import com.bei.yd.ui.main.presenter.iml.MainPresenterImpl;
 import com.bei.yd.ui.main.view.IMainView;
 import com.bei.yd.utils.InvokeStartActivityUtils;
+import com.bei.yd.utils.SharedPreferenceHelper;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import java.util.ArrayList;
@@ -26,7 +29,7 @@ import java.util.ArrayList;
 /**
  * Created by wangchunlei on 3/28/16.
  */
-public class NorOrderFragment extends Fragment implements View.OnClickListener, IMainView {
+public class NorOrderFragment extends BaseLoadFragment implements View.OnClickListener, IMainView {
   //  设置按钮
 
   // 用户足迹
@@ -34,33 +37,51 @@ public class NorOrderFragment extends Fragment implements View.OnClickListener, 
   private MainPresenterImpl mainPresenter;
   private MainAdapter adapter;
   private int pn;
-  private ArrayList<MainBean> mainBeen;
-
+  private ArrayList<MainItemNewOrderBean> mainBeen = new ArrayList<MainItemNewOrderBean>();
 
   /**
    * 个人中心业务逻辑操作类
    */
   protected void onLoadData() {
-    mainPresenter.getAllNewWorkOrderList(1001,1001,1);
+    //mainPresenter.getAllNewWorkOrderList(1001,1001,1);
+    //for (int i = 0; i < 20; i++) {
+    //  mainBeen.add(new MainItemNewOrderBean("我是测试数据******************",i));
+    //}
+    //adapter.updateItems(mainBeen);
+    mainPresenter= new MainPresenterImpl(getActivity(),this);
+    mainPresenter.getAllNewWorkOrderList("B",1002,1);
   }
 
-  @Override
-  public void onCreate(@Nullable Bundle savedInstanceState) {
+  @Override public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
   }
+
   public static NorOrderFragment newInstance() {
     return new NorOrderFragment();
   }
-  @Override
-  public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-    View view = inflater.inflate(R.layout.fragment_nor_order,container,false);
+  //@Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+  //    @Nullable Bundle savedInstanceState) {
+  //
+  //  View view = inflater.inflate(R.layout.fragment_nor_order, container, false);
+  //
+  //  //initRecyclerView();
+  //  //onLoadData();
+  //  return view;
+  //}
 
-    initRecyclerView();
-    onLoadData();
-    return view;
+  @Override public int getContentResouceId() {
+    return R.layout.fragment_nor_order;
   }
 
+  @Override public void dealLogicBeforeInitView() {
+
+  }
+
+  @Override public void dealLogicAfterInitView(View view) {
+    initRecyclerView();
+    onLoadData();
+  }
 
   @Override public void onResume() {
     super.onResume();
@@ -72,13 +93,15 @@ public class NorOrderFragment extends Fragment implements View.OnClickListener, 
     }
   }
 
-  @Override public void onClick(View v) {
+  @OnClick({
+      //R.id.bt_test
+  }) @Override public void onClick(View v) {
     switch (v.getId()) {
-      case R.id.bt_test:
-        //mainPresenter.addWorkOrder("北京", 10000, "山西", 1245666);
-        //ToastUtil.showNormalShortToast("测试");
-        InvokeStartActivityUtils.startActivity(getActivity(), AddWorkOrderActivity.class,null,false);
-        break;
+      //case R.id.bt_test:
+      //  //mainPresenter.addWorkOrder("北京", 10000, "山西", 1245666);
+      //  //ToastUtil.showNormalShortToast("测试");
+      //  InvokeStartActivityUtils.startActivity(getActivity(), AddWorkOrderActivity.class,null,false);
+      //  break;
     }
   }
 
@@ -91,6 +114,10 @@ public class NorOrderFragment extends Fragment implements View.OnClickListener, 
   }
 
   @Override public void onLoginSuccess(UserInfoBean bean) {
+
+  }
+
+  @Override public void onGetAreaSuccess(AreaBean bean) {
 
   }
 
@@ -115,9 +142,7 @@ public class NorOrderFragment extends Fragment implements View.OnClickListener, 
       rvList.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
       rvList.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
       rvList.setArrowImageView(R.drawable.iconfont_downgrey);
-      rvList.setAdapter(
-          adapter == null ?  adapter= new MainAdapter(getActivity())
-              : adapter);
+      rvList.setAdapter(adapter == null ? adapter = new MainAdapter(getActivity()) : adapter);
       rvList.setPullRefreshEnabled(true);
       rvList.setLoadingMoreEnabled(true);
       adapter.setOnItemClickListener(new MainAdapter.OnItemListener() {

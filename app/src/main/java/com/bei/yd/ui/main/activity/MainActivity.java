@@ -4,11 +4,9 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
 import butterknife.Bind;
@@ -50,6 +48,7 @@ public class MainActivity extends BackBaseActivity {
     //private VideoMainFragment videoMainFragment;
     private MineFragment careMainFragment;
     private static int tabLayoutHeight;
+    private FragmentTransaction transaction;
 
     /**
      * 入口
@@ -98,13 +97,13 @@ public class MainActivity extends BackBaseActivity {
      * 初始化碎片
      */
     private void initFragment(Bundle savedInstanceState) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         int currentTabPosition = 0;
         if (savedInstanceState != null) {
-            newsMainFragment = (MineFragment) getFragmentManager().findFragmentByTag("newsMainFragment");
+            newsMainFragment = (MineFragment) getSupportFragmentManager().findFragmentByTag("newsMainFragment");
             //photosMainFragment = (PhotosMainFragment) getSupportFragmentManager().findFragmentByTag("photosMainFragment");
             //videoMainFragment = (VideoMainFragment) getSupportFragmentManager().findFragmentByTag("videoMainFragment");
-            careMainFragment = (MineFragment) getFragmentManager().findFragmentByTag("careMainFragment");
+            careMainFragment = (MineFragment) getSupportFragmentManager().findFragmentByTag("careMainFragment");
             currentTabPosition = savedInstanceState.getInt(AppConstant.HOME_CURRENT_TAB_POSITION);
         } else {
             newsMainFragment = new MineFragment();
@@ -126,7 +125,7 @@ public class MainActivity extends BackBaseActivity {
      */
     private void SwitchTo(int position) {
         LogUtils.logd("主页菜单position" + position);
-        android.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction = getSupportFragmentManager().beginTransaction();
         switch (position) {
             //首页
             case 0:

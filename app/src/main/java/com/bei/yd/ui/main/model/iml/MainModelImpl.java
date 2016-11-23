@@ -3,6 +3,7 @@ package com.bei.yd.ui.main.model.iml;
 import android.content.Context;
 import com.bei.yd.api.IApiConfig;
 import com.bei.yd.ui.main.api.MainFragmentApi;
+import com.bei.yd.ui.main.bean.AreaBean;
 import com.bei.yd.ui.main.bean.MainBean;
 import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
 import com.bei.yd.ui.main.bean.UserInfoBean;
@@ -58,7 +59,7 @@ public class MainModelImpl implements MainModel, IApiConfig {
      * @param pageIndex
      * @param callback
    */
-    @Override public void getAllNewWOList(int role, int account, int pageIndex,
+    @Override public void getAllNewWOList(String role, int account, int pageIndex,
         Subscriber<MainItemNewOrderBean> callback) {
         MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
         api.getAllNewWorkOrderList(role, account,pageIndex,PAGESIZE)
@@ -69,10 +70,18 @@ public class MainModelImpl implements MainModel, IApiConfig {
 
     @Override public void login(String userName, String passWord, Subscriber<UserInfoBean> callback) {
         MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
-            api.login(userName, userName)
+            api.login(userName, passWord)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(callback);
+    }
+
+    @Override public void getArea( Subscriber<AreaBean> callback) {
+        MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
+        api.getArae()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(callback);
     }
 
     //@Override public void login(String ){

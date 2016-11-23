@@ -27,7 +27,12 @@ public class UserInfoBean extends BaseBean<UserInfoBean> {
     private String role;
     private String username;
 
-    protected UserInfoBean(Parcel in) {
+    /**
+     * 无参构造方法
+     */
+    public UserInfoBean() {
+    }
+    public UserInfoBean(Parcel in) {
         account = in.readString();
         areaid = in.readInt();
         id = in.readInt();

@@ -9,26 +9,30 @@ import android.view.View;
 import android.webkit.ValueCallback;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.OnClick;
 import com.bei.yd.R;
 import com.bei.yd.ui.base.activity.BackBaseActivity;
+import com.bei.yd.ui.main.bean.AreaBean;
 import com.bei.yd.ui.main.bean.MainBean;
 import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
 import com.bei.yd.ui.main.bean.UserInfoBean;
 import com.bei.yd.ui.main.presenter.iml.MainPresenterImpl;
 import com.bei.yd.ui.main.view.IMainView;
+import com.bei.yd.utils.InvokeStartActivityUtils;
+import com.bei.yd.utils.SharedPreferenceHelper;
 import com.bei.yd.utils.ToastUtil;
 
 /**
  * 新建工单
  * Created by fengbei on 2016/3/10.
  */
-public class LoginActivity extends BackBaseActivity
-    implements IMainView, View.OnClickListener {
+public class LoginActivity extends BackBaseActivity implements IMainView, View.OnClickListener {
   // 用户账号
   @Bind(R.id.et_phoneNum) EditText mNickName;
   @Bind(R.id.et_password) EditText mPassWord;
+  @Bind(R.id.bt_login) TextView mlogin;
   //  网络交互的逻辑层
   private MainPresenterImpl mineInfoPresenter;
   /**
@@ -45,7 +49,6 @@ public class LoginActivity extends BackBaseActivity
     //  初始化上传头像的逻辑层
     initView();
     mainPresenter = new MainPresenterImpl(this, this);
-
   }
 
   @Override public void onResume() {
@@ -57,6 +60,7 @@ public class LoginActivity extends BackBaseActivity
    * 初始化控件
    */
   private void initView() {
+
     //        mMyAddressBean = getIntent().getParcelableExtra(Constant.EXTRA_INTENT_ADDRESS_BEAN);
   }
 
@@ -64,16 +68,18 @@ public class LoginActivity extends BackBaseActivity
 
   }
 
-  @OnClick({ R.id.bt_login
+  @OnClick({
+      R.id.bt_login
   }) public void onClick(View view) {
     switch (view.getId()) {
       case R.id.bt_login:
         //  提交修改的数据
-        mainPresenter.login(mNickName.getText().toString(), mPassWord.getText().toString());
+        newPassWord = mPassWord.getText().toString();
+        newNickname = mNickName.getText().toString();
+        mainPresenter.login(newNickname, newPassWord);
         break;
     }
   }
-
 
   @Override public void onAddGD(MainBean bean) {
   }
@@ -84,6 +90,14 @@ public class LoginActivity extends BackBaseActivity
 
   @Override public void onLoginSuccess(UserInfoBean bean) {
     ToastUtil.showNormalShortToast("登录成功!");
+    if (bean.isSuccessful()) {
+      SharedPreferenceHelper.saveUserInfo(bean.getData());
+      InvokeStartActivityUtils.startActivity(this, MainActivity.class, null, true);
+    }
+  }
+
+  @Override public void onGetAreaSuccess(AreaBean bean) {
+
   }
 
   @Override public void showProgress() {
@@ -97,14 +111,15 @@ public class LoginActivity extends BackBaseActivity
   @Override public void showLoadFailMsg(String msg) {
 
   }
+
   /**
    * 入口
-   * @param activity
    */
-  public static void startAction(Activity activity){
+  public static void startAction(Activity activity) {
     Intent intent = new Intent(activity, LoginActivity.class);
     activity.startActivity(intent);
     activity.overridePendingTransition(com.jaydenxiao.common.R.anim.fade_in,
         com.jaydenxiao.common.R.anim.fade_out);
   }
+
 }

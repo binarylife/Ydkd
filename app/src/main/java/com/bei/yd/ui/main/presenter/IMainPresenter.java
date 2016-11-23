@@ -12,9 +12,13 @@ public interface IMainPresenter {
     /**
      * 获取工单列表
      */
-    void getAllNewWorkOrderList(int role, int account,int pn);
+    void getAllNewWorkOrderList(String role, int account,int pn);
     /**
      * 登录
      */
     void login(String userName, String PassWord);
+    /**
+     * 登录
+     */
+    void getArea();
 }

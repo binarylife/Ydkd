@@ -1,5 +1,6 @@
 package com.bei.yd.ui.main.api;
 
+import com.bei.yd.ui.main.bean.AreaBean;
 import com.bei.yd.ui.main.bean.MainBean;
 import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
 import com.bei.yd.ui.main.bean.UserInfoBean;
@@ -23,7 +24,7 @@ public interface MainFragmentApi {
    * @return
    */
   @POST("queryWorkOrderList") Observable<MainItemNewOrderBean> getAllNewWorkOrderList(
-      @Query("role") int role, @Query("account") int account, @Query("pageIndex") int address, @Query("pageSize") int pageSize);
+      @Query("role") String role, @Query("account") int account, @Query("pageIndex") int address, @Query("pageSize") int pageSize);
   /**
    * 登录
    * @return
@@ -34,5 +35,5 @@ public interface MainFragmentApi {
    * 获取所有区县
    * @return
    */
-  @POST("queryArea") Observable<UserInfoBean> getArae();
+  @POST("queryArea") Observable<AreaBean> getArae();
 }

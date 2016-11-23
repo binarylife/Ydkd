@@ -11,6 +11,7 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import com.bei.yd.R;
 import com.bei.yd.ui.base.activity.BackBaseActivity;
+import com.bei.yd.ui.main.bean.AreaBean;
 import com.bei.yd.ui.main.bean.MainBean;
 import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
 import com.bei.yd.ui.main.bean.UserInfoBean;
@@ -18,6 +19,7 @@ import com.bei.yd.ui.main.presenter.iml.MainPresenterImpl;
 import com.bei.yd.ui.main.view.IMainView;
 import com.bei.yd.utils.ToastUtil;
 import com.jaredrummler.materialspinner.MaterialSpinner;
+import java.util.ArrayList;
 
 /**
  * 新建工单
@@ -33,6 +35,7 @@ public class AddWorkOrderActivity extends BackBaseActivity
   @Bind(R.id.tv_brith) EditText tvAddress;
   @Bind(R.id.et_phone) EditText tvPhone;
   @Bind(R.id.tv_cityText) EditText cityText;
+
   // 接收上传完成的头像的URl
   //  文件选择
   private final static int FILECHOOSER_RESULTCODE = 4;
@@ -40,15 +43,16 @@ public class AddWorkOrderActivity extends BackBaseActivity
   //  网络交互的逻辑层
 
   private MainPresenterImpl mainPresenter;
+  private ArrayList<String> selectArea= new ArrayList<>();//  选中的id
+  private ArrayList<AreaBean> beanData;
+  private String areaName;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_add_info);
-
-    //  初始化上传头像的逻辑层
-    initView();
     mainPresenter = new MainPresenterImpl(this, this);
-
+    onLoadData();
+    //  初始化上传头像的逻辑层
     //mineInfoPresenter = new MineInfoPresenterImpl(this, this);
   }
 
@@ -62,15 +66,23 @@ public class AddWorkOrderActivity extends BackBaseActivity
    */
   private void initView() {
     //        mMyAddressBean = getIntent().getParcelableExtra(Constant.EXTRA_INTENT_ADDRESS_BEAN);
+
+    tvarea.setItems(selectArea);
+    tvarea.setSelectedIndex(0);
+    tvarea.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
+        areaName = selectArea.get(position);
+      }
+    });
   }
 
   @Override protected void onLoadData() {
-
+    mainPresenter.getArea();
   }
 
   @OnClick({
-      R.id.title_back,  R.id.tv_area, R.id.rl_city, R.id.tv_save,
-      R.id.et_nickname, R.id.et_phone
+      R.id.title_back, R.id.tv_area, R.id.rl_city, R.id.tv_save, R.id.et_nickname, R.id.et_phone
   }) public void onClick(View view) {
     switch (view.getId()) {
       case R.id.title_back:
@@ -86,7 +98,8 @@ public class AddWorkOrderActivity extends BackBaseActivity
         // selectSex();
         break;
       case R.id.tv_save://  保存修改
-        mainPresenter.addWorkOrder(tvarea.getText().toString(), 110, tvAddress.getText().toString(),Integer.parseInt(tvPhone.getText().toString()));
+        mainPresenter.addWorkOrder(tvarea.getText().toString(), 110, areaName,
+            Integer.parseInt(tvPhone.getText().toString()));
         break;
       case R.id.et_nickname://  点击昵称编辑
         break;
@@ -108,12 +121,11 @@ public class AddWorkOrderActivity extends BackBaseActivity
   //  //    selectCityId + "", newSex, newEmail, newBrithday);
   //  //LogUtils.LOGE(BaiDaiApp.mContext.getToken());
   //}
-
   @Override public void onAddGD(MainBean bean) {
-      if (bean.isSuccessful()){
-        ToastUtil.showNormalShortToast("新建工单成功!");
-        finish();
-      }
+    if (bean.isSuccessful()) {
+      ToastUtil.showNormalShortToast("新建工单成功!");
+      finish();
+    }
   }
 
   @Override public void onGetNewGDList(MainItemNewOrderBean bean) {
@@ -122,6 +134,16 @@ public class AddWorkOrderActivity extends BackBaseActivity
 
   @Override public void onLoginSuccess(UserInfoBean bean) {
 
+  }
+
+  @Override public void onGetAreaSuccess(AreaBean bean) {
+    if (bean.isSuccessful()) {
+      beanData = bean.getData();//  区域集合
+      for (int i = 0; i <beanData.size() ; i++) {
+        selectArea.add(beanData.get(i).getAreaName());
+      }
+      initView();
+    }
   }
 
   @Override public void showProgress() {

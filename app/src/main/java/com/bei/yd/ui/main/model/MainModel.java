@@ -1,5 +1,6 @@
 package com.bei.yd.ui.main.model;
 
+import com.bei.yd.ui.main.bean.AreaBean;
 import com.bei.yd.ui.main.bean.MainBean;
 import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
 import com.bei.yd.ui.main.bean.UserInfoBean;
@@ -21,7 +22,7 @@ public interface MainModel {
   /**
    * 所有工单获取
    */
-  void getAllNewWOList( int role,int account,int pageIndex ,
+  void getAllNewWOList( String role,int account,int pageIndex ,
       Subscriber<MainItemNewOrderBean> callback);
 
   /**
@@ -29,5 +30,9 @@ public interface MainModel {
    */
   void login(String userName,String passWord,
       Subscriber<UserInfoBean> callback);
+  /**
+   * 获取区县
+   */
+  void getArea(Subscriber<AreaBean> callback);
 
 }
