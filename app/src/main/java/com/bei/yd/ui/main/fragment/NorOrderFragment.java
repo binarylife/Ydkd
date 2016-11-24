@@ -44,7 +44,7 @@ public class NorOrderFragment extends BaseLoadFragment implements View.OnClickLi
    */
   protected void onLoadData() {
     //mainPresenter.getAllNewWorkOrderList(1001,1001,1);
-    //for (int i = 0; i < 20; i++) {
+    //for (int i = 0; i < 1; i++) {
     //  mainBeen.add(new MainItemNewOrderBean("我是测试数据******************",i));
     //}
     //adapter.updateItems(mainBeen);
@@ -149,18 +149,18 @@ public class NorOrderFragment extends BaseLoadFragment implements View.OnClickLi
         @Override public void onItemClick(View view, int position) {
         }
       });
-      //rvList.setLoadingListener(new XRecyclerView.LoadingListener() {
-      //  @Override public void onRefresh() {
-      //    //上拉刷新
-      //    pn = 1;
-      //    onLoadData();
-      //  }
-      //
-      //  @Override public void onLoadMore() {
-      //    pn++;
-      //    onLoadData();
-      //  }
-      //});
+      rvList.setLoadingListener(new XRecyclerView.LoadingListener() {
+        @Override public void onRefresh() {
+          //上拉刷新
+          pn = 1;
+          onLoadData();
+        }
+
+        @Override public void onLoadMore() {
+          pn++;
+          onLoadData();
+        }
+      });
     }
   }
 }

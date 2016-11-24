@@ -15,7 +15,7 @@ public interface IApiConfig {
   /**
    * API地址
    */
-  String BASE_URL = "http://192.168.1.109/yd/" ;
+  String BASE_URL = "http://www.ordos-edu.com/yd/" ;
   /**
    * H5地址
    */

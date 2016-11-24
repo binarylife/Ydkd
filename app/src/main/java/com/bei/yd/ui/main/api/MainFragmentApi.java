@@ -18,7 +18,7 @@ public interface MainFragmentApi {
    * @return
    */
   @POST("addWorkOrder") Observable<MainBean> addNewWorkOrder(
-      @Query("area") String area, @Query("account") int account, @Query("address") String address, @Query("phone") int phone);
+      @Query("area") String area, @Query("account") int account, @Query("address") String address, @Query("phone") int phone,@Query("type") String type);
   /**
    * 获取最新工单列表
    * @return
@@ -36,4 +36,9 @@ public interface MainFragmentApi {
    * @return
    */
   @POST("queryArea") Observable<AreaBean> getArae();
+  /**
+   * 获取可派人员列表
+   * @return
+   */
+  @POST("queryOtherUser") Observable<AreaBean> getAllPaiWorker();
 }

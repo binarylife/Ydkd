@@ -1,17 +1,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
     >
   <android.support.v7.widget.Toolbar
       android:id="@+id/toolbar"
       android:layout_width="match_parent"
       android:layout_height="?attr/actionBarSize"
       android:paddingLeft="16dp"
+      android:background="@color/colorPrimary"
       android:paddingRight="16dp"
       app:contentInsetLeft="0dp"
       app:contentInsetStart="0dp"
@@ -28,6 +26,7 @@
           android:layout_centerInParent="true"
           android:text="新建工单"
           android:textSize="17sp"
+          android:textColor="@color/white"
           />
 
       <ImageView
@@ -39,17 +38,6 @@
           android:layout_gravity="center_vertical"
           android:scaleType="fitXY"
           android:src="@drawable/title_back_icon"
-          />
-      <TextView
-          android:id="@+id/tv_save"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignParentRight="true"
-          android:layout_centerVertical="true"
-          android:gravity="center"
-          android:text="保存"
-          android:textColor="@color/black"
-          android:textSize="16dp"
           />
     </RelativeLayout>
   </android.support.v7.widget.Toolbar>
@@ -226,16 +214,23 @@
           style="@style/usercenter_l"
           />
 
-      <com.bei.yd.widget.ClearEditText
-          android:id="@+id/tv_cityText"
+      <com.jaredrummler.materialspinner.MaterialSpinner
+          android:id="@+id/tv_type"
+          android:layout_toRightOf="@+id/tv_city"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_centerVertical="true"
-          android:layout_marginLeft="22dp"
-          android:layout_toRightOf="@id/tv_city"
-          android:hint="选择工单类型"
+          android:layout_marginLeft="20dp"
+          android:background="@null"
+          android:cursorVisible="false"
+          android:paddingBottom="15dp"
+          android:paddingRight="10dp"
+          android:paddingTop="15dp"
+          android:singleLine="true"
+          android:hint="区县"
           android:textColor="#666666"
-          style="@style/usercenter_l"
+          android:textCursorDrawable="@drawable/shape_edit_text"
+          android:textSize="14sp"
           />
 
       <ImageView
@@ -298,5 +293,17 @@
 
   </LinearLayout>
 
-
+  <TextView
+      android:id="@+id/tv_save"
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:layout_centerVertical="true"
+      android:gravity="center"
+      android:layout_alignParentBottom="true"
+      android:text="保存"
+      android:layout_margin="20dp"
+      android:background="@color/colorPrimary"
+      android:textColor="@color/white"
+      android:textSize="16dp"
+      />
 </RelativeLayout>

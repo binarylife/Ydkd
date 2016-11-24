@@ -16,7 +16,7 @@ public interface MainModel {
   /**
    * 新建neworder
    */
-  void addNewWO(String arae, int account, String address, int phone,
+  void addNewWO(String arae, int account, String address, int phone,String type,
       Subscriber<MainBean> callback);
 
   /**

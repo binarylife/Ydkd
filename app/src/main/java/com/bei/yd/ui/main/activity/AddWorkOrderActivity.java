@@ -17,6 +17,8 @@ import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
 import com.bei.yd.ui.main.bean.UserInfoBean;
 import com.bei.yd.ui.main.presenter.iml.MainPresenterImpl;
 import com.bei.yd.ui.main.view.IMainView;
+import com.bei.yd.utils.SharedPreferenceHelper;
+import com.bei.yd.utils.SharedPreferenceUtil;
 import com.bei.yd.utils.ToastUtil;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ public class AddWorkOrderActivity extends BackBaseActivity
   @Bind(R.id.tv_area) MaterialSpinner tvarea;
   @Bind(R.id.tv_brith) EditText tvAddress;
   @Bind(R.id.et_phone) EditText tvPhone;
-  @Bind(R.id.tv_cityText) EditText cityText;
+  @Bind(R.id.tv_type) MaterialSpinner mTypey;// 工单类型
 
   // 接收上传完成的头像的URl
   //  文件选择
@@ -44,35 +46,40 @@ public class AddWorkOrderActivity extends BackBaseActivity
 
   private MainPresenterImpl mainPresenter;
   private ArrayList<String> selectArea= new ArrayList<>();//  选中的id
+  private String[] selectType= {"s","w"};//  选中的id
   private ArrayList<AreaBean> beanData;
-  private String areaName;
+  private String tareaName;
+  private String typeName;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_add_info);
     mainPresenter = new MainPresenterImpl(this, this);
     onLoadData();
-    //  初始化上传头像的逻辑层
-    //mineInfoPresenter = new MineInfoPresenterImpl(this, this);
   }
 
   @Override public void onResume() {
     super.onResume();
-    // 从新获取数据
   }
 
   /**
-   * 初始化控件
+   * 初始化控y件
    */
   private void initView() {
-    //        mMyAddressBean = getIntent().getParcelableExtra(Constant.EXTRA_INTENT_ADDRESS_BEAN);
-
     tvarea.setItems(selectArea);
     tvarea.setSelectedIndex(0);
     tvarea.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
       @Override
       public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
-        areaName = selectArea.get(position);
+        tareaName = selectArea.get(position);
+      }
+    });
+    mTypey.setItems(selectType);
+    mTypey.setSelectedIndex(0);
+    mTypey.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
+        typeName = selectType[position];
       }
     });
   }
@@ -98,8 +105,8 @@ public class AddWorkOrderActivity extends BackBaseActivity
         // selectSex();
         break;
       case R.id.tv_save://  保存修改
-        mainPresenter.addWorkOrder(tvarea.getText().toString(), 110, areaName,
-            Integer.parseInt(tvPhone.getText().toString()));
+        mainPresenter.addWorkOrder(tvarea.getText().toString(), Integer.parseInt(SharedPreferenceHelper.getUserAccount()), tareaName,
+            Integer.parseInt(tvPhone.getText().toString()),typeName);
         break;
       case R.id.et_nickname://  点击昵称编辑
         break;
