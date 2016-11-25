@@ -13,7 +13,9 @@ import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Process;
 import android.os.StatFs;
+import android.system.Os;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -24,6 +26,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import com.bei.yd.BuildConfig;
 import com.jaydenxiao.common.commonutils.LogUtils;
+import com.umeng.analytics.MobclickAgent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -566,5 +569,15 @@ public class DeviceUtils {
     return false;
   }
 
-
+    /**
+     * 退出APP
+     */
+    public static void exitBaiDai() {
+        //MobclickAgent.onKillProcess(BaiDaiApp.mContext);//保存友盟数据
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Process.killProcess(Os.getpid());
+        } else {
+            Process.killProcess(Process.myPid());
+        }
+    }
 }

@@ -3,18 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rl_scenery_item"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:clickable="true"
+    android:layout_height="wrap_content"
     android:padding="10dp"
-    android:background="#e3e3e3"
     >
+
+  <TextView
+      android:id="@+id/tv_worker"
+      android:layout_width="60dp"
+      android:layout_height="60dp"
+      android:gravity="center"
+      android:background="@color/colorPrimary"
+      android:text="工人"
+      android:padding="10dp"
+      />
   <!--景点名称-->
   <TextView
       android:id="@+id/tv_scenic_name"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginLeft="15dp"
+      android:layout_toRightOf="@+id/tv_worker"
       android:textColor="#222222"
+      android:layout_centerVertical="true"
       android:textSize="15sp"
       tools:text="景点名称"
       />

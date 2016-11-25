@@ -17,6 +17,8 @@ import com.bei.yd.app.AppConstant;
 import com.bei.yd.bean.TabEntity;
 import com.bei.yd.ui.base.activity.BackBaseActivity;
 import com.bei.yd.ui.main.fragment.MineFragment;
+import com.bei.yd.utils.DeviceUtils;
+import com.bei.yd.utils.ToastUtil;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
@@ -35,6 +37,14 @@ public class MainActivity extends BackBaseActivity {
 
     @Bind(R.id.tab_layout)
     CommonTabLayout tabLayout;
+    /**
+     * 两次点击返回按钮时，记录时间
+     */
+    private long onBackPressedTime;
+    /**
+     * 两次点击时的间隔
+     */
+    private long onBackDelayTime = 2 * 1000L;
 
     private String[] mTitles = {"首页", "我的"};
     private int[] mIconUnselectIds = {
@@ -166,7 +176,6 @@ public class MainActivity extends BackBaseActivity {
 
     /**
      * 菜单显示隐藏动画
-     * @param showOrHide
      */
     //private void startAnimation(boolean showOrHide){
     //    final ViewGroup.LayoutParams layoutParams = tabLayout.getLayoutParams();
@@ -191,33 +200,6 @@ public class MainActivity extends BackBaseActivity {
     //    animatorSet.playTogether(valueAnimator,alpha);
     //    animatorSet.start();
     //}
-
-    /**
-     * 监听全屏视频时返回键
-     */
-    @Override
-    public void onBackPressed() {
-        //if (JCVideoPlayer.backPress()) {
-        //    return;
-        //}
-        super.onBackPressed();
-    }
-    /**
-     * 监听返回键
-     *
-     * @param keyCode
-     * @param event
-     * @return
-     */
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            moveTaskToBack(false);
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -283,5 +265,19 @@ public class MainActivity extends BackBaseActivity {
     //        UmengUtils.onMainBottomTap(this, getResources().getString(R.string.ui_app_userceter));
     //    }
     //}
+    /**
+     * 连续两次点击返回键退出程序
+     */
 
+    @Override public void onBackPressed() {
+        long currentTimeMillis = System.currentTimeMillis();
+        if (currentTimeMillis - onBackPressedTime >= onBackDelayTime) {
+            ToastUtil.showNormalShortToast("再按一次退出派单助手");
+            onBackPressedTime = currentTimeMillis;
+        } else {
+            DeviceUtils.exitBaiDai();
+            return;
+        }
+        //        super.onBackPressed();
+    }
 }

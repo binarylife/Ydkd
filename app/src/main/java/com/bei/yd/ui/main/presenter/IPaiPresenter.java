@@ -8,4 +8,8 @@ public interface IPaiPresenter {
      * 获取可派工单人员
      */
     void getArea();
+    /**
+     * 指派工单给工人
+     */
+    void dispatchOrder(int id,String accountA,String accountB);
 }

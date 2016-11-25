@@ -5,6 +5,7 @@ import com.bei.yd.ui.main.bean.AreaBean;
 import com.bei.yd.ui.main.bean.MainBean;
 import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
 import com.bei.yd.ui.main.bean.UserInfoBean;
+import com.bei.yd.ui.main.bean.UserInfoBeans;
 
 /**
  * 精彩景点
@@ -18,5 +19,10 @@ public interface IpaiView extends IBaseView {
      * 获取可人员名单
      * @param bean
      */
-    void onGetPaiWorkerSuccess(AreaBean bean);
+    void onGetPaiWorkerSuccess(UserInfoBeans bean);
+    /**
+     * 派单成功
+     * @param bean
+     */
+    void onDispatchSuccess(MainBean bean);
 }

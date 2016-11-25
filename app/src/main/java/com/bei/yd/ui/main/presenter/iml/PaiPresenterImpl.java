@@ -5,6 +5,7 @@ import com.bei.yd.ui.main.bean.AreaBean;
 import com.bei.yd.ui.main.bean.MainBean;
 import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
 import com.bei.yd.ui.main.bean.UserInfoBean;
+import com.bei.yd.ui.main.bean.UserInfoBeans;
 import com.bei.yd.ui.main.model.PaiModel;
 import com.bei.yd.ui.main.model.iml.MainModelImpl;
 import com.bei.yd.ui.main.model.iml.PaiModelImpl;
@@ -46,7 +47,7 @@ public class PaiPresenterImpl implements IPaiPresenter {
    */
   @Override public void getArea() {
     view.showProgress();
-    model.getAllAreaPaiWorker(new Subscriber<AreaBean>() {
+    model.getAllAreaPaiWorker(new Subscriber<UserInfoBeans>() {
       @Override public void onCompleted() {
 
       }
@@ -55,9 +56,41 @@ public class PaiPresenterImpl implements IPaiPresenter {
 
       }
 
-      @Override public void onNext(AreaBean areaBean) {
+      @Override public void onNext(UserInfoBeans areaBean) {
         view.hideProgress();
-        view.onGetPaiWorkerSuccess(areaBean);
+        if (areaBean.isSuccessful()) {
+          view.onGetPaiWorkerSuccess(areaBean);
+        }else{
+          ToastUtil.showNormalShortToast(areaBean.getMsg());
+        }
+      }
+    });
+  }
+
+  /**
+   *
+   * @param id
+   * @param accountA
+   * @param accountB
+   */
+  @Override public void dispatchOrder(int id,String accountA,String accountB) {
+    view.showProgress();
+    model.dispatchOrder(id,accountA,accountB,new Subscriber<MainBean>() {
+      @Override public void onCompleted() {
+
+      }
+
+      @Override public void onError(Throwable e) {
+
+      }
+
+      @Override public void onNext(MainBean areaBean) {
+        view.hideProgress();
+        if (areaBean.isSuccessful()) {
+          view.onDispatchSuccess(areaBean);
+        }else{
+          ToastUtil.showNormalShortToast(areaBean.getMsg());
+        }
       }
     });
   }

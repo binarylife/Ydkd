@@ -7,6 +7,7 @@ import com.bei.yd.ui.main.bean.AreaBean;
 import com.bei.yd.ui.main.bean.MainBean;
 import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
 import com.bei.yd.ui.main.bean.UserInfoBean;
+import com.bei.yd.ui.main.bean.UserInfoBeans;
 import com.bei.yd.ui.main.model.MainModel;
 import com.bei.yd.ui.main.model.PaiModel;
 import com.bei.yd.ui.main.presenter.iml.MainPresenterImpl;
@@ -29,9 +30,18 @@ public class PaiModelImpl implements PaiModel, IApiConfig {
         this.mContext = mContext;
     }
 
-    @Override public void getAllAreaPaiWorker(Subscriber<AreaBean> callback) {
+    @Override public void getAllAreaPaiWorker(Subscriber<UserInfoBeans> callback) {
         MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
         api.getAllPaiWorker()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(callback);
+    }
+
+    @Override public void dispatchOrder(int id, String accountA, String accountB,
+        Subscriber<MainBean> callback) {
+        MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
+        api.dispatchOrder(id,accountA,accountB)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(callback);
