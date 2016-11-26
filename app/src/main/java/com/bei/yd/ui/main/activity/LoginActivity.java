@@ -84,6 +84,10 @@ public class LoginActivity extends BackBaseActivity implements IMainView, View.O
   @Override public void onAddGD(MainBean bean) {
   }
 
+  @Override public void onGetNewGDListMore(MainItemNewOrderBean bean) {
+
+  }
+
   @Override public void onGetNewGDList(MainItemNewOrderBean bean) {
 
   }

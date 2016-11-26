@@ -20,6 +20,11 @@ public interface IMainView extends IBaseView {
      */
     void onAddGD(MainBean bean);
     /**
+     * 获取更多工单筛选结果
+     * @param bean
+     */
+    void onGetNewGDListMore(MainItemNewOrderBean bean);
+    /**
      * 增加筛选结果
      * @param bean
      */

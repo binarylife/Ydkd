@@ -54,7 +54,7 @@ public class MainPresenterImpl implements IMainPresenter {
     });
   }
 
-  @Override public void getAllNewWorkOrderList(String role, int account, int pn) {
+  @Override public void getAllNewWorkOrderList(String role, int account, final int pn) {
     view.showProgress();
     model.getAllNewWOList(role, account, pn, new Subscriber<MainItemNewOrderBean>() {
       @Override public void onCompleted() {
@@ -67,7 +67,12 @@ public class MainPresenterImpl implements IMainPresenter {
 
       @Override public void onNext(MainItemNewOrderBean mainItemNewOrderBean) {
         view.hideProgress();
-        view.onGetNewGDList(mainItemNewOrderBean);
+        if (pn <= 1) {
+          view.onGetNewGDList(mainItemNewOrderBean);
+        } else {
+          view.onGetNewGDListMore(mainItemNewOrderBean);
+        }
+
       }
     });
   }
@@ -92,8 +97,6 @@ public class MainPresenterImpl implements IMainPresenter {
 
   /**
    * 获取区县
-   * @param userName
-   * @param PassWord
    */
   @Override public void getArea() {
     view.showProgress();

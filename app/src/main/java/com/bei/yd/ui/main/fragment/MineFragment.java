@@ -14,6 +14,7 @@ import com.bei.yd.ui.base.fragment.BaseLoadFragment;
 import com.bei.yd.ui.main.activity.AddWorkOrderActivity;
 import com.bei.yd.ui.main.adapter.MainPagerAdapter;
 import com.bei.yd.utils.InvokeStartActivityUtils;
+import com.melnykov.fab.FloatingActionButton;
 
 /**
  * Created by wangchunlei on 3/28/16.
@@ -22,7 +23,7 @@ public class MineFragment extends BaseLoadFragment implements View.OnClickListen
   private Context context;
   @Bind(R.id.tab_layout) TabLayout tabLayout;
   @Bind(R.id.view_pager) ViewPager viewPager;
-  @Bind(R.id.bt_new_order) Button mbtNewOrder;
+  @Bind(R.id.main_fab) FloatingActionButton mbtNewOrder;
   private MainPagerAdapter adapter;
 
   private OnViewPagerCreated mOnViewPagerCreated;
@@ -54,7 +55,7 @@ public class MineFragment extends BaseLoadFragment implements View.OnClickListen
         //} else {
         //  fab.show();
         //}
-
+        viewPager.setCurrentItem(tab.getPosition());
       }
 
       @Override public void onTabUnselected(TabLayout.Tab tab) {
@@ -70,18 +71,19 @@ public class MineFragment extends BaseLoadFragment implements View.OnClickListen
   private void initViews(View view) {
     //tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
     //ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
-    viewPager.setOffscreenPageLimit(3);
+    viewPager.setOffscreenPageLimit(2);
     adapter = new MainPagerAdapter(getChildFragmentManager(), context);
     viewPager.setAdapter(adapter);
     tabLayout.setupWithViewPager(viewPager);
+    //tabLayout.setTabsFromPagerAdapter(adapter);
     //tabLayout.setti
   }
 
   @OnClick({
-      R.id.bt_new_order
+      R.id.main_fab
   }) public void onClick(View v) {
     switch (v.getId()) {
-      case R.id.bt_new_order:
+      case R.id.main_fab:
         //   跳转到新建工单
         InvokeStartActivityUtils.startActivity(context, AddWorkOrderActivity.class, null, false);
         break;

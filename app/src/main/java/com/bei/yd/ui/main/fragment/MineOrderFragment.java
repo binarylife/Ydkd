@@ -2,18 +2,12 @@ package com.bei.yd.ui.main.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import butterknife.Bind;
 import butterknife.OnClick;
 import com.bei.yd.R;
 import com.bei.yd.ui.base.fragment.BaseLoadFragment;
-import com.bei.yd.ui.main.activity.AddWorkOrderActivity;
-import com.bei.yd.ui.main.activity.OrderDetialActivity;
 import com.bei.yd.ui.main.activity.PaiWorkerListActivity;
 import com.bei.yd.ui.main.adapter.MainAdapter;
 import com.bei.yd.ui.main.bean.AreaBean;
@@ -25,7 +19,6 @@ import com.bei.yd.ui.main.view.IMainView;
 import com.bei.yd.utils.Constant;
 import com.bei.yd.utils.InvokeStartActivityUtils;
 import com.bei.yd.utils.SharedPreferenceHelper;
-import com.bei.yd.utils.ToastUtil;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import java.util.ArrayList;
@@ -33,7 +26,7 @@ import java.util.ArrayList;
 /**
  * Created by wangchunlei on 3/28/16.
  */
-public class NorOrderFragment extends BaseLoadFragment implements View.OnClickListener, IMainView {
+public class MineOrderFragment extends BaseLoadFragment implements View.OnClickListener, IMainView {
   //  设置按钮
 
   // 用户足迹
@@ -57,8 +50,8 @@ public class NorOrderFragment extends BaseLoadFragment implements View.OnClickLi
     super.onCreate(savedInstanceState);
   }
 
-  public static NorOrderFragment newInstance() {
-    return new NorOrderFragment();
+  public static MineOrderFragment newInstance() {
+    return new MineOrderFragment();
   }
 
   //@Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -117,7 +110,6 @@ public class NorOrderFragment extends BaseLoadFragment implements View.OnClickLi
       if (pn > 1 && bean.getData() == null || bean.getData().size() == 0) {
         pn--;
         rvList.noMoreLoading();
-        ToastUtil.showNormalShortToast("没有更多数据了！");
       } else {
         newOrderBeen.addAll(bean.getData());
       }
@@ -132,7 +124,7 @@ public class NorOrderFragment extends BaseLoadFragment implements View.OnClickLi
   }
 
   @Override public void onGetNewGDList(MainItemNewOrderBean bean) {
-    if (bean.isSuccessful()&&bean.getData() != null && bean.getData().size() > 0) {
+    if (bean.getData() != null && bean.getData().size() > 0) {
       newOrderBeen = bean.getData();
       adapter.updateItems(newOrderBeen);
     }
@@ -180,15 +172,10 @@ public class NorOrderFragment extends BaseLoadFragment implements View.OnClickLi
       adapter.setOnItemClickListener(new MainAdapter.OnItemListener() {
         @Override public void onItemClick(View view, int position) {
           MainItemNewOrderBean mainItemNewOrderBean = newOrderBeen.get(position);
-          //Bundle bundle = new Bundle();
-          //bundle.putInt(Constant.ORDER_ID, mainItemNewOrderBean.getId());
-          //bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
-          //InvokeStartActivityUtils.startActivity(getActivity(), PaiWorkerListActivity.class,
-          //    bundle, false);
           Bundle bundle = new Bundle();
-          bundle.putParcelable(Constant.ORDER_DETAIL, mainItemNewOrderBean);
-          //bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
-          InvokeStartActivityUtils.startActivity(getActivity(), OrderDetialActivity.class,
+          bundle.putInt(Constant.ORDER_ID, mainItemNewOrderBean.getId());
+          bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
+          InvokeStartActivityUtils.startActivity(getActivity(), PaiWorkerListActivity.class,
               bundle, false);
         }
       }); rvList.setLoadingListener(new XRecyclerView.LoadingListener() {

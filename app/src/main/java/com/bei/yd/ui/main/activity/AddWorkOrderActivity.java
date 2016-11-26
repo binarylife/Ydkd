@@ -46,10 +46,11 @@ public class AddWorkOrderActivity extends BackBaseActivity
 
   private MainPresenterImpl mainPresenter;
   private ArrayList<String> selectArea= new ArrayList<>();//  选中的id
-  private String[] selectType= {"s","w"};//  选中的id
+  private String[] selectType= {"普通工单","维修工单"};//  选中的id
   private ArrayList<AreaBean> beanData;
   private String tareaName;
   private String typeName;
+  private int selectAreaId;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -66,16 +67,19 @@ public class AddWorkOrderActivity extends BackBaseActivity
    * 初始化控y件
    */
   private void initView() {
+    selectAreaId=beanData.get(0).getId();
     tvarea.setItems(selectArea);
     tvarea.setSelectedIndex(0);
     tvarea.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
       @Override
       public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
         tareaName = selectArea.get(position);
+        selectAreaId=beanData.get(position).getId();
       }
     });
     mTypey.setItems(selectType);
     mTypey.setSelectedIndex(0);
+    typeName = selectType[0];
     mTypey.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
       @Override
       public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
@@ -105,8 +109,8 @@ public class AddWorkOrderActivity extends BackBaseActivity
         // selectSex();
         break;
       case R.id.tv_save://  保存修改
-        mainPresenter.addWorkOrder(tvarea.getText().toString(), Integer.parseInt(SharedPreferenceHelper.getUserAccount()), tareaName,
-            Integer.parseInt(tvPhone.getText().toString()),typeName);
+        mainPresenter.addWorkOrder(selectAreaId+"", Integer.parseInt(mNickName.getText().toString()), tvAddress.getText().toString(),
+            Integer.parseInt(tvPhone.getText().toString()),typeName.equals("普通工单")?"w":"s");
         break;
       case R.id.et_nickname://  点击昵称编辑
         break;
@@ -135,6 +139,10 @@ public class AddWorkOrderActivity extends BackBaseActivity
     }
   }
 
+  @Override public void onGetNewGDListMore(MainItemNewOrderBean bean) {
+
+  }
+
   @Override public void onGetNewGDList(MainItemNewOrderBean bean) {
 
   }
@@ -148,6 +156,7 @@ public class AddWorkOrderActivity extends BackBaseActivity
       beanData = bean.getData();//  区域集合
       for (int i = 0; i <beanData.size() ; i++) {
         selectArea.add(beanData.get(i).getAreaName());
+        selectAreaId=beanData.get(i).getId();
       }
       initView();
     }

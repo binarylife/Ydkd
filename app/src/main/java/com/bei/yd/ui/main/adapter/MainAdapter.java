@@ -15,6 +15,7 @@ import com.bei.yd.R;
 import com.bei.yd.ui.base.adapter.BaseRecyclerAdapter;
 import com.bei.yd.ui.main.bean.MainBean;
 import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
+import com.bei.yd.utils.MyUtils;
 import java.lang.ref.WeakReference;
 
 /**
@@ -40,7 +41,7 @@ public class MainAdapter extends BaseRecyclerAdapter<MainItemNewOrderBean> imple
         WonderScenicItemViewHolder viewHolder = null;
         if (viewHolder == null) {
             viewHolder = new WonderScenicItemViewHolder(
-                    LayoutInflater.from(mContext.get()).inflate(R.layout.item_main_frg_info, null));
+                    LayoutInflater.from(mContext.get()).inflate(R.layout.item_order_detail, null));
         }
         return viewHolder;
     }
@@ -50,7 +51,11 @@ public class MainAdapter extends BaseRecyclerAdapter<MainItemNewOrderBean> imple
         MainItemNewOrderBean  wonderScenicBean= getItem(position);
         if (holder instanceof WonderScenicItemViewHolder) {
             WonderScenicItemViewHolder viewHolder = (WonderScenicItemViewHolder) holder;
-            viewHolder.tvScenicName.setText(wonderScenicBean.getAddress());
+            viewHolder.itemtopView.setBackgroundResource(MyUtils.getNorBackgroundByType(wonderScenicBean.getStatus()));
+            viewHolder.tvScenicName.setText(MyUtils.getNorTextByType(wonderScenicBean.getStatus()));
+            viewHolder.tvAddress.setText(wonderScenicBean.getArea()+"/"+wonderScenicBean.getAddress());
+            viewHolder.tvCreateTime.setText(wonderScenicBean.getPhone());//  工单的状态
+            viewHolder.tvPhone.setText(wonderScenicBean.getStatus()+"");//  工单的状态
             viewHolder.itemView.setTag(wonderScenicBean);
             viewHolder.itemView.setOnClickListener(this);
         }
@@ -73,8 +78,16 @@ public class MainAdapter extends BaseRecyclerAdapter<MainItemNewOrderBean> imple
     class WonderScenicItemViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.rl_scenery_item)
         View itemView;
-        @Bind(R.id.tv_scenic_name)
-        TextView tvScenicName;
+        @Bind(R.id.item_consumer_detail_top_layout)
+        View itemtopView;
+        @Bind(R.id.item_consumer_detail_money)
+        TextView tvScenicName;//工单编号
+        @Bind(R.id.item_consumer_detail_tag)
+        TextView tvAddress;//工单地址
+        @Bind(R.id.item_consumer_detail_time)
+        TextView tvCreateTime;//工单创建时间
+        @Bind(R.id.item_consumer_detail_notes)
+        TextView tvPhone;//工单联系电话
         public WonderScenicItemViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);

@@ -28,14 +28,15 @@
       />
 
 
-  <Button
+  <com.melnykov.fab.FloatingActionButton
+      android:id="@+id/main_fab"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/fab_margin"
+      android:src="@drawable/ic_add"
+      android:layout_marginBottom="80dp"
+      android:layout_marginRight="20dp"
       android:layout_alignParentRight="true"
-      android:layout_alignParentBottom="true"
-      android:id="@+id/bt_new_order"
-      android:layout_marginBottom="60dp"
-      android:layout_marginRight="30dp"
-      android:layout_width="60dp"
-      android:layout_height="60dp"
-      android:text="新建工单"
+      app:fab_colorNormal="@color/colorPrimary"
       />
 </RelativeLayout>

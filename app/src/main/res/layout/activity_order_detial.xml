@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+  <android.support.design.widget.AppBarLayout
+      android:id="@+id/app_bar"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      android:layout_alignParentTop="true"
+      >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        >
+
+      <RelativeLayout
+          android:id="@+id/login_fragment_title_rl"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:gravity="center_vertical"
+          android:paddingLeft="10dp"
+          android:paddingRight="10dp"
+          >
+        <ImageView
+            android:id="@+id/title_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:scaleType="fitXY"
+            android:src="@drawable/title_back_icon"
+            />
+        <TextView
+            android:id="@+id/login_fragment_title_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="工单详细信息"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            />
+
+        <!--large_font_size-->
+      </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+  </android.support.design.widget.AppBarLayout>
+  <!--
+      <include layout="@layout/toolbar" />-->
+
+  <ScrollView
+      android:id="@+id/sv_scroll"
+      android:layout_below="@+id/app_bar"
+      android:layout_above="@+id/tv_dispatch"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="区县："
+            />
+
+        <TextView
+            android:id="@+id/area"
+            style="@style/ItemText_Black_right"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="3333"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="客户账号："
+            />
+
+        <TextView
+            android:id="@+id/account"
+            style="@style/ItemText_Black_right"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="联系电话："
+            />
+
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="装机地址："
+            />
+
+        <TextView
+            android:id="@+id/address"
+            style="@style/ItemText_Black_right"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="派单员："
+            />
+
+        <TextView
+            android:id="@+id/dispatchPeople"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="接口人："
+            />
+
+        <TextView
+            android:id="@+id/interfacePeople"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="派单时间："
+            />
+
+        <TextView
+            android:id="@+id/dispatchTime"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="装机人："
+            />
+
+        <TextView
+            android:id="@+id/installPeople"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="接单时间："
+            />
+
+        <TextView
+            android:id="@+id/taketime"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="装机时间："
+            />
+
+        <TextView
+            android:id="@+id/installTime"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="完成时间："
+            />
+
+        <TextView
+            android:id="@+id/overTime"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="派单时长："
+            />
+
+        <TextView
+            android:id="@+id/dispatchduration"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="装机时长："
+            />
+
+        <TextView
+            android:id="@+id/installduration"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="回访时长："
+            />
+
+        <TextView
+            android:id="@+id/visitduration"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="派单预警："
+            />
+
+        <TextView
+            android:id="@+id/dispatchwaring"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="装机预警："
+            />
+
+        <TextView
+            android:id="@+id/installwarning"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="回访预警："
+            />
+
+        <TextView
+            android:id="@+id/visitwarning"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="重复派单："
+            />
+
+        <TextView
+            android:id="@+id/repeatnum"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="是否撤单："
+            />
+
+        <TextView
+            android:id="@+id/iscancle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="是否结束："
+            />
+
+        <TextView
+            android:id="@+id/isend"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="状态："
+            />
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+    </LinearLayout>
+  </ScrollView>
+<TextView
+    android:id="@+id/tv_dispatch"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="@color/colorPrimary"
+    android:text="点击此处指派给装机人"
+    android:textColor="@color/white"
+    android:textSize="15sp"
+    android:gravity="center"
+    android:layout_alignParentBottom="true"
+    />
+</RelativeLayout>

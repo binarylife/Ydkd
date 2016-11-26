@@ -56,6 +56,7 @@ public class MainItemNewOrderBean  extends BaseBean<ArrayList<MainItemNewOrderBe
     private String takeTime;
     private int visitDuration;
     private int visitWarning;
+    private int status;
 
     protected MainItemNewOrderBean(Parcel in) {
         account = in.readString();
@@ -79,6 +80,7 @@ public class MainItemNewOrderBean  extends BaseBean<ArrayList<MainItemNewOrderBe
         takeTime = in.readString();
         visitDuration = in.readInt();
         visitWarning = in.readInt();
+        status = in.readInt();
     }
 
     public static final Creator<MainItemNewOrderBean> CREATOR =
@@ -286,10 +288,19 @@ public class MainItemNewOrderBean  extends BaseBean<ArrayList<MainItemNewOrderBe
         dest.writeString(takeTime);
         dest.writeInt(visitDuration);
         dest.writeInt(visitWarning);
+        dest.writeInt(status);
     }
 
     public MainItemNewOrderBean(String address, int id) {
         this.address = address;
         this.id = id;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

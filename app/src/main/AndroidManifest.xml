@@ -33,6 +33,9 @@
     <activity android:name=".ui.main.activity.PaiWorkerListActivity"
         android:screenOrientation="portrait"
         android:theme="@style/BaseActivity"/>
+    <activity android:name=".ui.main.activity.OrderDetialActivity"
+        android:screenOrientation="portrait"
+        android:theme="@style/BaseActivity"/>
   </application>
 
 </manifest>

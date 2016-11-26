@@ -107,4 +107,36 @@ public class Constant implements IApiConfig {
    * 门票页面的BundleKEY_productTYPE
    */
   public static final String TICKET_ACTIVITY_BUNDLE_KEY_PRODUCTTYPE = BUNDLE_KEY_2;
+  /**
+   * 一级派单
+   */
+  public static final int TYPE_ONE_PAI = 1;
+  /**
+   * 二级派单
+   */
+  public static final int TYPE_TWO_PAI = 2;
+  /**
+   * er级二次派单
+   */
+  public static final int TYPE_TWO_PAI_TWO = 3;
+  /**
+   * 处理中
+   */
+  public static final int TYPE_CHULIZHONG = 4;
+  /**
+   * 回访中
+   */
+  public static final int TYPE_VISITED = 5;
+  /**
+   * 结束
+   */
+  public static final int TYPE_OVER = 6;
+  /**
+   * 新建
+   */
+  public static final int TYPE_NEW = 7;
+  /**
+   * 传递对象
+   */
+  public static final String ORDER_DETAIL = BUNDLE_KEY_1;
 }

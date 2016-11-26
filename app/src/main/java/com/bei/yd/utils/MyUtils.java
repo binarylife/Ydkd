@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.support.design.widget.TabLayout;
 import android.view.View;
 import android.view.ViewGroup;
+import com.bei.yd.R;
 import com.bei.yd.app.YDApp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -76,5 +77,77 @@ public class MyUtils {
   String changeToDate(String string) throws ParseException {
     long l = Long.parseLong(string);
     return getTime(new Date(l));
+  }
+  public static int getBackgroundByType(int type){
+    switch (type){
+      case Constant.TYPE_NEW:
+        return R.drawable.bg_chartreuse_light;
+      case Constant.TYPE_ONE_PAI:
+        return R.drawable.bg_blue_light;
+      case Constant.TYPE_TWO_PAI:
+        return R.drawable.bg_orange_light;
+      case Constant.TYPE_TWO_PAI_TWO:
+        return R.drawable.bg_saffron_light;
+      case Constant.TYPE_CHULIZHONG:
+        return R.drawable.bg_pale_red;
+      case Constant.TYPE_VISITED:
+        return R.drawable.bg_green_light;
+      case Constant.TYPE_OVER:
+        return R.drawable.bg_purple_light;
+      default:
+        return R.drawable.bg_main_item;
+    }
+  }
+  public static String getTextByType(int type){
+    switch (type){
+      case Constant.TYPE_NEW:
+        return "新建工单";
+      case Constant.TYPE_ONE_PAI:
+        return "一级派单";
+      case Constant.TYPE_TWO_PAI:
+        return "二级派单";
+      case Constant.TYPE_TWO_PAI_TWO:
+        return "二级二次派单";
+      case Constant.TYPE_CHULIZHONG:
+        return "处理中";
+      case Constant.TYPE_VISITED:
+        return "回访中";
+      case Constant.TYPE_OVER:
+        return "结束";
+      default:
+        return "工单";
+    }
+  }
+  public static int getNorBackgroundByType(int type){
+    switch (type){
+      case Constant.TYPE_ONE_PAI://  新建工单
+        return R.drawable.bg_blue_light;
+      case Constant.TYPE_TWO_PAI:  //  派单
+        return R.drawable.bg_orange_light;
+      case Constant.TYPE_TWO_PAI_TWO://  处理中
+        return R.drawable.bg_saffron_light;
+      case Constant.TYPE_CHULIZHONG:
+        return R.drawable.bg_pale_red;// 回访中
+      case Constant.TYPE_VISITED:// 结束
+        return R.drawable.bg_green_light;
+      default:
+        return R.drawable.bg_main_item;
+    }
+  }
+  public static String getNorTextByType(int type){
+    switch (type){
+      case Constant.TYPE_ONE_PAI:
+        return "新建工单";
+      case Constant.TYPE_TWO_PAI:
+        return "派单中";
+      case Constant.TYPE_TWO_PAI_TWO:
+        return "处理中";
+      case Constant.TYPE_CHULIZHONG:
+        return "回访中";
+      case Constant.TYPE_VISITED:
+        return "结束";
+      default:
+        return "未知状态";
+    }
   }
 }
