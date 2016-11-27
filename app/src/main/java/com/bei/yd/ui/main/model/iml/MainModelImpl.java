@@ -43,7 +43,7 @@ public class MainModelImpl implements MainModel, IApiConfig {
      * @param phone
      * @param callback
    */
-    @Override public void addNewWO(String arae, int account, String address, int phone,String type,
+    @Override public void addNewWO(String arae, String account, String address, int phone,String type,
         Subscriber<MainBean> callback) {
         MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
         api.addNewWorkOrder(arae, account,address,phone,type)

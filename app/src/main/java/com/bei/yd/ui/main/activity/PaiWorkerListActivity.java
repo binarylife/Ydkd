@@ -28,6 +28,7 @@ import com.bei.yd.utils.Constant;
 import com.bei.yd.utils.InvokeStartActivityUtils;
 import com.bei.yd.utils.SharedPreferenceHelper;
 import com.bei.yd.utils.ToastUtil;
+import com.bei.yd.widget.DialogBuilder;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import java.util.ArrayList;
@@ -83,11 +84,20 @@ public class PaiWorkerListActivity extends BackBaseActivity
       rvList.setLoadingMoreEnabled(true);
       adapter.setOnItemClickListener(new PaiWorkerListAdapter.OnItemListener() {
         @Override public void onItemClick(View view, int position) {
+          accountB = userInfoBeanses.get(position).getAccount();
           /**
            * 派单
            */
-          accountB = userInfoBeanses.get(position).getAccount();
-          paiPresenter.dispatchOrder(orderId,orderCreater,accountB);
+          showMutiDialog("是否指派给" + userInfoBeanses.get(position).getRole(),
+              new DialogBuilder.ClickCallbak() {
+                @Override public void onConfirm() {
+                  paiPresenter.dispatchOrder(orderId, orderCreater, accountB);
+                }
+
+                @Override public void onCancle() {
+
+                }
+              });
         }
       });
       rvList.setLoadingListener(new XRecyclerView.LoadingListener() {
@@ -106,7 +116,7 @@ public class PaiWorkerListActivity extends BackBaseActivity
   }
 
   @Override protected void onLoadData() {
-    paiPresenter.getArea();
+    paiPresenter.getArea(SharedPreferenceHelper.getUserRole(),SharedPreferenceHelper.getUserAreaid());
   }
 
   @OnClick({
@@ -138,13 +148,48 @@ public class PaiWorkerListActivity extends BackBaseActivity
    * 成功的回调
    */
   @Override public void onGetPaiWorkerSuccess(UserInfoBeans bean) {
-    userInfoBeanses = bean.getData();
-    adapter.updateItems(userInfoBeanses);
+    if (bean.isSuccessful()) {
+      userInfoBeanses = bean.getData();
+      adapter.updateItems(userInfoBeanses);
+    }
+    if (rvList != null) {
+      rvList.refreshComplete();
+      rvList.loadMoreComplete();
+    }
+  }
+
+  @Override public void onGetPaiWorkerSuccessMore(UserInfoBeans bean) {
+    if (bean.isSuccessful()) {
+      //            hideEmptyView();
+      //            rvList.setVisibility(View.VISIBLE);
+      if (pn > 1 && bean.getData() == null || bean.getData().size() == 0) {
+        pn--;
+        rvList.noMoreLoading();
+        ToastUtil.showNormalShortToast("没有更多数据了！");
+      } else {
+        userInfoBeanses.addAll(bean.getData());
+      }
+      adapter.addItems(bean.getData());
+    } else {
+      //            ToastUtil.showNormalShortToast(bean.getMsg());
+      showLoadFailMsg(bean.getMessage());
+    }
+
+    rvList.refreshComplete();
+    rvList.loadMoreComplete();
   }
   /**
    * 派单成功的回调
    */
   @Override public void onDispatchSuccess(MainBean bean) {
-    ToastUtil.showNormalShortToast("派单成功");
+    finish();
+  }
+
+  @Override public void onaffirmOrderSuccess(MainBean bean) {
+
+  }
+
+  @Override public void onisCancelOrderSuccess(MainBean bean) {
+
   }
 }

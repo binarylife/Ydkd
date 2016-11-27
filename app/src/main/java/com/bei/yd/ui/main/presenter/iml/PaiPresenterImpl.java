@@ -45,9 +45,9 @@ public class PaiPresenterImpl implements IPaiPresenter {
   /**
    * 获取可派人员列表
    */
-  @Override public void getArea() {
+  @Override public void getArea(String role, int areaid) {
     view.showProgress();
-    model.getAllAreaPaiWorker(new Subscriber<UserInfoBeans>() {
+    model.getAllAreaPaiWorker(role,areaid,new Subscriber<UserInfoBeans>() {
       @Override public void onCompleted() {
 
       }
@@ -58,11 +58,11 @@ public class PaiPresenterImpl implements IPaiPresenter {
 
       @Override public void onNext(UserInfoBeans areaBean) {
         view.hideProgress();
-        if (areaBean.isSuccessful()) {
+        //if (pn <= 1) {
           view.onGetPaiWorkerSuccess(areaBean);
-        }else{
-          ToastUtil.showNormalShortToast(areaBean.getMsg());
-        }
+        //} else {
+        //  view.onGetNewGDListMore(mainItemNewOrderBean);
+        //}
       }
     });
   }
@@ -88,8 +88,54 @@ public class PaiPresenterImpl implements IPaiPresenter {
         view.hideProgress();
         if (areaBean.isSuccessful()) {
           view.onDispatchSuccess(areaBean);
+          ToastUtil.showNormalShortToast(areaBean.getMessage());
         }else{
-          ToastUtil.showNormalShortToast(areaBean.getMsg());
+          ToastUtil.showNormalShortToast(areaBean.getMessage());
+        }
+      }
+    });
+  }
+
+  @Override public void affirmOrder(int wid) {
+    view.showProgress();
+    model.affirmOrder(wid,new Subscriber<MainBean>() {
+      @Override public void onCompleted() {
+
+      }
+
+      @Override public void onError(Throwable e) {
+
+      }
+
+      @Override public void onNext(MainBean areaBean) {
+        view.hideProgress();
+        if (areaBean.isSuccessful()) {
+          view.onaffirmOrderSuccess(areaBean);
+          ToastUtil.showNormalShortToast(areaBean.getMessage());
+        }else{
+          ToastUtil.showNormalShortToast(areaBean.getMessage());
+        }
+      }
+    });
+  }
+
+  @Override public void isCancelOrder(int wid, int isSuccess) {
+    model.isCancelOrder(wid,isSuccess,new Subscriber<MainBean>() {
+      @Override public void onCompleted() {
+
+      }
+
+      @Override public void onError(Throwable e) {
+
+      }
+
+      @Override public void onNext(MainBean areaBean) {
+        view.hideProgress();
+        if (areaBean.isSuccessful()) {
+          view.onisCancelOrderSuccess(areaBean);
+          ToastUtil.showNormalShortToast(areaBean.getMessage());
+        }else{
+          ToastUtil.showNormalShortToast(areaBean.getMessage());
         }
       }
     });

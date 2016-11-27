@@ -13,7 +13,7 @@ public interface IMainPresenter {
    * @param phone  电话
    * @param type   工单类型(新增 或是 修理)
    */
-    void addWorkOrder(String arae, int account, String address, int phone,String type);
+    void addWorkOrder(String arae, String account, String address, int phone,String type);
     /**
      * 获取工单列表
      */

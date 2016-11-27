@@ -30,9 +30,11 @@ public class PaiModelImpl implements PaiModel, IApiConfig {
         this.mContext = mContext;
     }
 
-    @Override public void getAllAreaPaiWorker(Subscriber<UserInfoBeans> callback) {
+
+    @Override public void getAllAreaPaiWorker(String role, int areaid,
+        Subscriber<UserInfoBeans> callback) {
         MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
-        api.getAllPaiWorker()
+        api.getAllPaiWorker(role,areaid)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(callback);
@@ -42,6 +44,22 @@ public class PaiModelImpl implements PaiModel, IApiConfig {
         Subscriber<MainBean> callback) {
         MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
         api.dispatchOrder(id,accountA,accountB)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(callback);
+    }
+
+    @Override public void affirmOrder(int wid, Subscriber<MainBean> callback) {
+        MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
+        api.affirmOrder(wid)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(callback);
+    }
+
+    @Override public void isCancelOrder(int wid,int isSuccess, Subscriber<MainBean> callback) {
+        MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
+        api.isCancelOrder(wid,isSuccess)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(callback);

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -512,15 +513,48 @@
       </LinearLayout>
     </LinearLayout>
   </ScrollView>
-<TextView
-    android:id="@+id/tv_dispatch"
-    android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:background="@color/colorPrimary"
-    android:text="点击此处指派给装机人"
-    android:textColor="@color/white"
-    android:textSize="15sp"
-    android:gravity="center"
-    android:layout_alignParentBottom="true"
-    />
+
+  <LinearLayout
+      android:layout_alignParentBottom="true"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      >
+    <TextView
+        android:id="@+id/tv_dispatch"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        tools:text="点击此处指派给装机人"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:gravity="center"
+        />
+    <TextView
+        android:id="@+id/tv_chedan"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        tools:text="点击此处指派给装机人"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/tv_huidan"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        tools:text="点击此处指派给装机人"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        />
+  </LinearLayout>
 </RelativeLayout>

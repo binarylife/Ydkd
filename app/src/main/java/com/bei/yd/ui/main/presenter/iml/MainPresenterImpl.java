@@ -36,7 +36,7 @@ public class MainPresenterImpl implements IMainPresenter {
     model = new MainModelImpl(context, this);
   }
 
-  @Override public void addWorkOrder(String arae, int account, String address, int phone,String type) {
+  @Override public void addWorkOrder(String arae, String account, String address, int phone,String type) {
     view.showProgress();
     model.addNewWO(arae, account, address, phone,type, new Subscriber<MainBean>() {
       @Override public void onCompleted() {

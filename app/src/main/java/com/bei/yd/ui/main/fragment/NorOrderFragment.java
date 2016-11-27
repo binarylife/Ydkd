@@ -40,7 +40,7 @@ public class NorOrderFragment extends BaseLoadFragment implements View.OnClickLi
   @Bind(R.id.nor_order) XRecyclerView rvList;
   private MainPresenterImpl mainPresenter;
   private MainAdapter adapter;
-  private int pn=1;
+  private int pn = 1;
   private ArrayList<MainItemNewOrderBean> mainBeen = new ArrayList<MainItemNewOrderBean>();
   private ArrayList<MainItemNewOrderBean> newOrderBeen;
 
@@ -124,7 +124,7 @@ public class NorOrderFragment extends BaseLoadFragment implements View.OnClickLi
       adapter.addItems(bean.getData());
     } else {
       //            ToastUtil.showNormalShortToast(bean.getMsg());
-      showLoadFailMsg(bean.getMsg());
+      showLoadFailMsg(bean.getMessage());
     }
 
     rvList.refreshComplete();
@@ -132,10 +132,8 @@ public class NorOrderFragment extends BaseLoadFragment implements View.OnClickLi
   }
 
   @Override public void onGetNewGDList(MainItemNewOrderBean bean) {
-    if (bean.isSuccessful()&&bean.getData() != null && bean.getData().size() > 0) {
-      newOrderBeen = bean.getData();
-      adapter.updateItems(newOrderBeen);
-    }
+    newOrderBeen = bean.getData();
+    adapter.updateItems(newOrderBeen);
     if (rvList != null) {
       rvList.refreshComplete();
       rvList.loadMoreComplete();
@@ -188,10 +186,11 @@ public class NorOrderFragment extends BaseLoadFragment implements View.OnClickLi
           Bundle bundle = new Bundle();
           bundle.putParcelable(Constant.ORDER_DETAIL, mainItemNewOrderBean);
           //bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
-          InvokeStartActivityUtils.startActivity(getActivity(), OrderDetialActivity.class,
-              bundle, false);
+          InvokeStartActivityUtils.startActivity(getActivity(), OrderDetialActivity.class, bundle,
+              false);
         }
-      }); rvList.setLoadingListener(new XRecyclerView.LoadingListener() {
+      });
+      rvList.setLoadingListener(new XRecyclerView.LoadingListener() {
         @Override public void onRefresh() {
           //上拉刷新
           pn = 1;

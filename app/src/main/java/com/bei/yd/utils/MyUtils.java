@@ -150,4 +150,20 @@ public class MyUtils {
         return "未知状态";
     }
   }
+  public static String getRoleByType(String type){
+    switch (type){
+      case "A":
+        return "一级派单员";
+      case "B":
+        return "二级派单员";
+      case "C":
+        return "接口人";
+      case "D":
+        return "装机人";
+      case "E":
+        return "管理员";
+      default:
+        return "未知状态";
+    }
+  }
 }

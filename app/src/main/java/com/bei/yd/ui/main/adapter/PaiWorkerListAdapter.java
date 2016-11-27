@@ -13,6 +13,7 @@ import com.bei.yd.ui.base.adapter.BaseRecyclerAdapter;
 import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
 import com.bei.yd.ui.main.bean.UserInfoBean;
 import com.bei.yd.ui.main.bean.UserInfoBeans;
+import com.bei.yd.utils.MyUtils;
 import java.lang.ref.WeakReference;
 
 /**
@@ -48,6 +49,7 @@ public class PaiWorkerListAdapter extends BaseRecyclerAdapter<UserInfoBeans> imp
         if (holder instanceof WonderScenicItemViewHolder) {
             WonderScenicItemViewHolder viewHolder = (WonderScenicItemViewHolder) holder;
             viewHolder.tvScenicName.setText(wonderScenicBean.getUsername());
+            viewHolder.tvWorkerRole.setText(MyUtils.getRoleByType(wonderScenicBean.getRole()));
             viewHolder.itemView.setTag(wonderScenicBean);
             viewHolder.itemView.setOnClickListener(this);
         }
@@ -72,6 +74,9 @@ public class PaiWorkerListAdapter extends BaseRecyclerAdapter<UserInfoBeans> imp
         View itemView;
         @Bind(R.id.tv_scenic_name)
         TextView tvScenicName;
+        @Bind(R.id.tv_worker)
+        TextView tvWorkerRole;
+
         public WonderScenicItemViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);

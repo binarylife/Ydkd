@@ -33,7 +33,7 @@ public class MineOrderFragment extends BaseLoadFragment implements View.OnClickL
   @Bind(R.id.nor_order) XRecyclerView rvList;
   private MainPresenterImpl mainPresenter;
   private MainAdapter adapter;
-  private int pn=1;
+  private int pn = 1;
   private ArrayList<MainItemNewOrderBean> mainBeen = new ArrayList<MainItemNewOrderBean>();
   private ArrayList<MainItemNewOrderBean> newOrderBeen;
 
@@ -116,7 +116,7 @@ public class MineOrderFragment extends BaseLoadFragment implements View.OnClickL
       adapter.addItems(bean.getData());
     } else {
       //            ToastUtil.showNormalShortToast(bean.getMsg());
-      showLoadFailMsg(bean.getMsg());
+      showLoadFailMsg(bean.getMessage());
     }
 
     rvList.refreshComplete();
@@ -124,10 +124,8 @@ public class MineOrderFragment extends BaseLoadFragment implements View.OnClickL
   }
 
   @Override public void onGetNewGDList(MainItemNewOrderBean bean) {
-    if (bean.getData() != null && bean.getData().size() > 0) {
-      newOrderBeen = bean.getData();
-      adapter.updateItems(newOrderBeen);
-    }
+    newOrderBeen = bean.getData();
+    adapter.updateItems(newOrderBeen);
     if (rvList != null) {
       rvList.refreshComplete();
       rvList.loadMoreComplete();
@@ -175,10 +173,11 @@ public class MineOrderFragment extends BaseLoadFragment implements View.OnClickL
           Bundle bundle = new Bundle();
           bundle.putInt(Constant.ORDER_ID, mainItemNewOrderBean.getId());
           bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
-          InvokeStartActivityUtils.startActivity(getActivity(), PaiWorkerListActivity.class,
-              bundle, false);
+          InvokeStartActivityUtils.startActivity(getActivity(), PaiWorkerListActivity.class, bundle,
+              false);
         }
-      }); rvList.setLoadingListener(new XRecyclerView.LoadingListener() {
+      });
+      rvList.setLoadingListener(new XRecyclerView.LoadingListener() {
         @Override public void onRefresh() {
           //上拉刷新
           pn = 1;

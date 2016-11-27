@@ -17,7 +17,7 @@ public interface MainFragmentApi {
    * 新增工单
    */
   @POST("addWorkOrder") Observable<MainBean> addNewWorkOrder(@Query("area") String area,
-      @Query("account") int account, @Query("address") String address, @Query("phone") int phone,
+      @Query("account") String account, @Query("address") String address, @Query("phone") int phone,
       @Query("type") String type);
 
   /**
@@ -41,7 +41,8 @@ public interface MainFragmentApi {
   /**
    * 获取可派人员列表
    */
-  @POST("queryOtherUser") Observable<UserInfoBeans> getAllPaiWorker();
+  @POST("queryOtherUser") Observable<UserInfoBeans> getAllPaiWorker(@Query("role") String role  ,
+      @Query("areaid") int areaid);
 
   /**
    *
@@ -52,4 +53,18 @@ public interface MainFragmentApi {
    */
   @POST("dispatchOrder") Observable<MainBean> dispatchOrder(@Query("id") int id,
       @Query("accountA") String accountA,@Query("accountB") String accountB);
+  /**
+   *
+   *  装机人安装完成--进行回单
+   *
+   * @return
+   */
+  @POST("affirmOrder") Observable<MainBean> affirmOrder(@Query("wid") int wid);
+  /**
+   *
+   *  装机人安装完成--进行回单
+   * @return
+   */
+  @POST("isCancelOrder") Observable<MainBean> isCancelOrder(@Query("wid") int wid,@Query("isSuccess") int isSuccess);
+
 }

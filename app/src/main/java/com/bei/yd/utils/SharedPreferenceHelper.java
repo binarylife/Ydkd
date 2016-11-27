@@ -276,6 +276,9 @@ public class SharedPreferenceHelper {
   public static String getUserRole() {
     return getString(USER_ROLE, "未知用户");
   }
+  public static int getUserAreaid() {
+    return SharedPreferenceUtil.getInt(USER_AREAID);
+  }
   /**
    * 是否是第一次使用APP
    */

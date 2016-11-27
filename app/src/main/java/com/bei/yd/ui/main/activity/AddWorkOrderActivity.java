@@ -109,7 +109,7 @@ public class AddWorkOrderActivity extends BackBaseActivity
         // selectSex();
         break;
       case R.id.tv_save://  保存修改
-        mainPresenter.addWorkOrder(selectAreaId+"", Integer.parseInt(mNickName.getText().toString()), tvAddress.getText().toString(),
+        mainPresenter.addWorkOrder(selectAreaId+"", mNickName.getText().toString(), tvAddress.getText().toString(),
             Integer.parseInt(tvPhone.getText().toString()),typeName.equals("普通工单")?"w":"s");
         break;
       case R.id.et_nickname://  点击昵称编辑

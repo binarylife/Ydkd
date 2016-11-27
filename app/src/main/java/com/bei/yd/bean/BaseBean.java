@@ -8,7 +8,7 @@ import android.os.Parcelable;
 public abstract class BaseBean<T> implements Parcelable {
     private String success;
     private int code;
-    private String msg;
+    private String message;
     private String obj;
     private T data;
 
@@ -24,17 +24,11 @@ public abstract class BaseBean<T> implements Parcelable {
         return code;
     }
 
-    public String getMsg() {
-        return msg;
-    }
 
     public void setCode(int code) {
         this.code = code;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
 
     public boolean isSuccessful() {
         return code == 200 ? true : false;
@@ -58,6 +52,14 @@ public abstract class BaseBean<T> implements Parcelable {
 
     @Override
     public String toString() {
-        return "[" + "code:" + code + " msg: " + msg + " data: " + data + "]";
+        return "[" + "code:" + code + " msg: " +  " data: " + data + "]";
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

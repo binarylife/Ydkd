@@ -21,8 +21,23 @@ public interface IpaiView extends IBaseView {
      */
     void onGetPaiWorkerSuccess(UserInfoBeans bean);
     /**
+     * 获取可人员名单(加载更多)
+     * @param bean
+     */
+    void onGetPaiWorkerSuccessMore(UserInfoBeans bean);
+    /**
      * 派单成功
      * @param bean
      */
     void onDispatchSuccess(MainBean bean);
+    /**
+     * 装机人安装完成--进行回单
+     * @param bean
+     */
+    void onaffirmOrderSuccess(MainBean bean);
+    /**
+     * 确认装机成功/撤单/退单
+     * @param bean
+     */
+    void onisCancelOrderSuccess(MainBean bean);
 }

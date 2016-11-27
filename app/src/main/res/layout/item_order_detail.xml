@@ -69,16 +69,22 @@
           tools:text="2016-05-23"
           />
 
-      <ImageView
-          android:id="@+id/item_consumer_detail_notes_icon"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_below="@id/item_consumer_detail_time"
+      <TextView
+          android:id="@+id/tv_yujing"
+          android:layout_width="30dp"
+          android:layout_height="30dp"
+          android:layout_below="@id/item_consumer_detail_top_layout"
           android:src="@drawable/ic_notes"
+          android:textSize="18dp"
+          android:textColor="@color/white"
+          tools:text="1"
+          android:gravity="center"
+          android:background="@color/colorPrimary"
+          android:layout_alignParentRight="true"
           android:layout_marginLeft="@dimen/margin_large"
           android:layout_marginTop="@dimen/margin_normal"
           android:layout_marginRight="@dimen/margin_normal"
-          android:visibility="gone"/>
+          />
       <TextView
           android:layout_marginLeft="@dimen/margin_large"
           style="@style/ItemText.Gray.Normal"
@@ -86,7 +92,6 @@
           android:drawablePadding="@dimen/margin_normal"
           android:id="@+id/item_consumer_detail_notes"
           android:layout_below="@id/item_consumer_detail_time"
-          android:layout_toRightOf="@id/item_consumer_detail_notes_icon"
           android:layout_marginTop="@dimen/margin_normal"
           android:layout_marginBottom="5dp"
           android:layout_marginRight="@dimen/margin_normal"
