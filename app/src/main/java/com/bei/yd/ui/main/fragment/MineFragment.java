@@ -7,6 +7,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.OnClick;
 import com.bei.yd.R;
@@ -14,7 +15,9 @@ import com.bei.yd.ui.base.fragment.BaseLoadFragment;
 import com.bei.yd.ui.main.activity.AddWorkOrderActivity;
 import com.bei.yd.ui.main.adapter.MainPagerAdapter;
 import com.bei.yd.utils.InvokeStartActivityUtils;
+import com.bei.yd.utils.MyUtils;
 import com.bei.yd.utils.SharedPreferenceHelper;
+import com.jaydenxiao.common.commonutils.LogUtils;
 import com.melnykov.fab.FloatingActionButton;
 
 /**
@@ -22,7 +25,9 @@ import com.melnykov.fab.FloatingActionButton;
  */
 public class MineFragment extends BaseLoadFragment implements View.OnClickListener {
   private Context context;
+
   @Bind(R.id.tab_layout) TabLayout tabLayout;
+  //@Bind(R.id.title_name_tv) TextView tvTitle;
   @Bind(R.id.view_pager) ViewPager viewPager;
   @Bind(R.id.main_fab) FloatingActionButton mbtNewOrder;
   private MainPagerAdapter adapter;
@@ -72,16 +77,18 @@ public class MineFragment extends BaseLoadFragment implements View.OnClickListen
   private void initViews(View view) {
     //tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
     //ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
+    //tvTitle.setText(MyUtils.getRoleByType(SharedPreferenceHelper.getUserRole()));
     viewPager.setOffscreenPageLimit(2);
     adapter = new MainPagerAdapter(getChildFragmentManager(), context);
     viewPager.setAdapter(adapter);
     tabLayout.setupWithViewPager(viewPager);
-    if (SharedPreferenceHelper.getUserRole() == "A"
-        || SharedPreferenceHelper.getUserRole() == "B") {
-      mbtNewOrder.setVisibility(View.VISIBLE);
-    }else{
-      mbtNewOrder.setVisibility(View.GONE);
-    }
+    LogUtils.loge("角色"+SharedPreferenceHelper.getUserRole());
+    //if (SharedPreferenceHelper.getUserRole() == "A"
+    //    || SharedPreferenceHelper.getUserRole() == "B") {
+    //  mbtNewOrder.setVisibility(View.VISIBLE);
+    //}else{
+    //  mbtNewOrder.setVisibility(View.GONE);
+    //}
     //tabLayout.setTabsFromPagerAdapter(adapter);
     //tabLayout.setti
   }

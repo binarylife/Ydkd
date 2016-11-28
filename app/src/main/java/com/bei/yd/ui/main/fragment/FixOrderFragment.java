@@ -9,6 +9,7 @@ import butterknife.OnClick;
 import com.bei.yd.R;
 import com.bei.yd.ui.base.fragment.BaseLoadFragment;
 import com.bei.yd.ui.main.activity.OrderDetialActivity;
+import com.bei.yd.ui.main.adapter.FixAdapter;
 import com.bei.yd.ui.main.adapter.MainAdapter;
 import com.bei.yd.ui.main.bean.AreaBean;
 import com.bei.yd.ui.main.bean.MainBean;
@@ -35,7 +36,7 @@ public class FixOrderFragment extends BaseLoadFragment implements View.OnClickLi
   // 用户足迹
   @Bind(R.id.nor_order) XRecyclerView rvList;
   private FixPresenterImpl mainPresenter;
-  private MainAdapter adapter;
+  private FixAdapter adapter;
   private int pn = 1;
   private ArrayList<MainItemNewOrderBean> mainBeen = new ArrayList<MainItemNewOrderBean>();
   private ArrayList<MainItemNewOrderBean> newOrderBeen;
@@ -68,7 +69,7 @@ public class FixOrderFragment extends BaseLoadFragment implements View.OnClickLi
   //}
 
   @Override public int getContentResouceId() {
-    return R.layout.fragment_nor_order;
+    return R.layout.fragment_fix_order;
   }
 
   @Override public void dealLogicBeforeInitView() {
@@ -160,10 +161,10 @@ public class FixOrderFragment extends BaseLoadFragment implements View.OnClickLi
       rvList.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
       rvList.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
       rvList.setArrowImageView(R.drawable.iconfont_downgrey);
-      rvList.setAdapter(adapter == null ? adapter = new MainAdapter(getActivity()) : adapter);
+      rvList.setAdapter(adapter == null ? adapter = new FixAdapter(getActivity()) : adapter);
       rvList.setPullRefreshEnabled(true);
       rvList.setLoadingMoreEnabled(true);
-      adapter.setOnItemClickListener(new MainAdapter.OnItemListener() {
+      adapter.setOnItemClickListener(new FixAdapter.OnItemListener() {
         @Override public void onItemClick(View view, int position) {
           MainItemNewOrderBean mainItemNewOrderBean = newOrderBeen.get(position);
           //Bundle bundle = new Bundle();
@@ -173,6 +174,7 @@ public class FixOrderFragment extends BaseLoadFragment implements View.OnClickLi
           //    bundle, false);
           Bundle bundle = new Bundle();
           bundle.putParcelable(Constant.ORDER_DETAIL, mainItemNewOrderBean);
+          bundle.putBoolean(Constant.isNewOreder, false);
           //bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
           InvokeStartActivityUtils.startActivity(getActivity(), OrderDetialActivity.class, bundle,
               false);

@@ -49,8 +49,8 @@ public class FixAdapter extends BaseRecyclerAdapter<MainItemNewOrderBean>
     if (holder instanceof WonderScenicItemViewHolder) {
       WonderScenicItemViewHolder viewHolder = (WonderScenicItemViewHolder) holder;
       viewHolder.itemtopView.setBackgroundResource(
-          MyUtils.getNorBackgroundByType(wonderScenicBean.getStatus()));
-      viewHolder.tvScenicName.setText(MyUtils.getNorTextByType(wonderScenicBean.getStatus()));
+          MyUtils.getBackgroundByType(wonderScenicBean.getStatus()));
+      viewHolder.tvScenicName.setText(MyUtils.getTextByType(wonderScenicBean.getStatus()));
       viewHolder.tvAddress.setText(
           wonderScenicBean.getArea() + "/" + wonderScenicBean.getAddress());
       viewHolder.tvCreateTime.setText(wonderScenicBean.getPhone());//  工单的状态
@@ -120,28 +120,57 @@ public class FixAdapter extends BaseRecyclerAdapter<MainItemNewOrderBean>
     int statusValue = bean.getStatus();
     switch (SharedPreferenceHelper.getUserRole()) {
       //  判断用户的角色
-      //case "A":
-      //  break;
-      case "B":// 区县派单员
+      case "A"://   一级派单员
         if (statusValue == 1) {
           //  派单预警
-          textView.setText(bean.getDispatchWarning() + "");
-        } else if (statusValue == 4) {
+          textView.setVisibility(View.GONE);
+        }
+        break;
+      case "B":// 二级派单员
+        if (statusValue == 2) {
+          //  派单预警
+          if (bean.getDispatchWarning1() != 0) {
+            textView.setText(bean.getDispatchWarning1() + "");
+          } else {
+            textView.setVisibility(View.GONE);
+          }
+          if (statusValue == 3) {
+            //   二级二次排队呢预警
+            if (bean.getDispatchWarning2() != 0) {
+              textView.setText(bean.getDispatchWarning2() + "");
+            } else {
+              textView.setVisibility(View.GONE);
+            }
+          }
+        }
+        if (statusValue == 5) {
           // 回访中
-          textView.setText(bean.getVisitWarning() + "");
+          if (bean.getVisitWarning() != 0) {
+            textView.setText(bean.getVisitWarning() + "");
+          } else {
+            textView.setVisibility(View.GONE);
+          }
         }
         break;
       case "C":
         if (statusValue == 2) {
-          //  派单预警
-          textView.setText(bean.getDispatchWarning() + "");
+          //  接口人 派单预警
+          if (bean.getDispatchWarning()!=0) {
+            textView.setText(bean.getDispatchWarning() + "");
+          }else{
+            textView.setVisibility(View.GONE);
+          }
         }
         break;
       case "D":
         //  装机人
-        if (statusValue == 3) {
+        if (statusValue == 4) {
           //  装机预警
-          textView.setText(bean.getInstallWarning() + "");
+          if (bean.getInstallWarning()!=0) {
+            textView.setText(bean.getInstallWarning() + "");
+          }else{
+            textView.setVisibility(View.GONE);
+          }
         }
         break;
       default:

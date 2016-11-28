@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import com.bei.yd.ui.main.fragment.FixOrderFragment;
 import com.bei.yd.ui.main.fragment.NorOrderFragment;
 /**
  * Created by fb on 2016/8/10.
@@ -14,13 +15,13 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     private String[] titles;
     private final Context context;
     private NorOrderFragment norFragment;
-    private NorOrderFragment fixFragment;
+    private FixOrderFragment fixFragment;
 
     public NorOrderFragment getGuokrFragment() {
         return norFragment;
     }
 
-    public NorOrderFragment getZhihuFragment() {
+    public FixOrderFragment getZhihuFragment() {
         return fixFragment;
     }
 
@@ -33,14 +34,13 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if (position == 1){
+        if (position == 0){
             norFragment = NorOrderFragment.newInstance();
             return norFragment;
-        } else{
-            norFragment = NorOrderFragment.newInstance();
-            return norFragment;
+        } else
+            fixFragment = FixOrderFragment.newInstance();
+            return fixFragment;
         }
-    }
 
     @Override
     public int getCount() {

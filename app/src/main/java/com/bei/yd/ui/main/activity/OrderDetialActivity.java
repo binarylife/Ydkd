@@ -67,12 +67,14 @@ public class OrderDetialActivity extends BackBaseActivity
   private MainItemNewOrderBean orderDetialBean;
   private int statusValue;
   private PaiPresenterImpl paiPresenter;
+  private boolean misNewOreder;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_order_detial);
     Bundle bundle = getIntent().getExtras();
     orderDetialBean = bundle.getParcelable(Constant.ORDER_DETAIL);
+    misNewOreder = bundle.getBoolean(Constant.isNewOreder);
     //orderCreater = bundle.getString(Constant.ORDER_CREATER);
     //  初始化上传头像的逻辑层
     initView();

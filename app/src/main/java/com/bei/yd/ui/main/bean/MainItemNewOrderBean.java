@@ -57,6 +57,14 @@ public class MainItemNewOrderBean  extends BaseBean<ArrayList<MainItemNewOrderBe
     private int visitDuration;
     private int visitWarning;
     private int status;
+    private String dispatchPeople21;
+    private String dispatchPeople22;
+    private String dispatchTime21;
+    private String dispatchTime22;
+    private int dispatchWarning1;
+    private int dispatchWarning2;
+    private int dispatchDuration21;
+    private int dispatchDuration22;
 
     protected MainItemNewOrderBean(Parcel in) {
         account = in.readString();
@@ -81,6 +89,14 @@ public class MainItemNewOrderBean  extends BaseBean<ArrayList<MainItemNewOrderBe
         visitDuration = in.readInt();
         visitWarning = in.readInt();
         status = in.readInt();
+        dispatchPeople21 = in.readString();
+        dispatchPeople22 = in.readString();
+        dispatchTime21 = in.readString();
+        dispatchTime22 = in.readString();
+        dispatchWarning1 = in.readInt();
+        dispatchWarning2 = in.readInt();
+        dispatchDuration21 = in.readInt();
+        dispatchDuration22 = in.readInt();
     }
 
     public static final Creator<MainItemNewOrderBean> CREATOR =
@@ -267,6 +283,7 @@ public class MainItemNewOrderBean  extends BaseBean<ArrayList<MainItemNewOrderBe
     }
 
     @Override public void writeToParcel(Parcel dest, int flags) {
+
         dest.writeString(account);
         dest.writeString(address);
         dest.writeString(area);
@@ -289,6 +306,14 @@ public class MainItemNewOrderBean  extends BaseBean<ArrayList<MainItemNewOrderBe
         dest.writeInt(visitDuration);
         dest.writeInt(visitWarning);
         dest.writeInt(status);
+        dest.writeString(dispatchPeople21);
+        dest.writeString(dispatchPeople22);
+        dest.writeString(dispatchTime21);
+        dest.writeString(dispatchTime22);
+        dest.writeInt(dispatchWarning1);
+        dest.writeInt(dispatchWarning2);
+        dest.writeInt(dispatchDuration21);
+        dest.writeInt(dispatchDuration22);
     }
 
     public MainItemNewOrderBean(String address, int id) {
@@ -302,5 +327,69 @@ public class MainItemNewOrderBean  extends BaseBean<ArrayList<MainItemNewOrderBe
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public void setDispatchPeople21(String dispatchPeople21) {
+        this.dispatchPeople21 = dispatchPeople21;
+    }
+
+    public void setDispatchPeople22(String dispatchPeople22) {
+        this.dispatchPeople22 = dispatchPeople22;
+    }
+
+    public void setDispatchTime21(String dispatchTime21) {
+        this.dispatchTime21 = dispatchTime21;
+    }
+
+    public void setDispatchTime22(String dispatchTime22) {
+        this.dispatchTime22 = dispatchTime22;
+    }
+
+    public void setDispatchWarning1(int dispatchWarning1) {
+        this.dispatchWarning1 = dispatchWarning1;
+    }
+
+    public void setDispatchWarning2(int dispatchWarning2) {
+        this.dispatchWarning2 = dispatchWarning2;
+    }
+
+    public void setDispatchDuration21(int dispatchDuration21) {
+        this.dispatchDuration21 = dispatchDuration21;
+    }
+
+    public void setDispatchDuration22(int dispatchDuration22) {
+        this.dispatchDuration22 = dispatchDuration22;
+    }
+
+    public String getDispatchPeople21() {
+        return dispatchPeople21;
+    }
+
+    public String getDispatchPeople22() {
+        return dispatchPeople22;
+    }
+
+    public String getDispatchTime21() {
+        return dispatchTime21;
+    }
+
+    public String getDispatchTime22() {
+        return dispatchTime22;
+    }
+
+    public int getDispatchWarning1() {
+        return dispatchWarning1;
+    }
+
+    public int getDispatchWarning2() {
+        return dispatchWarning2;
+    }
+
+    public int getDispatchDuration21() {
+        return dispatchDuration21;
+    }
+
+    public int getDispatchDuration22() {
+        return dispatchDuration22;
     }
 }
