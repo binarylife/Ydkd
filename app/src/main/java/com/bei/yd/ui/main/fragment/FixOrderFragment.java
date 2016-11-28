@@ -8,17 +8,20 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import com.bei.yd.R;
 import com.bei.yd.ui.base.fragment.BaseLoadFragment;
-import com.bei.yd.ui.main.activity.PaiWorkerListActivity;
+import com.bei.yd.ui.main.activity.OrderDetialActivity;
 import com.bei.yd.ui.main.adapter.MainAdapter;
 import com.bei.yd.ui.main.bean.AreaBean;
 import com.bei.yd.ui.main.bean.MainBean;
 import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
 import com.bei.yd.ui.main.bean.UserInfoBean;
+import com.bei.yd.ui.main.presenter.iml.FixPresenterImpl;
 import com.bei.yd.ui.main.presenter.iml.MainPresenterImpl;
+import com.bei.yd.ui.main.view.IFixView;
 import com.bei.yd.ui.main.view.IMainView;
 import com.bei.yd.utils.Constant;
 import com.bei.yd.utils.InvokeStartActivityUtils;
 import com.bei.yd.utils.SharedPreferenceHelper;
+import com.bei.yd.utils.ToastUtil;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import java.util.ArrayList;
@@ -26,12 +29,12 @@ import java.util.ArrayList;
 /**
  * Created by fb on 11/28/16.
  */
-public class MineOrderFragment extends BaseLoadFragment implements View.OnClickListener, IMainView {
+public class FixOrderFragment extends BaseLoadFragment implements View.OnClickListener, IFixView {
   //  设置按钮
 
   // 用户足迹
   @Bind(R.id.nor_order) XRecyclerView rvList;
-  private MainPresenterImpl mainPresenter;
+  private FixPresenterImpl mainPresenter;
   private MainAdapter adapter;
   private int pn = 1;
   private ArrayList<MainItemNewOrderBean> mainBeen = new ArrayList<MainItemNewOrderBean>();
@@ -41,8 +44,8 @@ public class MineOrderFragment extends BaseLoadFragment implements View.OnClickL
    * 个人中心业务逻辑操作类
    */
   protected void onLoadData() {
-    mainPresenter = new MainPresenterImpl(getActivity(), this);
-    mainPresenter.getAllNewWorkOrderList(SharedPreferenceHelper.getUserRole(),
+    mainPresenter = new FixPresenterImpl(getActivity(), this);
+    mainPresenter.querySingleFault(SharedPreferenceHelper.getUserRole(),
         Integer.parseInt(SharedPreferenceHelper.getUserAccount()), pn);
   }
 
@@ -50,8 +53,8 @@ public class MineOrderFragment extends BaseLoadFragment implements View.OnClickL
     super.onCreate(savedInstanceState);
   }
 
-  public static MineOrderFragment newInstance() {
-    return new MineOrderFragment();
+  public static FixOrderFragment newInstance() {
+    return new FixOrderFragment();
   }
 
   //@Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -99,17 +102,14 @@ public class MineOrderFragment extends BaseLoadFragment implements View.OnClickL
     }
   }
 
-  @Override public void onAddGD(MainBean bean) {
-
-  }
-
-  @Override public void onGetNewGDListMore(MainItemNewOrderBean bean) {
+  @Override public void onQuerySingleFaultMore(MainItemNewOrderBean bean) {
     if (bean.isSuccessful()) {
       //            hideEmptyView();
       //            rvList.setVisibility(View.VISIBLE);
       if (pn > 1 && bean.getData() == null || bean.getData().size() == 0) {
         pn--;
         rvList.noMoreLoading();
+        ToastUtil.showNormalShortToast("没有更多数据了！");
       } else {
         newOrderBeen.addAll(bean.getData());
       }
@@ -123,7 +123,7 @@ public class MineOrderFragment extends BaseLoadFragment implements View.OnClickL
     rvList.loadMoreComplete();
   }
 
-  @Override public void onGetNewGDList(MainItemNewOrderBean bean) {
+  @Override public void onQuerySingleFault(MainItemNewOrderBean bean) {
     newOrderBeen = bean.getData();
     adapter.updateItems(newOrderBeen);
     if (rvList != null) {
@@ -133,10 +133,6 @@ public class MineOrderFragment extends BaseLoadFragment implements View.OnClickL
     //if (pn == 1) {
     //  rvList.reset();
     //}
-  }
-
-  @Override public void onLoginSuccess(UserInfoBean bean) {
-
   }
 
   @Override public void onGetAreaSuccess(AreaBean bean) {
@@ -170,10 +166,15 @@ public class MineOrderFragment extends BaseLoadFragment implements View.OnClickL
       adapter.setOnItemClickListener(new MainAdapter.OnItemListener() {
         @Override public void onItemClick(View view, int position) {
           MainItemNewOrderBean mainItemNewOrderBean = newOrderBeen.get(position);
+          //Bundle bundle = new Bundle();
+          //bundle.putInt(Constant.ORDER_ID, mainItemNewOrderBean.getId());
+          //bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
+          //InvokeStartActivityUtils.startActivity(getActivity(), PaiWorkerListActivity.class,
+          //    bundle, false);
           Bundle bundle = new Bundle();
-          bundle.putInt(Constant.ORDER_ID, mainItemNewOrderBean.getId());
-          bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
-          InvokeStartActivityUtils.startActivity(getActivity(), PaiWorkerListActivity.class, bundle,
+          bundle.putParcelable(Constant.ORDER_DETAIL, mainItemNewOrderBean);
+          //bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
+          InvokeStartActivityUtils.startActivity(getActivity(), OrderDetialActivity.class, bundle,
               false);
         }
       });

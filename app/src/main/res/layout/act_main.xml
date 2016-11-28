@@ -4,55 +4,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tl="http://schemas.android.com/apk/res-auto">
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_alignParentTop="true"
-        >
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:contentInsetLeft="0dp"
-            app:contentInsetStart="0dp"
-            >
-
-            <RelativeLayout
-                android:id="@+id/login_fragment_title_rl"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:paddingRight="20dp"
-                >
-
-                <TextView
-                    android:id="@+id/login_fragment_title_name_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center"
-                    android:text="我是派单员"
-                    android:textSize="14sp"
-                    />
-
-                <TextView
-                    android:id="@+id/tv_register"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:gravity="center"
-                    android:text="测试"
-                    android:textSize="13sp"
-                    android:textColor="#666666"
-                    />
-                <!--large_font_size-->
-            </RelativeLayout>
-
-        </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
     <FrameLayout
         android:id="@+id/fl_body"
         android:layout_below="@+id/app_bar"
@@ -68,12 +19,12 @@
         android:background="@color/colorPrimaryDark"
         app:dayNightBackgroundAttr="dayNightBackground"
         tl:tl_indicator_height="0dp"
-        tl:tl_iconHeight="20dp"
-        tl:tl_iconWidth="20dp"
+        tl:tl_iconHeight="25dp"
+        tl:tl_iconWidth="25dp"
         tl:tl_indicator_color="@color/gray"
         tl:tl_textSelectColor="@color/white"
-        tl:tl_textUnselectColor="@color/light_gray"
-        tl:tl_textsize="11sp"
+        tl:tl_textUnselectColor="@color/white"
+        tl:tl_textsize="14sp"
         tl:tl_underline_height="0dp" />
 
 </RelativeLayout>

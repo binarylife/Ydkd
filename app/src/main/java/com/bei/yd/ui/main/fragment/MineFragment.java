@@ -14,10 +14,11 @@ import com.bei.yd.ui.base.fragment.BaseLoadFragment;
 import com.bei.yd.ui.main.activity.AddWorkOrderActivity;
 import com.bei.yd.ui.main.adapter.MainPagerAdapter;
 import com.bei.yd.utils.InvokeStartActivityUtils;
+import com.bei.yd.utils.SharedPreferenceHelper;
 import com.melnykov.fab.FloatingActionButton;
 
 /**
- * Created by wangchunlei on 3/28/16.
+ * Created by fb on 3/28/16.
  */
 public class MineFragment extends BaseLoadFragment implements View.OnClickListener {
   private Context context;
@@ -75,6 +76,12 @@ public class MineFragment extends BaseLoadFragment implements View.OnClickListen
     adapter = new MainPagerAdapter(getChildFragmentManager(), context);
     viewPager.setAdapter(adapter);
     tabLayout.setupWithViewPager(viewPager);
+    if (SharedPreferenceHelper.getUserRole() == "A"
+        || SharedPreferenceHelper.getUserRole() == "B") {
+      mbtNewOrder.setVisibility(View.VISIBLE);
+    }else{
+      mbtNewOrder.setVisibility(View.GONE);
+    }
     //tabLayout.setTabsFromPagerAdapter(adapter);
     //tabLayout.setti
   }

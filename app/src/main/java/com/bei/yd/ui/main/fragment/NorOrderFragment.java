@@ -31,7 +31,7 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import java.util.ArrayList;
 
 /**
- * Created by wangchunlei on 3/28/16.
+ * Created by fb on 11/28/16.
  */
 public class NorOrderFragment extends BaseLoadFragment implements View.OnClickListener, IMainView {
   //  设置按钮

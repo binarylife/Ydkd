@@ -66,5 +66,18 @@ public interface MainFragmentApi {
    * @return
    */
   @POST("isCancelOrder") Observable<MainBean> isCancelOrder(@Query("wid") int wid,@Query("isSuccess") int isSuccess);
+  /**
+   * 新增维修工单
+   */
+  @POST("addSingleFault") Observable<MainBean> addSingleFault(@Query("area") String area,
+      @Query("account") String account, @Query("address") String address, @Query("phone") int phone);
+
+
+  /**
+   * 获取最新工单列表
+   */
+  @POST("querySingleFault") Observable<MainItemNewOrderBean> querySingleFault(
+      @Query("role") String role, @Query("account") int account, @Query("pageIndex") int address,
+      @Query("pageSize") int pageSize);
 
 }
