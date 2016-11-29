@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.support.design.widget.TabLayout;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import com.bei.yd.R;
 import com.bei.yd.app.YDApp;
 import java.text.ParseException;
@@ -164,6 +165,28 @@ public class MyUtils {
         return "管理员";
       default:
         return "未知状态";
+    }
+  }
+
+  /**
+   * 展示预警buttom上的文字的背景
+   */
+  public static void showYuJinggButtonBG(TextView textView, int warnming) {
+    switch (warnming) {
+      //  判断用户的角色
+      //case "A":
+      //  break;
+      case 1:// 一级预警(红色)
+        textView.setBackgroundResource(R.drawable.shape_yujing_text_blue);
+        break;
+      case 2:// 一级预警(红色)
+        textView.setBackgroundResource(R.drawable.shape_yujing_text_oringe);
+        break;
+      case 3:// 一级预警(红色)
+        textView.setBackgroundResource(R.drawable.shape_yujing_text);
+        break;
+      default:
+        textView.setVisibility(View.GONE);
     }
   }
 }

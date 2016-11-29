@@ -131,6 +131,7 @@ public class FixAdapter extends BaseRecyclerAdapter<MainItemNewOrderBean>
           //  派单预警
           if (bean.getDispatchWarning1() != 0) {
             textView.setText(bean.getDispatchWarning1() + "");
+            MyUtils.showYuJinggButtonBG(textView,bean.getDispatchWarning1());
           } else {
             textView.setVisibility(View.GONE);
           }
@@ -138,6 +139,7 @@ public class FixAdapter extends BaseRecyclerAdapter<MainItemNewOrderBean>
             //   二级二次排队呢预警
             if (bean.getDispatchWarning2() != 0) {
               textView.setText(bean.getDispatchWarning2() + "");
+              MyUtils.showYuJinggButtonBG(textView,bean.getDispatchWarning2());
             } else {
               textView.setVisibility(View.GONE);
             }
@@ -147,6 +149,7 @@ public class FixAdapter extends BaseRecyclerAdapter<MainItemNewOrderBean>
           // 回访中
           if (bean.getVisitWarning() != 0) {
             textView.setText(bean.getVisitWarning() + "");
+            MyUtils.showYuJinggButtonBG(textView,bean.getVisitWarning());
           } else {
             textView.setVisibility(View.GONE);
           }
@@ -157,6 +160,7 @@ public class FixAdapter extends BaseRecyclerAdapter<MainItemNewOrderBean>
           //  接口人 派单预警
           if (bean.getDispatchWarning()!=0) {
             textView.setText(bean.getDispatchWarning() + "");
+            MyUtils.showYuJinggButtonBG(textView,bean.getDispatchWarning());
           }else{
             textView.setVisibility(View.GONE);
           }
@@ -168,6 +172,7 @@ public class FixAdapter extends BaseRecyclerAdapter<MainItemNewOrderBean>
           //  装机预警
           if (bean.getInstallWarning()!=0) {
             textView.setText(bean.getInstallWarning() + "");
+            MyUtils.showYuJinggButtonBG(textView,bean.getInstallWarning());
           }else{
             textView.setVisibility(View.GONE);
           }
@@ -177,4 +182,5 @@ public class FixAdapter extends BaseRecyclerAdapter<MainItemNewOrderBean>
         textView.setVisibility(View.GONE);
     }
   }
+
 }

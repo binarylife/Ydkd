@@ -11,9 +11,16 @@ public interface IMainPresenter {
    * @param account  录入人员信息id
    * @param address  地址
    * @param phone  电话
-   * @param type   工单类型(新增 或是 修理)
    */
-    void addWorkOrder(String arae, String account, String address, int phone,String type);
+    void addWorkOrder(String arae, String account, String address, int phone);
+  /**
+   * 新建故障工单
+   * @param arae  区域id
+   * @param account  录入人员信息id
+   * @param address  地址
+   * @param phone  电话
+   */
+  void addFixWorkOrder(String arae, String account, String address, int phone);
     /**
      * 获取工单列表
      */

@@ -17,9 +17,12 @@ public interface MainFragmentApi {
    * 新增工单
    */
   @POST("addWorkOrder") Observable<MainBean> addNewWorkOrder(@Query("area") String area,
-      @Query("account") String account, @Query("address") String address, @Query("phone") int phone,
-      @Query("type") String type);
-
+      @Query("account") String account, @Query("address") String address, @Query("phone") int phone);
+  /**
+   * 新增故障工单
+   */
+  @POST("addSingleFault") Observable<MainBean> addFixWorkOrder(@Query("area") String area,
+      @Query("account") String account, @Query("address") String address, @Query("phone") int phone);
   /**
    * 获取最新工单列表
    */
@@ -43,15 +46,29 @@ public interface MainFragmentApi {
    */
   @POST("queryOtherUser") Observable<UserInfoBeans> getAllPaiWorker(@Query("role") String role  ,
       @Query("areaid") int areaid);
-
   /**
-   *
+   * 获取可派人员列表(故障)
+   */
+  @POST("queryOtherUserTwo") Observable<UserInfoBeans> getAllFixPaiWorker(@Query("role") String role  ,
+      @Query("areaid") int areaid,
+      @Query("uid") int uid);
+  /**
    * @param id
    * @param accountA 派单人
    * @param accountB 指定人
    * @return
    */
   @POST("dispatchOrder") Observable<MainBean> dispatchOrder(@Query("id") int id,
+      @Query("accountA") String accountA,@Query("accountB") String accountB);
+
+  /**
+   *
+   * 故障单指派
+   * @param accountA 派单人
+   * @param accountB 指定人
+   * @return
+   */
+  @POST("dispatchSingleFault") Observable<MainBean> dispatchSingleFault(@Query("id") int id,
       @Query("accountA") String accountA,@Query("accountB") String accountB);
   /**
    *
@@ -79,5 +96,17 @@ public interface MainFragmentApi {
   @POST("querySingleFault") Observable<MainItemNewOrderBean> querySingleFault(
       @Query("role") String role, @Query("account") int account, @Query("pageIndex") int address,
       @Query("pageSize") int pageSize);
-
+  /**
+   *
+   *  装机人安装完成--进行回单(故障)
+   *
+   * @return
+   */
+  @POST("affirmSingleFault") Observable<MainBean> affirmSingleFault(@Query("wid") int wid);
+  /**
+   *
+   *  装机人安装完成--进行回单（故障）
+   * @return
+   */
+  @POST("isCancelSingleFault") Observable<MainBean> isCancelSingleFault(@Query("wid") int wid,@Query("isSuccess") int isSuccess);
 }

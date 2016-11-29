@@ -16,9 +16,13 @@ public interface MainModel {
   /**
    * 新建neworder
    */
-  void addNewWO(String arae, String account, String address, int phone,String type,
+  void addNewWO(String arae, String account, String address, int phone,
       Subscriber<MainBean> callback);
-
+  /**
+   * 新建Fixorder
+   */
+  void addFixWO(String arae, String account, String address, int phone,
+      Subscriber<MainBean> callback);
   /**
    * 所有工单获取
    */

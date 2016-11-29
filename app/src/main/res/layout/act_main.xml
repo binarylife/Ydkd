@@ -60,7 +60,7 @@
         android:background="?attr/dayNightBackground"
         android:layout_height="match_parent"/>
     <com.flyco.tablayout.CommonTabLayout
-        android:id="@+id/tab_layout"
+        android:id="@+id/tab_layout_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"

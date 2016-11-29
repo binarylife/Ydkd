@@ -16,6 +16,7 @@ import com.bei.yd.R;
 import com.bei.yd.app.AppConstant;
 import com.bei.yd.bean.TabEntity;
 import com.bei.yd.ui.base.activity.BackBaseActivity;
+import com.bei.yd.ui.main.fragment.AboutFragment;
 import com.bei.yd.ui.main.fragment.MineFragment;
 import com.bei.yd.utils.DeviceUtils;
 import com.bei.yd.utils.ToastUtil;
@@ -30,13 +31,13 @@ import java.util.ArrayList;
 import rx.functions.Action1;
 /**
  * des:主界面
- * Created by xsf
+ * Created by fb
  * on 2016.09.15:32
  */
 public class MainActivity extends BackBaseActivity {
 
-    @Bind(R.id.tab_layout)
-    CommonTabLayout tabLayout;
+    //@Bind(R.id.tab_layout)
+     private CommonTabLayout tabLayout;
     /**
      * 两次点击返回按钮时，记录时间
      */
@@ -56,7 +57,7 @@ public class MainActivity extends BackBaseActivity {
     private MineFragment newsMainFragment;
     //private PhotosMainFragment photosMainFragment;
     //private VideoMainFragment videoMainFragment;
-    private MineFragment careMainFragment;
+    private AboutFragment careMainFragment;
     private static int tabLayoutHeight;
     private FragmentTransaction transaction;
 
@@ -77,10 +78,11 @@ public class MainActivity extends BackBaseActivity {
         //ChangeModeController.getInstance().init(this,R.attr.class);
         super.onCreate(savedInstanceState);
         //初始化frament
-        initFragment(savedInstanceState);
-        //tabLayout.measure(0,0);
-        //tabLayoutHeight=tabLayout.getMeasuredHeight();
         setContentView(R.layout.act_main);
+        tabLayout= (CommonTabLayout) findViewById(R.id.tab_layout_main);
+        initFragment(savedInstanceState);
+        tabLayout.measure(0,0);
+        tabLayoutHeight=tabLayout.getMeasuredHeight();
         initTab();
         //监听菜单显示或隐藏
     }
@@ -113,13 +115,13 @@ public class MainActivity extends BackBaseActivity {
             newsMainFragment = (MineFragment) getSupportFragmentManager().findFragmentByTag("newsMainFragment");
             //photosMainFragment = (PhotosMainFragment) getSupportFragmentManager().findFragmentByTag("photosMainFragment");
             //videoMainFragment = (VideoMainFragment) getSupportFragmentManager().findFragmentByTag("videoMainFragment");
-            careMainFragment = (MineFragment) getSupportFragmentManager().findFragmentByTag("careMainFragment");
+            careMainFragment = (AboutFragment) getSupportFragmentManager().findFragmentByTag("careMainFragment");
             currentTabPosition = savedInstanceState.getInt(AppConstant.HOME_CURRENT_TAB_POSITION);
         } else {
             newsMainFragment = new MineFragment();
             //photosMainFragment = new PhotosMainFragment();
             //videoMainFragment = new VideoMainFragment();
-            careMainFragment = new MineFragment();
+            careMainFragment = new AboutFragment();
             transaction.add(R.id.fl_body, newsMainFragment, "newsMainFragment");
             //transaction.add(R.id.fl_body, photosMainFragment, "photosMainFragment");
             //transaction.add(R.id.fl_body, videoMainFragment, "videoMainFragment");
@@ -145,24 +147,24 @@ public class MainActivity extends BackBaseActivity {
                 transaction.show(newsMainFragment);
                 transaction.commitAllowingStateLoss();
                 break;
-            //美女
-            case 1:
-                transaction.hide(newsMainFragment);
-                //transaction.hide(videoMainFragment);
-                transaction.hide(careMainFragment);
-                //transaction.show(photosMainFragment);
-                transaction.commitAllowingStateLoss();
-                break;
-            //视频
-            case 2:
-                transaction.hide(newsMainFragment);
-                //transaction.hide(photosMainFragment);
-                transaction.hide(careMainFragment);
-                //transaction.show(videoMainFragment);
-                transaction.commitAllowingStateLoss();
-                break;
+            ////美女
+            //case 1:
+            //    transaction.hide(newsMainFragment);
+            //    //transaction.hide(videoMainFragment);
+            //    transaction.hide(careMainFragment);
+            //    //transaction.show(photosMainFragment);
+            //    transaction.commitAllowingStateLoss();
+            //    break;
+            ////视频
+            //case 2:
+            //    transaction.hide(newsMainFragment);
+            //    //transaction.hide(photosMainFragment);
+            //    transaction.hide(careMainFragment);
+            //    //transaction.show(videoMainFragment);
+            //    transaction.commitAllowingStateLoss();
+            //    break;
             //关注
-            case 3:
+            case 1:
                 transaction.hide(newsMainFragment);
                 //transaction.hide(photosMainFragment);
                 //transaction.hide(videoMainFragment);
@@ -205,10 +207,10 @@ public class MainActivity extends BackBaseActivity {
         super.onSaveInstanceState(outState);
         //奔溃前保存位置
         LogUtils.loge("onSaveInstanceState进来了1");
-        //if (tabLayout != null) {
-        //    LogUtils.loge("onSaveInstanceState进来了2");
-        //    outState.putInt(AppConstant.HOME_CURRENT_TAB_POSITION, tabLayout.getCurrentTab());
-        //}
+        if (tabLayout != null) {
+            LogUtils.loge("onSaveInstanceState进来了2");
+            outState.putInt(AppConstant.HOME_CURRENT_TAB_POSITION, tabLayout.getCurrentTab());
+        }
     }
 
     @Override

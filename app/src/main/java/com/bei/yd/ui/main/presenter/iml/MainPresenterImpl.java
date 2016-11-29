@@ -36,9 +36,9 @@ public class MainPresenterImpl implements IMainPresenter {
     model = new MainModelImpl(context, this);
   }
 
-  @Override public void addWorkOrder(String arae, String account, String address, int phone,String type) {
+  @Override public void addWorkOrder(String arae, String account, String address, int phone) {
     view.showProgress();
-    model.addNewWO(arae, account, address, phone,type, new Subscriber<MainBean>() {
+    model.addNewWO(arae, account, address, phone, new Subscriber<MainBean>() {
       @Override public void onCompleted() {
 
       }
@@ -48,12 +48,36 @@ public class MainPresenterImpl implements IMainPresenter {
       }
 
       @Override public void onNext(MainBean mainBean) {
-        view.onAddGD(mainBean);
-        ToastUtil.showNormalShortToast("请求成功" + mainBean.getCode());
+        if (mainBean.isSuccessful()){
+          view.onAddGD(mainBean);
+          ToastUtil.showNormalShortToast("新建工单成功");
+        }else{
+          ToastUtil.showNormalShortToast(mainBean.getMessage());
+        }
       }
     });
   }
+  @Override public void addFixWorkOrder(String arae, String account, String address, int phone) {
+    view.showProgress();
+    model.addFixWO(arae, account, address, phone, new Subscriber<MainBean>() {
+      @Override public void onCompleted() {
 
+      }
+
+      @Override public void onError(Throwable e) {
+
+      }
+
+      @Override public void onNext(MainBean mainBean) {
+        if (mainBean.isSuccessful()){
+        view.onAddGD(mainBean);
+        ToastUtil.showNormalShortToast("新建故障工单成功");
+        }else{
+          ToastUtil.showNormalShortToast(mainBean.getMessage());
+        }
+      }
+    });
+  }
   @Override public void getAllNewWorkOrderList(String role, int account, final int pn) {
     view.showProgress();
     model.getAllNewWOList(role, account, pn, new Subscriber<MainItemNewOrderBean>() {

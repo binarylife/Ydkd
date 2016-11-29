@@ -96,7 +96,9 @@ public class LoginActivity extends BackBaseActivity implements IMainView, View.O
     ToastUtil.showNormalShortToast("登录成功!");
     if (bean.isSuccessful()) {
       SharedPreferenceHelper.saveUserInfo(bean.getData());
-      InvokeStartActivityUtils.startActivity(this, MainActivity.class, null, true);
+      //InvokeStartActivityUtils.startActivity(this, MainActivity.class, null, true);
+      MainActivity.startAction(LoginActivity.this);
+      finish();
     }
   }
 

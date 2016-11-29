@@ -48,6 +48,7 @@ public class PaiWorkerListActivity extends BackBaseActivity
   private String orderCreater;
   private ArrayList<UserInfoBeans> userInfoBeanses;
   private String accountB;//被派单人
+  private boolean misNewOreder;
   //  网络交互的逻辑层
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class PaiWorkerListActivity extends BackBaseActivity
     setContentView(R.layout.activity_pai_workerlist);
     Bundle bundle = getIntent().getExtras();
     orderId = bundle.getInt(Constant.ORDER_ID);
+    misNewOreder = bundle.getBoolean(Constant.isNewOreder);
     orderCreater = bundle.getString(Constant.ORDER_CREATER);
     //  初始化上传头像的逻辑层
     paiPresenter = new PaiPresenterImpl(this, this);
@@ -91,7 +93,13 @@ public class PaiWorkerListActivity extends BackBaseActivity
           showMutiDialog("是否指派给" + userInfoBeanses.get(position).getRole(),
               new DialogBuilder.ClickCallbak() {
                 @Override public void onConfirm() {
-                  paiPresenter.dispatchOrder(orderId, orderCreater, accountB);
+                  if (misNewOreder) {
+                    //  普通工单
+                    paiPresenter.dispatchOrder(orderId, orderCreater, accountB);
+                  }else{
+                    //  故障工单
+                    paiPresenter.dispatchSingleFault(orderId,orderCreater,accountB);
+                  }
                 }
 
                 @Override public void onCancle() {
@@ -116,7 +124,11 @@ public class PaiWorkerListActivity extends BackBaseActivity
   }
 
   @Override protected void onLoadData() {
-    paiPresenter.getArea(SharedPreferenceHelper.getUserRole(),SharedPreferenceHelper.getUserAreaid());
+    if (misNewOreder) {
+      paiPresenter.getArea(SharedPreferenceHelper.getUserRole(), SharedPreferenceHelper.getUserAreaid());
+    }else {
+      paiPresenter.getFixArea(SharedPreferenceHelper.getUserRole(), SharedPreferenceHelper.getUserAreaid(),SharedPreferenceHelper.getUseId());
+    }
   }
 
   @OnClick({

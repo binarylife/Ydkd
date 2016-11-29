@@ -53,7 +53,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">@dimen/margin_large</item>
         <item name="android:layout_marginRight">@dimen/margin_large</item>
-        <item name="android:layout_marginTop">@dimen/margin_normal</item>
+        <item name="android:layout_marginTop">@dimen/margin_small</item>
         <item name="android:textCursorDrawable">@drawable/text_cursor_cyan</item>
         <item name="android:textSize">@dimen/font_large</item>
         <item name="android:textColorHint">@color/primary_light</item>
@@ -94,5 +94,20 @@
         <item name="android:textColor">@color/primary_light</item>
         <item name="android:textSize">@dimen/font_large</item>
         <item name="android:layout_marginLeft">@dimen/spacing_tiny</item>
+    </style>
+    <style name="About" />
+    <style name="About.ItemLable">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/primary_light</item>
+        <item name="android:drawableRight">@drawable/about_item_icon</item>
+        <item name="android:background">@drawable/about_item_selector</item>
+    </style>
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.1dp</item>
+        <item name="android:background">@color/divider</item>
     </style>
 </resources>

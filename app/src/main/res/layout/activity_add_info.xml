@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,10 +23,11 @@
         android:layout_height="match_parent"
         >
       <TextView
+          android:id="@+id/tv_topTitle"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_centerInParent="true"
-          android:text="新建工单"
+          tools:text="新建工单"
           android:textSize="17sp"
           android:textColor="@color/white"
           />
@@ -57,233 +59,61 @@
       android:paddingRight="10dp"
       android:scrollbars="none"
       >
-
-    <LinearLayout
-        android:id="@+id/rl_changeName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-      <TextView
-          android:id="@+id/tv_username"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_centerVertical="true"
-          android:gravity="center"
-          android:paddingBottom="15dp"
-          android:paddingTop="15dp"
-          android:text="工单编号"
-          style="@style/usercenter_l"
-          />
-
-      <com.bei.yd.widget.ClearEditText
-          android:id="@+id/et_nickname"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_centerVertical="true"
-          android:layout_marginLeft="22dp"
-          android:layout_toRightOf="@+id/tv_username"
-          android:background="@null"
-          android:cursorVisible="false"
-          android:paddingBottom="15dp"
-          android:paddingRight="10dp"
-          android:paddingTop="15dp"
-          android:singleLine="true"
-          android:hint="请输入单号"
-          android:textColor="#666666"
-          android:textCursorDrawable="@drawable/shape_edit_text"
-          android:textSize="14sp"
-          />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/view04"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#DDDDDD"
-        />
-
-    <RelativeLayout
-        android:id="@+id/rl_changesex"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        >
+    <com.rengwuxian.materialedittext.MaterialEditText
+        style="@style/ConsumerDetail.EditText"
+        android:id="@+id/tv_orderid"
+        android:hint="请输入单号"
+        android:inputType="numberDecimal"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelText="单号"
+        app:met_textColorHint="@color/secondary_text"
+        app:met_baseColor="@color/primary_text"
+        app:met_maxCharacters="10"
+        app:met_primaryColor="@color/colorPrimary"
+        app:met_singleLineEllipsis="true" />
+    <com.rengwuxian.materialedittext.MaterialEditText
+        style="@style/ConsumerDetail.EditText"
+        android:id="@+id/tv_address"
+        android:hint="请输入详细地址："
+        android:maxLines="3"
+        app:met_floatingLabel="highlight"
+        app:met_textColorHint="@color/secondary_text"
+        app:met_baseColor="@color/primary_text"
+        app:met_maxCharacters="100"
+        app:met_primaryColor="@color/colorPrimary" />
+    <com.rengwuxian.materialedittext.MaterialEditText
+        style="@style/ConsumerDetail.EditText"
+        android:id="@+id/tv_phone"
+        android:hint="请输入电话"
+        android:maxLines="1"
+        android:inputType="numberDecimal"
+        app:met_floatingLabel="highlight"
+        app:met_textColorHint="@color/secondary_text"
+        app:met_baseColor="@color/primary_text"
+        app:met_maxCharacters="100"
+        app:met_primaryColor="@color/colorPrimary" />
+    <LinearLayout style="@style/AddConsumerLayout"
+        android:layout_marginTop="@dimen/margin_normal" >
 
       <TextView
-          android:id="@+id/tv_usersex"
           android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_centerVertical="true"
+          android:layout_height="match_parent"
+          style="@style/ItemText_Black_Large"
+          android:text="区县："
           android:gravity="center"
-          android:text="区        县"
-          style="@style/usercenter_l"
-          />
+          android:background="@color/white"/>
 
       <com.jaredrummler.materialspinner.MaterialSpinner
           android:id="@+id/tv_area"
-          android:layout_toRightOf="@+id/tv_usersex"
-          android:layout_width="match_parent"
+          android:layout_width="0dp"
+          android:layout_weight="1"
           android:layout_height="wrap_content"
-          android:layout_centerVertical="true"
-          android:layout_marginLeft="20dp"
-          android:background="@null"
-          android:cursorVisible="false"
-          android:paddingBottom="15dp"
-          android:paddingRight="10dp"
-          android:paddingTop="15dp"
-          android:singleLine="true"
-          android:hint="区县"
-          android:textColor="#666666"
-          android:textCursorDrawable="@drawable/shape_edit_text"
-          android:textSize="14sp"
-          />
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/view05"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#DDDDDD"
-        />
-
-
-    <RelativeLayout
-        android:id="@+id/rl_brithday"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        >
-
-      <TextView
-          android:id="@+id/tv_brithday"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_centerVertical="true"
-          android:gravity="center"
-          android:text="详细地址"
-          style="@style/usercenter_l"
+          android:textSize="@dimen/font_large"
+          app:ms_background_color="@color/white"
+          app:ms_text_color="@color/secondary_text"
           />
 
-      <com.bei.yd.widget.ClearEditText
-          android:id="@+id/tv_brith"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_centerVertical="true"
-          android:layout_marginLeft="22dp"
-          android:layout_toRightOf="@id/tv_brithday"
-          android:background="@null"
-          android:cursorVisible="false"
-          android:paddingBottom="15dp"
-          android:paddingRight="10dp"
-          android:paddingTop="15dp"
-          android:singleLine="true"
-          android:hint="街道地址"
-          android:textColor="#666666"
-          android:textCursorDrawable="@drawable/shape_edit_text"
-          android:textSize="14sp"
-          />
-
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/view17"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#DDDDDD"
-        />
-
-    <RelativeLayout
-        android:id="@+id/rl_city"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        >
-
-      <TextView
-          android:id="@+id/tv_city"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_centerVertical="true"
-          android:gravity="center"
-          android:text="工单类型"
-          style="@style/usercenter_l"
-          />
-
-      <com.jaredrummler.materialspinner.MaterialSpinner
-          android:id="@+id/tv_type"
-          android:layout_toRightOf="@+id/tv_city"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_centerVertical="true"
-          android:layout_marginLeft="20dp"
-          android:background="@null"
-          android:cursorVisible="false"
-          android:paddingBottom="15dp"
-          android:paddingRight="10dp"
-          android:paddingTop="15dp"
-          android:singleLine="true"
-          android:hint="区县"
-          android:textColor="#666666"
-          android:textCursorDrawable="@drawable/shape_edit_text"
-          android:textSize="14sp"
-          />
-
-      <ImageView
-          android:layout_width="24dp"
-          android:layout_height="24dp"
-          android:visibility="gone"
-          android:layout_alignParentRight="true"
-          android:layout_centerVertical="true"
-          android:src="@drawable/gotoright"
-          />
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/view07"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#DDDDDD"
-        />
-
-    <LinearLayout
-        android:id="@+id/rl_email"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center_vertical"
-        >
-
-      <TextView
-          android:id="@+id/tv_email_name"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_centerVertical="true"
-          android:gravity="center"
-          android:text="电        话"
-          style="@style/usercenter_l"
-          />
-
-      <com.bei.yd.widget.ClearEditText
-          android:id="@+id/et_phone"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_centerVertical="true"
-          android:layout_marginLeft="22dp"
-          android:layout_toRightOf="@+id/tv_email_name"
-          android:background="@null"
-          android:paddingRight="10dp"
-          android:singleLine="true"
-          android:textColor="#666666"
-          android:textCursorDrawable="@drawable/shape_edit_text"
-          android:textSize="12sp"
-          android:hint="电话"
-          />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/view08"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#DDDDDD"
-        />
-
   </LinearLayout>
 
   <TextView

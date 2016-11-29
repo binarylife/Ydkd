@@ -279,6 +279,9 @@ public class SharedPreferenceHelper {
   public static int getUserAreaid() {
     return SharedPreferenceUtil.getInt(USER_AREAID);
   }
+  public static int getUseId() {
+    return SharedPreferenceUtil.getInt(USER_ID);
+  }
   /**
    * 是否是第一次使用APP
    */

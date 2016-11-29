@@ -7,6 +7,7 @@ import android.view.View;
 import android.webkit.ValueCallback;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.OnClick;
 import com.bei.yd.R;
@@ -17,10 +18,12 @@ import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
 import com.bei.yd.ui.main.bean.UserInfoBean;
 import com.bei.yd.ui.main.presenter.iml.MainPresenterImpl;
 import com.bei.yd.ui.main.view.IMainView;
+import com.bei.yd.utils.Constant;
 import com.bei.yd.utils.SharedPreferenceHelper;
 import com.bei.yd.utils.SharedPreferenceUtil;
 import com.bei.yd.utils.ToastUtil;
 import com.jaredrummler.materialspinner.MaterialSpinner;
+import com.rengwuxian.materialedittext.MaterialEditText;
 import java.util.ArrayList;
 
 /**
@@ -30,13 +33,13 @@ import java.util.ArrayList;
 public class AddWorkOrderActivity extends BackBaseActivity
     implements IMainView, View.OnClickListener {
   @Bind(R.id.coordinator_layout) RelativeLayout mRelativeLayout;
-  @Bind(R.id.rl_brithday) RelativeLayout rlBrithday;
+  //@Bind(R.id.rl_brithday) RelativeLayout rlBrithday;
   // 用户头像
-  @Bind(R.id.et_nickname) EditText mNickName;
+  @Bind(R.id.tv_orderid) MaterialEditText mAccount;//  单号
   @Bind(R.id.tv_area) MaterialSpinner tvarea;
-  @Bind(R.id.tv_brith) EditText tvAddress;
-  @Bind(R.id.et_phone) EditText tvPhone;
-  @Bind(R.id.tv_type) MaterialSpinner mTypey;// 工单类型
+  @Bind(R.id.tv_address) MaterialEditText tvAddress;
+  @Bind(R.id.tv_phone) EditText tvPhone;
+  @Bind(R.id.tv_topTitle) TextView tvTitle;
 
   // 接收上传完成的头像的URl
   //  文件选择
@@ -51,10 +54,13 @@ public class AddWorkOrderActivity extends BackBaseActivity
   private String tareaName;
   private String typeName;
   private int selectAreaId;
+  private boolean misNewOreder;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_add_info);
+    Bundle bundle = getIntent().getExtras();
+    misNewOreder = bundle.getBoolean(Constant.isNewOreder);
     mainPresenter = new MainPresenterImpl(this, this);
     onLoadData();
   }
@@ -67,6 +73,7 @@ public class AddWorkOrderActivity extends BackBaseActivity
    * 初始化控y件
    */
   private void initView() {
+    tvTitle.setText(misNewOreder?"新建普通工单":"新建故障工单");
     selectAreaId=beanData.get(0).getId();
     tvarea.setItems(selectArea);
     tvarea.setSelectedIndex(0);
@@ -77,15 +84,15 @@ public class AddWorkOrderActivity extends BackBaseActivity
         selectAreaId=beanData.get(position).getId();
       }
     });
-    mTypey.setItems(selectType);
-    mTypey.setSelectedIndex(0);
+    //mTypey.setItems(selectType);
+    //mTypey.setSelectedIndex(0);
     typeName = selectType[0];
-    mTypey.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
-      @Override
-      public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
-        typeName = selectType[position];
-      }
-    });
+    //mTypey.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
+    //  @Override
+    //  public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
+    //    typeName = selectType[position];
+    //  }
+    //});
   }
 
   @Override protected void onLoadData() {
@@ -93,7 +100,7 @@ public class AddWorkOrderActivity extends BackBaseActivity
   }
 
   @OnClick({
-      R.id.title_back, R.id.tv_area, R.id.rl_city, R.id.tv_save, R.id.et_nickname, R.id.et_phone
+      R.id.tv_save,R.id.title_back
   }) public void onClick(View view) {
     switch (view.getId()) {
       case R.id.title_back:
@@ -101,23 +108,14 @@ public class AddWorkOrderActivity extends BackBaseActivity
         onBackPressed();
         //  请求服务器更新
         break;
-      case R.id.rl_brithday://  弹出日期筛选框
-        //pvTime.show();
-        break;
-      case R.id.rl_changesex://  修改性别
-        //select_sex_weelview();
-        // selectSex();
-        break;
       case R.id.tv_save://  保存修改
-        mainPresenter.addWorkOrder(selectAreaId+"", mNickName.getText().toString(), tvAddress.getText().toString(),
-            Integer.parseInt(tvPhone.getText().toString()),typeName.equals("普通工单")?"w":"s");
-        break;
-      case R.id.et_nickname://  点击昵称编辑
-        break;
-      case R.id.et_phone://  点击昵称编辑
-        break;
-      case R.id.rl_city://  修改城市
-
+        if (misNewOreder) {
+          mainPresenter.addWorkOrder(selectAreaId + "", mAccount.getText().toString(),
+              tvAddress.getText().toString(), Integer.parseInt(tvPhone.getText().toString()));
+        }else {
+          mainPresenter.addFixWorkOrder(selectAreaId + "", mAccount.getText().toString(),
+              tvAddress.getText().toString(), Integer.parseInt(tvPhone.getText().toString()));
+        }
         break;
     }
   }

@@ -43,15 +43,30 @@ public class MainModelImpl implements MainModel, IApiConfig {
      * @param phone
      * @param callback
    */
-    @Override public void addNewWO(String arae, String account, String address, int phone,String type,
+    @Override public void addNewWO(String arae, String account, String address, int phone,
         Subscriber<MainBean> callback) {
         MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
-        api.addNewWorkOrder(arae, account,address,phone,type)
+        api.addNewWorkOrder(arae, account,address,phone)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(callback);
     }
-
+    /**
+     * 新建故障工单
+     * @param arae
+     * @param account
+     * @param address
+     * @param phone
+     * @param callback
+     */
+    @Override public void addFixWO(String arae, String account, String address, int phone,
+        Subscriber<MainBean> callback) {
+        MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
+        api.addFixWorkOrder(arae, account,address,phone)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(callback);
+    }
     /**
      * 获取全部工单
      * @param role
