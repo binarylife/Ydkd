@@ -33,4 +33,13 @@ public interface IMainPresenter {
      * 登录
      */
     void getArea();
+
+  /**
+   * 所有工单获取(查询)
+   */
+  void statisticsWorkOrderList(String role,int account,
+      int pn,  String area, String account_u,
+      String phone,String dispatchtime, String taketime ,
+      String installtime,  String overtime, String dispatchwarning ,
+      String installwarning,String visitwarning);
 }

@@ -139,4 +139,30 @@ public class MainPresenterImpl implements IMainPresenter {
       }
     });
   }
+
+  @Override public void statisticsWorkOrderList(String role, int account, final int pn, String area,
+      String account_u, String phone, String dispatchtime, String taketime, String installtime,
+      String overtime, String dispatchwarning, String installwarning, String visitwarning) {
+    view.showProgress();
+    model.statisticsWorkOrderList(role, account, pn,area, account_u, phone, dispatchtime,
+        taketime, installtime,overtime ,dispatchwarning ,installwarning ,visitwarning, new Subscriber<MainItemNewOrderBean>() {
+      @Override public void onCompleted() {
+
+      }
+
+      @Override public void onError(Throwable e) {
+
+      }
+
+      @Override public void onNext(MainItemNewOrderBean mainItemNewOrderBean) {
+        view.hideProgress();
+        if (pn <= 1) {
+          view.onGetNewGDList(mainItemNewOrderBean);
+        } else {
+          view.onGetNewGDListMore(mainItemNewOrderBean);
+        }
+
+      }
+    });
+  }
 }

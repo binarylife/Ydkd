@@ -179,10 +179,10 @@ public class MyUtils {
       case 1:// 一级预警(红色)
         textView.setBackgroundResource(R.drawable.shape_yujing_text_blue);
         break;
-      case 2:// 一级预警(红色)
+      case 2:// er级预警(红色)
         textView.setBackgroundResource(R.drawable.shape_yujing_text_oringe);
         break;
-      case 3:// 一级预警(红色)
+      case 3:// san级预警(红色)
         textView.setBackgroundResource(R.drawable.shape_yujing_text);
         break;
       default:

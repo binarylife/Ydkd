@@ -36,4 +36,5 @@ public interface IPaiPresenter {
      * 指派工单给工人
      */
     void isCancelSingleFault(int wid,int isSuccess);
+
 }

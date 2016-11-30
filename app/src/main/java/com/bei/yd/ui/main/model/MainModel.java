@@ -38,5 +38,13 @@ public interface MainModel {
    * 获取区县
    */
   void getArea(Subscriber<AreaBean> callback);
-
+  /**
+   * 所有工单获取(查询)
+   */
+  void statisticsWorkOrderList(String role,int account,
+      int pageIndex,  String area, String account_u,
+       String phone,String dispatchtime, String taketime ,
+       String installtime,  String overtime, String dispatchwarning ,
+      String installwarning,String visitwarning,
+      Subscriber<MainItemNewOrderBean> callback);
 }

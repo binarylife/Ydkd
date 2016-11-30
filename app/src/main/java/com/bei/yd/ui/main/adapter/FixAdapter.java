@@ -53,8 +53,8 @@ public class FixAdapter extends BaseRecyclerAdapter<MainItemNewOrderBean>
       viewHolder.tvScenicName.setText(MyUtils.getTextByType(wonderScenicBean.getStatus()));
       viewHolder.tvAddress.setText(
           wonderScenicBean.getArea() + "/" + wonderScenicBean.getAddress());
-      viewHolder.tvCreateTime.setText(wonderScenicBean.getPhone());//  工单的状态
-      viewHolder.tvPhone.setText(wonderScenicBean.getStatus() + "");//  工单的状态
+      viewHolder.tvCreateTime.setText(wonderScenicBean.getAccount());//  工单的状态
+      viewHolder.tvPhone.setText(wonderScenicBean.getPhone() + "");//  工单的状态
       showYuJinggButton(viewHolder.tvyujing, wonderScenicBean);
       //viewHolder.tvyujing.setText(showYuJinggButton());//  工单的状态
       viewHolder.itemView.setTag(wonderScenicBean);
@@ -121,13 +121,16 @@ public class FixAdapter extends BaseRecyclerAdapter<MainItemNewOrderBean>
     switch (SharedPreferenceHelper.getUserRole()) {
       //  判断用户的角色
       case "A"://   一级派单员
-        if (statusValue == 1) {
+        if (statusValue == 7) {
           //  派单预警
+          textView.setText(bean.getDispatchWarning()+"");
+          MyUtils.showYuJinggButtonBG(textView,bean.getDispatchWarning());
+        }else{
           textView.setVisibility(View.GONE);
         }
         break;
       case "B":// 二级派单员
-        if (statusValue == 2) {
+        if (statusValue == 1) {
           //  派单预警
           if (bean.getDispatchWarning1() != 0) {
             textView.setText(bean.getDispatchWarning1() + "");
@@ -141,6 +144,16 @@ public class FixAdapter extends BaseRecyclerAdapter<MainItemNewOrderBean>
               textView.setText(bean.getDispatchWarning2() + "");
               MyUtils.showYuJinggButtonBG(textView,bean.getDispatchWarning2());
             } else {
+              textView.setVisibility(View.GONE);
+            }
+          }
+          if (statusValue == 7) {
+            //  派单预警
+            if (bean.getDispatchWarning()!=0) {
+              textView.setText(bean.getDispatchWarning() + "");
+              MyUtils.showYuJinggButtonBG(textView, bean.getDispatchWarning());
+            }else
+            {
               textView.setVisibility(View.GONE);
             }
           }

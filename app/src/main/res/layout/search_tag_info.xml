@@ -1,0 +1,279 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+  <android.support.v7.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      android:paddingLeft="16dp"
+      android:background="@color/colorPrimary"
+      android:paddingRight="16dp"
+      app:contentInsetLeft="0dp"
+      app:contentInsetStart="0dp"
+      >
+
+    <RelativeLayout
+        android:id="@+id/toolbar_RL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+      <TextView
+          android:id="@+id/tv_topTitle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerInParent="true"
+          tools:text="请填写检索条件"
+          android:textSize="17sp"
+          android:textColor="@color/white"
+          />
+
+      <ImageView
+          android:id="@+id/title_back"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_centerVertical="true"
+          android:layout_gravity="center_vertical"
+          android:scaleType="fitXY"
+          android:src="@drawable/title_back_icon"
+          />
+    </RelativeLayout>
+  </android.support.v7.widget.Toolbar>
+  <View
+      android:id="@+id/view_line"
+      android:layout_width="match_parent"
+      android:layout_height="1px"
+      android:layout_below="@+id/toolbar"
+      android:background="#cccccc"/>
+  <ScrollView
+      android:id="@+id/sv_scroll"
+      android:layout_above="@+id/tv_save"
+      android:layout_below="@+id/view_line"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:scrollbars="none"
+      >
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/view_line"
+      android:orientation="vertical"
+      android:paddingLeft="10dp"
+      android:paddingRight="10dp"
+      android:scrollbars="none"
+      >
+    <!--区县、客户账号、联系电话、一级派单员、二级派单员1、二级派单员2、接口人、处理人、
+    一级派单时间、二级派单时间、二级二次派单时间、接口人接单时间、接单时间、处理时间、
+    完成时间、二级派单预警、二级二次派单预警、接口人派单时长预警、处理预警、回访预警、
+    重复派单、是否结束-->
+    <com.rengwuxian.materialedittext.MaterialEditText
+        style="@style/ConsumerDetail.search"
+        android:id="@+id/tv_orderid"
+        android:hint="请输入单号"
+        android:inputType="numberDecimal"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelText="单号"
+        app:met_textColorHint="@color/secondary_text"
+        app:met_baseColor="@color/primary_text"
+        app:met_maxCharacters="20"
+        app:met_primaryColor="@color/colorPrimary"
+        app:met_singleLineEllipsis="true" />
+    <com.rengwuxian.materialedittext.MaterialEditText
+        style="@style/ConsumerDetail.search"
+        android:id="@+id/tv_phone"
+        android:hint="请输入联系电话"
+        android:maxLines="1"
+        android:inputType="numberDecimal"
+        app:met_floatingLabel="highlight"
+        app:met_textColorHint="@color/secondary_text"
+        app:met_baseColor="@color/primary_text"
+        app:met_maxCharacters="100"
+        app:met_primaryColor="@color/colorPrimary" />
+    <LinearLayout style="@style/AddConsumerLayout"
+        android:layout_marginTop="@dimen/margin_small" >
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          style="@style/ItemText_Black_small"
+          android:text="区县："
+          android:gravity="center"
+          android:background="@color/white"/>
+
+      <com.jaredrummler.materialspinner.MaterialSpinner
+          android:id="@+id/tv_area"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="wrap_content"
+          android:textSize="@dimen/font_large"
+          app:ms_background_color="@color/white"
+          app:ms_text_color="@color/secondary_text"
+          />
+
+    </LinearLayout>
+    <LinearLayout style="@style/AddConsumerLayout"
+        android:layout_marginTop="@dimen/margin_small" >
+
+      <TextView
+          android:id="@+id/tv_time"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          style="@style/ItemText_Black_small"
+          android:text="选择日期："
+          android:gravity="center"
+          android:background="@color/white"/>
+
+      <TextView
+          android:id="@+id/tv_selecttime"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="wrap_content"
+          android:textSize="@dimen/font_large"
+          android:background="@color/white"
+          android:textColor="@color/secondary_text"
+          />
+
+    </LinearLayout>
+    <LinearLayout style="@style/AddConsumerLayout"
+        android:layout_marginTop="@dimen/margin_small" >
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          style="@style/ItemText_Black_small"
+          android:text="时间类型："
+          android:gravity="center"
+          android:background="@color/white"/>
+
+      <com.jaredrummler.materialspinner.MaterialSpinner
+          android:id="@+id/tv_timetype"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="wrap_content"
+          android:textSize="@dimen/font_large"
+          app:ms_background_color="@color/white"
+          app:ms_text_color="@color/secondary_text"
+          />
+
+    </LinearLayout>
+    <LinearLayout style="@style/AddConsumerLayout"
+        android:layout_marginTop="@dimen/margin_small" >
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          style="@style/ItemText_Black_small"
+          android:text="预警类型："
+          android:gravity="center"
+          android:background="@color/white"/>
+
+      <com.jaredrummler.materialspinner.MaterialSpinner
+          android:id="@+id/tv_yujing"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="wrap_content"
+          android:textSize="@dimen/font_large"
+          app:ms_background_color="@color/white"
+          app:ms_text_color="@color/secondary_text"
+          />
+
+    </LinearLayout>
+    <LinearLayout style="@style/AddConsumerLayout"
+        android:layout_marginTop="@dimen/margin_small">
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          style="@style/ItemText_Black_small"
+          android:text="预警级别："
+          android:gravity="center"
+          android:background="@color/white"/>
+
+      <com.jaredrummler.materialspinner.MaterialSpinner
+          android:id="@+id/tv_role"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="wrap_content"
+          android:textSize="@dimen/font_large"
+          app:ms_background_color="@color/white"
+          app:ms_text_color="@color/secondary_text"
+          />
+
+    </LinearLayout>
+    <com.rengwuxian.materialedittext.MaterialEditText
+        style="@style/ConsumerDetail.search"
+        android:id="@+id/tv_repeatNum"
+        android:hint="请输入重复派单次数"
+        android:inputType="numberDecimal"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelText="数量"
+        app:met_textColorHint="@color/secondary_text"
+        app:met_baseColor="@color/primary_text"
+        app:met_maxCharacters="3"
+        app:met_primaryColor="@color/colorPrimary"
+        app:met_singleLineEllipsis="true" />
+    <LinearLayout style="@style/AddConsumerLayout"
+        android:layout_marginTop="@dimen/margin_small" >
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          style="@style/ItemText_Black_small"
+          android:text="是否结束："
+          android:gravity="center"
+          android:background="@color/white"/>
+
+      <com.jaredrummler.materialspinner.MaterialSpinner
+          android:id="@+id/tv_isover"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="wrap_content"
+          android:textSize="@dimen/font_large"
+          app:ms_background_color="@color/white"
+          app:ms_text_color="@color/secondary_text"
+          />
+
+    </LinearLayout>
+    <LinearLayout style="@style/AddConsumerLayout"
+        android:layout_marginTop="@dimen/margin_small" >
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          style="@style/ItemText_Black_small"
+          android:text="是否撤单："
+          android:gravity="center"
+          android:background="@color/white"/>
+
+      <com.jaredrummler.materialspinner.MaterialSpinner
+          android:id="@+id/tv_iscancle"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="wrap_content"
+          android:textSize="@dimen/font_large"
+          app:ms_background_color="@color/white"
+          app:ms_text_color="@color/secondary_text"
+          />
+
+    </LinearLayout>
+  </LinearLayout>
+  </ScrollView>
+  <!--区县、客户账号、联系电话、一级派单员、二级派单员1、二级派单员2、接口人、处理人、一级派单时间、二级派单时间、二级二次派单时间、接口人接单时间、接单时间、处理时间、完成时间、二级派单预警、二级二次派单预警、接口人派单时长预警、处理预警、回访预警、重复派单、是否结束-->
+  <TextView
+      android:id="@+id/tv_save"
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:layout_centerVertical="true"
+      android:gravity="center"
+      android:layout_alignParentBottom="true"
+      android:text="检索"
+      android:background="@color/colorPrimary"
+      android:textColor="@color/white"
+      android:textSize="20dp"
+      />
+</RelativeLayout>

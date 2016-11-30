@@ -45,13 +45,17 @@
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="取消" />
+            android:text="取消"
+            android:background="@color/white"
+            android:textColor="@color/colorPrimary"/>
 
         <Button
             android:id="@+id/btn_confirm"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@color/white"
+            android:textColor="@color/colorPrimary"
             android:text="确定" />
     </LinearLayout>
 

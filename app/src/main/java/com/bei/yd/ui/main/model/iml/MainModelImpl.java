@@ -24,88 +24,87 @@ import static com.bei.yd.api.IApiConfig.BASE_URL;
  */
 public class MainModelImpl implements MainModel, IApiConfig {
 
-    private Context mContext;
-    /**
-     * MVP---> P层引用
-     */
-    private MainPresenterImpl mPresenter;
-
-    public MainModelImpl(Context context, MainPresenterImpl presenter) {
-        this.mContext = context;
-        this.mPresenter = presenter;
-    }
-
-    /**
-     * 新建工单
-     * @param arae
-     * @param account
-     * @param address
-     * @param phone
-     * @param callback
+  private Context mContext;
+  /**
+   * MVP---> P层引用
    */
-    @Override public void addNewWO(String arae, String account, String address, int phone,
-        Subscriber<MainBean> callback) {
-        MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
-        api.addNewWorkOrder(arae, account,address,phone)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(callback);
-    }
-    /**
-     * 新建故障工单
-     * @param arae
-     * @param account
-     * @param address
-     * @param phone
-     * @param callback
-     */
-    @Override public void addFixWO(String arae, String account, String address, int phone,
-        Subscriber<MainBean> callback) {
-        MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
-        api.addFixWorkOrder(arae, account,address,phone)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(callback);
-    }
-    /**
-     * 获取全部工单
-     * @param role
-     * @param account
-     * @param pageIndex
-     * @param callback
+  private MainPresenterImpl mPresenter;
+
+  public MainModelImpl(Context context, MainPresenterImpl presenter) {
+    this.mContext = context;
+    this.mPresenter = presenter;
+  }
+
+  /**
+   * 新建工单
    */
-    @Override public void getAllNewWOList(String role, int account, int pageIndex,
-        Subscriber<MainItemNewOrderBean> callback) {
-        MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
-        api.getAllNewWorkOrderList(role, account,pageIndex,PAGESIZE)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(callback);
-    }
+  @Override public void addNewWO(String arae, String account, String address, int phone,
+      Subscriber<MainBean> callback) {
+    MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
+    api.addNewWorkOrder(arae, account, address, phone)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(callback);
+  }
 
-    @Override public void login(String userName, String passWord, Subscriber<UserInfoBean> callback) {
-        MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
-            api.login(userName, passWord)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(callback);
-    }
+  /**
+   * 新建故障工单
+   */
+  @Override public void addFixWO(String arae, String account, String address, int phone,
+      Subscriber<MainBean> callback) {
+    MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
+    api.addFixWorkOrder(arae, account, address, phone)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(callback);
+  }
 
-    @Override public void getArea( Subscriber<AreaBean> callback) {
-        MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
-        api.getArae()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(callback);
-    }
+  /**
+   * 获取全部工单
+   */
+  @Override public void getAllNewWOList(String role, int account, int pageIndex,
+      Subscriber<MainItemNewOrderBean> callback) {
+    MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
+    api.getAllNewWorkOrderList(role, account, pageIndex, PAGESIZE)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(callback);
+  }
 
-    //@Override public void login(String ){
-    //    Subscriber<MainItemNewOrderBean> callback) {
-    //    MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
-    //    api.getAllNewWorkOrderList(role, account,pageIndex,PAGESIZE)
-    //        .subscribeOn(Schedulers.io())
-    //        .observeOn(AndroidSchedulers.mainThread())
-    //        .subscribe(callback);
-    //}
+  @Override public void login(String userName, String passWord, Subscriber<UserInfoBean> callback) {
+    MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
+    api.login(userName, passWord)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(callback);
+  }
 
+  @Override public void getArea(Subscriber<AreaBean> callback) {
+    MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
+    api.getArae()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(callback);
+  }
+
+  @Override public void statisticsWorkOrderList(String role, int account,int pageIndex, String area,
+      String account_u, String phone, String dispatchtime, String taketime, String installtime,
+      String overtime, String dispatchwarning, String installwarning, String visitwarning,
+      Subscriber<MainItemNewOrderBean> callback) {
+    MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
+    api.statisticsWorkOrderList(role, account, pageIndex,PAGESIZE, area, account_u, phone, dispatchtime,
+        taketime, installtime,overtime ,dispatchwarning ,installwarning ,visitwarning)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(callback);
+  }
+
+  //@Override public void login(String ){
+  //    Subscriber<MainItemNewOrderBean> callback) {
+  //    MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
+  //    api.getAllNewWorkOrderList(role, account,pageIndex,PAGESIZE)
+  //        .subscribeOn(Schedulers.io())
+  //        .observeOn(AndroidSchedulers.mainThread())
+  //        .subscribe(callback);
+  //}
 }

@@ -59,6 +59,10 @@ public class MineFragment extends BaseLoadFragment implements View.OnClickListen
         //FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         if (tab.getPosition() == 0) {
           isNorOrder = true;
+          if (SharedPreferenceHelper.getUserRole().equals("A")) {
+            //   一级派单 不能新建普通工单
+            mbtNewOrder.setVisibility(View.GONE);
+          }
         } else {
           isNorOrder = false;
         }
@@ -84,8 +88,8 @@ public class MineFragment extends BaseLoadFragment implements View.OnClickListen
     viewPager.setAdapter(adapter);
     tabLayout.setupWithViewPager(viewPager);
     LogUtils.loge("角色" + SharedPreferenceHelper.getUserRole());
-    if (SharedPreferenceHelper.getUserRole().equals("A")
-        || SharedPreferenceHelper.getUserRole() .equals("B")) {
+    if (SharedPreferenceHelper.getUserRole().equals("A") || SharedPreferenceHelper.getUserRole()
+        .equals("B")) {
       mbtNewOrder.setVisibility(View.VISIBLE);
     } else {
       mbtNewOrder.setVisibility(View.GONE);

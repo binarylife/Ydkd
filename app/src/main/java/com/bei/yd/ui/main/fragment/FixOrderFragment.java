@@ -8,6 +8,7 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import com.bei.yd.R;
 import com.bei.yd.ui.base.fragment.BaseLoadFragment;
+import com.bei.yd.ui.main.activity.FixOrderDetialActivity;
 import com.bei.yd.ui.main.activity.OrderDetialActivity;
 import com.bei.yd.ui.main.adapter.FixAdapter;
 import com.bei.yd.ui.main.adapter.MainAdapter;
@@ -176,7 +177,7 @@ public class FixOrderFragment extends BaseLoadFragment implements View.OnClickLi
           bundle.putParcelable(Constant.ORDER_DETAIL, mainItemNewOrderBean);
           bundle.putBoolean(Constant.isNewOreder, true);
           //bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
-          InvokeStartActivityUtils.startActivity(getActivity(), OrderDetialActivity.class, bundle,
+          InvokeStartActivityUtils.startActivity(getActivity(), FixOrderDetialActivity.class, bundle,
               false);
         }
       });

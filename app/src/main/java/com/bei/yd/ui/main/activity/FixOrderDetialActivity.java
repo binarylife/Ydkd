@@ -116,7 +116,11 @@ public class FixOrderDetialActivity extends BackBaseActivity
     switch (SharedPreferenceHelper.getUserRole()) {
       //  判断用户的角色
       case "A":
-        tv_dispatch.setText("点击此处指派工单");
+        if (statusValue == 7) {
+          //  新建工单
+          tv_dispatch.setText("点击此处指派工单");
+        }
+        //tv_dispatch.setText("点击此处指派工单");
         break;
       case "B":// 区县派单员/二级派单
         if (statusValue == 7) {
@@ -145,7 +149,7 @@ public class FixOrderDetialActivity extends BackBaseActivity
         break;
       case "D":
         //  装机人
-        if (statusValue == 3) {
+        if (statusValue == 4) {
           //  派单
           tv_dispatch.setText("装机完成 点击此处进行回单");
         }
@@ -214,7 +218,7 @@ public class FixOrderDetialActivity extends BackBaseActivity
             break;
           case "D":
             //  装机人
-            if (statusValue == 3) {
+            if (statusValue == 4) {
               //  装机完成
               paiPresenter.affirmSingleFault(orderDetialBean.getId());
             }
