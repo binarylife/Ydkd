@@ -87,13 +87,31 @@ public class MainModelImpl implements MainModel, IApiConfig {
         .subscribe(callback);
   }
 
-  @Override public void statisticsWorkOrderList(String role, int account,int pageIndex, String area,
+  @Override
+  public void statisticsWorkOrderList(String role, int account, int pageIndex, String area,
       String account_u, String phone, String dispatchtime, String taketime, String installtime,
       String overtime, String dispatchwarning, String installwarning, String visitwarning,
+      String repeatnum, String iscancel, String isend,
       Subscriber<MainItemNewOrderBean> callback) {
     MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
-    api.statisticsWorkOrderList(role, account, pageIndex,PAGESIZE, area, account_u, phone, dispatchtime,
-        taketime, installtime,overtime ,dispatchwarning ,installwarning ,visitwarning)
+    api.statisticsWorkOrderList(role, account, pageIndex, PAGESIZE, area, account_u, phone,
+        dispatchtime, taketime, installtime, overtime, dispatchwarning, installwarning,
+        visitwarning,repeatnum,iscancel,isend)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(callback);
+  }
+
+  @Override public void statisticsSingleFault(String role, int account, int pageIndex, String area,
+      String account_u, String phone, String dispatchtime, String taketime, String installtime,
+      String overtime, String dispatchwarning, String installwarning, String visitwarning,
+      String repeatnum, String iscancel, String isend, String dispatchwarning1,
+      String dispatchwarning2, String dispatchtime21, String dispatchtime22,
+      Subscriber<MainItemNewOrderBean> callback) {
+    MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
+    api.statisticsSingleFault(role, account, pageIndex, PAGESIZE, area, account_u, phone,
+        dispatchtime, taketime, installtime, overtime, dispatchwarning, installwarning,
+        visitwarning,repeatnum,iscancel,isend,dispatchwarning1,dispatchwarning2,dispatchtime21,dispatchtime22)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(callback);

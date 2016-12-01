@@ -40,4 +40,9 @@ public interface IpaiView extends IBaseView {
      * @param bean
      */
     void onisCancelOrderSuccess(MainBean bean);
+    /**
+     * 修改工单区县
+     * @param bean
+     */
+    void updateSingleFault(MainBean bean);
 }

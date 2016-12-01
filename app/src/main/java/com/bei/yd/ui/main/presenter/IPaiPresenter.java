@@ -36,5 +36,9 @@ public interface IPaiPresenter {
      * 指派工单给工人
      */
     void isCancelSingleFault(int wid,int isSuccess);
+    /**
+     * 保存工单区县
+     */
+    void updateSingleFault(String area,String sid);
 
 }

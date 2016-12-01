@@ -235,4 +235,24 @@ public class PaiPresenterImpl implements IPaiPresenter {
       }
     });
   }
+
+  @Override public void updateSingleFault(String area, String sid) {
+    model.updateSingleFault(area,sid,new Subscriber<MainBean>() {
+      @Override public void onCompleted() {
+
+      }
+
+      @Override public void onError(Throwable e) {
+
+      }
+
+      @Override public void onNext(MainBean areaBean) {
+        view.hideProgress();
+        if (areaBean.isSuccessful()) {
+          ToastUtil.showNormalShortToast("修改区县成功！");
+          view.updateSingleFault(areaBean);
+        }
+      }
+    });
+  }
 }

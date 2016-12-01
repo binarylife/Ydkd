@@ -192,4 +192,8 @@ public class NorOrderListActivity extends BackBaseActivity
   @Override public void onisCancelOrderSuccess(MainBean bean) {
 
   }
+
+  @Override public void updateSingleFault(MainBean bean) {
+
+  }
 }

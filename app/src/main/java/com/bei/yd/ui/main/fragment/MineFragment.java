@@ -65,6 +65,7 @@ public class MineFragment extends BaseLoadFragment implements View.OnClickListen
           }
         } else {
           isNorOrder = false;
+          mbtNewOrder.setVisibility(View.VISIBLE);
         }
         viewPager.setCurrentItem(tab.getPosition());
       }

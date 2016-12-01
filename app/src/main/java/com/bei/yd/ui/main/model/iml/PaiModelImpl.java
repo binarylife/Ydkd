@@ -112,6 +112,15 @@ public class PaiModelImpl implements PaiModel, IApiConfig {
             .subscribe(callback);
     }
 
+    @Override
+    public void updateSingleFault(String area, String sid, Subscriber<MainBean> callback) {
+        MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
+        api.updateSingleFault(area,sid)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(callback);
+    }
+
     //@Override public void login(String ){
     //    Subscriber<MainItemNewOrderBean> callback) {
     //    MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);

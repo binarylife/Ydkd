@@ -8,9 +8,18 @@ import android.os.Parcelable;
 public abstract class BaseBean<T> implements Parcelable {
     private String success;
     private int code;
+    private int size;
     private String message;
     private String obj;
     private T data;
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
 
     public String getObj() {
         return obj;

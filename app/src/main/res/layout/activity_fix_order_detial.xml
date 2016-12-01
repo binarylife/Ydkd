@@ -49,7 +49,18 @@
             android:textSize="15sp"
             android:textColor="@color/white"
             />
-
+        <TextView
+            android:id="@+id/tv_save_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保存"
+            android:visibility="gone"
+            android:textSize="15sp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            />
         <!--large_font_size-->
       </RelativeLayout>
 
@@ -72,6 +83,7 @@
         >
 
       <LinearLayout
+          android:id="@+id/ll_area_bottom"
           style="@style/AddConsumerLayout"
           android:background="@color/windowBackground"
           >
@@ -88,7 +100,35 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="3333"
+            tools:text="3333"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:id="@+id/ll_area"
+          android:layout_marginTop="@dimen/margin_normal"
+          android:background="@color/windowBackground"
+          android:visibility="gone"
+          >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            style="@style/ItemText_Black_Large"
+            android:text="修改区县为："
+            android:gravity="center"
+            android:background="@color/white"
+            />
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/tv_area"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            app:ms_background_color="@color/white"
+            app:ms_text_color="@color/secondary_text"
             />
 
       </LinearLayout>

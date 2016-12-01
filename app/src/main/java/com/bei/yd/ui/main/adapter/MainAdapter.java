@@ -57,8 +57,8 @@ public class MainAdapter extends BaseRecyclerAdapter<MainItemNewOrderBean>
       viewHolder.tvScenicName.setText(MyUtils.getNorTextByType(wonderScenicBean.getStatus()));
       viewHolder.tvAddress.setText(
           wonderScenicBean.getArea() + "/" + wonderScenicBean.getAddress());
-      viewHolder.tvCreateTime.setText(wonderScenicBean.getPhone());//  工单的状态
-      viewHolder.tvPhone.setText(wonderScenicBean.getStatus() + "");//  工单的状态
+      viewHolder.tvCreateTime.setText(wonderScenicBean.getAccount());//  客户账号
+      viewHolder.tvPhone.setText(wonderScenicBean.getPhone());//  工单的状态
       showYuJinggButton(viewHolder.tvyujing, wonderScenicBean);
       viewHolder.itemView.setTag(wonderScenicBean);
       viewHolder.itemView.setOnClickListener(this);

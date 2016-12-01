@@ -5,20 +5,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.OnClick;
 import com.bei.yd.R;
 import com.bei.yd.ui.base.activity.BackBaseActivity;
+import com.bei.yd.ui.main.bean.AreaBean;
 import com.bei.yd.ui.main.bean.MainBean;
 import com.bei.yd.ui.main.bean.MainItemNewOrderBean;
+import com.bei.yd.ui.main.bean.UserInfoBean;
 import com.bei.yd.ui.main.bean.UserInfoBeans;
 import com.bei.yd.ui.main.presenter.iml.MainPresenterImpl;
 import com.bei.yd.ui.main.presenter.iml.PaiPresenterImpl;
+import com.bei.yd.ui.main.view.IMainView;
 import com.bei.yd.ui.main.view.IpaiView;
 import com.bei.yd.utils.Constant;
 import com.bei.yd.utils.InvokeStartActivityUtils;
 import com.bei.yd.utils.SharedPreferenceHelper;
+import com.jaredrummler.materialspinner.MaterialSpinner;
+import java.util.ArrayList;
 
 /**
  * 维修工单（详情页面）
@@ -51,6 +57,10 @@ public class FixOrderDetialActivity extends BackBaseActivity
   @Bind(R.id.tv_dispatch) TextView tv_dispatch;
   @Bind(R.id.tv_chedan) TextView tv_chedan;
   @Bind(R.id.tv_huidan) TextView tv_huidan;
+  @Bind(R.id.tv_area) MaterialSpinner tvarea;
+  @Bind(R.id.ll_area) LinearLayout llArea;
+  @Bind(R.id.ll_area_bottom) LinearLayout llAreaBottom;
+  @Bind(R.id.tv_save_area) TextView tvSaveArea;
 
   //@Bind(R.id.bt_login) TextView mlogin;
   //  网络交互的逻辑层
@@ -62,6 +72,10 @@ public class FixOrderDetialActivity extends BackBaseActivity
   private int statusValue;
   private PaiPresenterImpl paiPresenter;
   private boolean misNewOreder;
+  private ArrayList<String> selectArea = new ArrayList<>();//  选中的id
+  private int selectAreaId;
+  private ArrayList<AreaBean> beanData;
+  private String tareaName;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -70,9 +84,10 @@ public class FixOrderDetialActivity extends BackBaseActivity
     orderDetialBean = bundle.getParcelable(Constant.ORDER_DETAIL);
     misNewOreder = bundle.getBoolean(Constant.isNewOreder);
     //orderCreater = bundle.getString(Constant.ORDER_CREATER);
-    //  初始化上传头像的逻辑层
-    initView();
     paiPresenter = new PaiPresenterImpl(this, this);
+    onLoadData();
+    //  初始化上传头像的逻辑层
+    //initView();
   }
 
   @Override public void onResume() {
@@ -84,6 +99,24 @@ public class FixOrderDetialActivity extends BackBaseActivity
    * 初始化控件
    */
   private void initView() {
+    selectAreaId = beanData.get(0).getId();
+    tvarea.setItems(selectArea);
+    tvarea.setSelectedIndex(0);
+    tvarea.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
+        tareaName = selectArea.get(position);
+        selectAreaId = beanData.get(position).getId();
+      }
+    });
+    //mTypey.setItems(selectType);
+    //mTypey.setSelectedIndex(0);
+    if (SharedPreferenceHelper.getUserRole().equals("B")) {
+      llArea.setVisibility(View.VISIBLE);
+      tvSaveArea.setVisibility(View.VISIBLE);
+    } else {
+      llArea.setVisibility(View.GONE);
+    }
     mArea.setText(orderDetialBean.getArea());
     account.setText(orderDetialBean.getAccount());
     phone.setText(orderDetialBean.getPhone());
@@ -157,12 +190,52 @@ public class FixOrderDetialActivity extends BackBaseActivity
     }
   }
 
-  @Override protected void onLoadData() {
+  protected void onLoadData() {
+    //  获取区县接口
+    new MainPresenterImpl(this, new IMainView() {
+      @Override public void onAddGD(MainBean bean) {
 
+      }
+
+      @Override public void onGetNewGDListMore(MainItemNewOrderBean bean) {
+
+      }
+
+      @Override public void onGetNewGDList(MainItemNewOrderBean bean) {
+
+      }
+
+      @Override public void onLoginSuccess(UserInfoBean bean) {
+
+      }
+
+      @Override public void onGetAreaSuccess(AreaBean bean) {
+        if (bean.isSuccessful()) {
+          beanData = bean.getData();//  区域集合
+          for (int i = 0; i < beanData.size(); i++) {
+            selectArea.add(beanData.get(i).getAreaName());
+            selectAreaId = beanData.get(i).getId();
+          }
+          initView();
+        }
+      }
+
+      @Override public void showProgress() {
+
+      }
+
+      @Override public void hideProgress() {
+
+      }
+
+      @Override public void showLoadFailMsg(String msg) {
+
+      }
+    }).getArea();
   }
 
   @OnClick({
-      R.id.tv_dispatch, R.id.tv_chedan, R.id.tv_huidan,
+      R.id.tv_dispatch, R.id.tv_chedan, R.id.tv_huidan, R.id.tv_save_area
   }) public void onClick(View view) {
     switch (view.getId()) {
       case R.id.tv_dispatch:
@@ -182,7 +255,7 @@ public class FixOrderDetialActivity extends BackBaseActivity
             }
             break;
           case "B":// 区县派单员
-            if (statusValue == 1) {
+            if (statusValue == 7) {
               //  新建工单
               //点击此处指派工单;
               Bundle bundle = new Bundle();
@@ -203,6 +276,12 @@ public class FixOrderDetialActivity extends BackBaseActivity
               bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
               InvokeStartActivityUtils.startActivity(this, PaiWorkerListActivity.class, bundle,
                   false);
+            }else if (statusValue==1){
+              Bundle bundle = new Bundle();
+              bundle.putInt(Constant.ORDER_ID, orderDetialBean.getId());
+              bundle.putBoolean(Constant.isNewOreder, false);
+              bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
+              InvokeStartActivityUtils.startActivity(this, PaiWorkerListActivity.class, bundle,false);
             }
             break;
           case "C":
@@ -240,6 +319,10 @@ public class FixOrderDetialActivity extends BackBaseActivity
           //tv_huidan.setVisibility(View.VISIBLE);
           //tv_huidan.setText("回单");
         }
+        break;
+      case R.id.tv_save_area:
+        paiPresenter.updateSingleFault(selectAreaId + "", orderDetialBean.getId() + "");
+        break;
     }
   }
 
@@ -274,6 +357,10 @@ public class FixOrderDetialActivity extends BackBaseActivity
 
   @Override public void onisCancelOrderSuccess(MainBean bean) {
     finish();
+  }
+
+  @Override public void updateSingleFault(MainBean bean) {
+
   }
 
   @Override public void showProgress() {

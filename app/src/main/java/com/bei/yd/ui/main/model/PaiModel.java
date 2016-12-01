@@ -47,4 +47,8 @@ public interface PaiModel {
    * 确认装机成功/撤单/退单
    */
   void isCancelSingleFault(int wid, int isSuccess, Subscriber<MainBean> callback);
+  /**
+   * 确认装机成功/撤单/退单
+   */
+  void updateSingleFault(String area, String sid, Subscriber<MainBean> callback);
 }

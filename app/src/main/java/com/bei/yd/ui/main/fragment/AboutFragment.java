@@ -9,6 +9,7 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import com.bei.yd.R;
 import com.bei.yd.ui.base.fragment.BaseLoadFragment;
+import com.bei.yd.ui.main.activity.SearchTagWorkFixOrderActivity;
 import com.bei.yd.ui.main.activity.SearchTagWorkOrderActivity;
 import com.bei.yd.utils.InvokeStartActivityUtils;
 import com.bei.yd.utils.SharedPreferenceHelper;
@@ -64,11 +65,18 @@ public class AboutFragment extends BaseLoadFragment implements View.OnClickListe
     switch (v.getId()) {
      case  R.id.about_nor_order:
          //跳转到工单条件筛选页面
-      Bundle bundle = new Bundle();
+      Bundle bundle1 = new Bundle();
       //bundle.putParcelable(Constant.ORDER_DETAIL, mainItemNewOrderBean);
       //bundle.putBoolean(Constant.isNewOreder, isNorOrder);
-      InvokeStartActivityUtils.startActivity(context, SearchTagWorkOrderActivity.class, bundle, false);
+      InvokeStartActivityUtils.startActivity(context, SearchTagWorkOrderActivity.class, bundle1, false);
       break;
+      case  R.id.about_fix_order:
+        //跳转到工单条件筛选页面
+        Bundle bundle2 = new Bundle();
+        //bundle.putParcelable(Constant.ORDER_DETAIL, mainItemNewOrderBean);
+        //bundle.putBoolean(Constant.isNewOreder, isNorOrder);
+        InvokeStartActivityUtils.startActivity(context, SearchTagWorkFixOrderActivity.class, bundle2, false);
+        break;
     }
   }
 

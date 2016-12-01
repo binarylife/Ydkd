@@ -18,33 +18,45 @@ public interface MainModel {
    */
   void addNewWO(String arae, String account, String address, int phone,
       Subscriber<MainBean> callback);
+
   /**
    * 新建Fixorder
    */
   void addFixWO(String arae, String account, String address, int phone,
       Subscriber<MainBean> callback);
+
   /**
    * 所有工单获取
    */
-  void getAllNewWOList( String role,int account,int pageIndex ,
+  void getAllNewWOList(String role, int account, int pageIndex,
       Subscriber<MainItemNewOrderBean> callback);
 
   /**
    * 登录
    */
-  void login(String userName,String passWord,
-      Subscriber<UserInfoBean> callback);
+  void login(String userName, String passWord, Subscriber<UserInfoBean> callback);
+
   /**
    * 获取区县
    */
   void getArea(Subscriber<AreaBean> callback);
+
   /**
    * 所有工单获取(查询)
    */
-  void statisticsWorkOrderList(String role,int account,
-      int pageIndex,  String area, String account_u,
-       String phone,String dispatchtime, String taketime ,
-       String installtime,  String overtime, String dispatchwarning ,
-      String installwarning,String visitwarning,
-      Subscriber<MainItemNewOrderBean> callback);
+  void statisticsWorkOrderList(String role, int account, int pageIndex, String area,
+      String account_u, String phone, String dispatchtime, String taketime, String installtime,
+      String overtime, String dispatchwarning, String installwarning, String visitwarning,
+      String repeatnum, String iscancel, String isend, Subscriber<MainItemNewOrderBean> callback);
+
+  /**
+   * 所有工单获取(故障)
+   */
+  void statisticsSingleFault(String role, int account, int pageIndex, String area, String account_u,
+      String phone, String dispatchtime, String taketime, String installtime, String overtime,
+      String dispatchwarning, String installwarning, String visitwarning, String repeatnum,
+      String iscancel, String isend,String dispatchwarning1,
+      String dispatchwarning2,
+      String dispatchtime21, String dispatchtime22,
+      Subscriber<MainItemNewOrderBean>callback);
 }

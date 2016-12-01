@@ -14,6 +14,7 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import com.bei.yd.R;
 import com.bei.yd.ui.base.activity.BackBaseActivity;
+import com.bei.yd.ui.main.adapter.FixAdapter;
 import com.bei.yd.ui.main.adapter.MainAdapter;
 import com.bei.yd.ui.main.bean.AreaBean;
 import com.bei.yd.ui.main.bean.MainBean;
@@ -33,16 +34,11 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import static com.bei.yd.R.id.dispatchTime;
-import static com.bei.yd.R.id.installwarning;
-import static com.bei.yd.R.id.time;
-import static com.bei.yd.R.id.tv_isover;
-
 /**
  * 添加检索条件
  * Created by fengbei on 2016/3/10.
  */
-public class SearchTagWorkOrderActivity extends BackBaseActivity
+public class SearchTagWorkFixOrderActivity extends BackBaseActivity
     implements IMainView, View.OnClickListener {
   @Bind(R.id.coordinator_layout) RelativeLayout mRelativeLayout;
   @Bind(R.id.sv_scroll) ScrollView mScrollView;
@@ -67,7 +63,7 @@ public class SearchTagWorkOrderActivity extends BackBaseActivity
   private final static int FILECHOOSER_RESULTCODE = 4;
   private ValueCallback<Uri> mUploadMessage;
   //  网络交互的逻辑层
-  private MainAdapter adapter;
+  private FixAdapter adapter;
   private ArrayList<MainItemNewOrderBean> newOrderBeen;
   private int mYear = Calendar.getInstance().get(Calendar.YEAR);
   private int mMonth = Calendar.getInstance().get(Calendar.MONTH);
@@ -75,11 +71,12 @@ public class SearchTagWorkOrderActivity extends BackBaseActivity
   private MainPresenterImpl mainPresenter;
   private ArrayList<String> selectArea = new ArrayList<>();//  选中的id
   private String[] selectRole = { "默认", "一级预警", "二级预警", "三级预警" };//  选中的id
-  private String[] selectTimeTypes = { "默认", "接单时间", "派单时间", "安装时间", "结束时间" };//  选中的id
+  private String[] selectTimeTypes =
+      { "默认", "派单时间", "二级派单时间", "二级二次派单时间", "接口人接单时间", "接单时间", "安装时间", "结束时间" };//  选中的id
   private String[] selectYuJingValue = { "默认", "1", "2", "3" };//  选中的id
   private String[] selectIsVoer = { "默认", "是", "否" };//  选中的id
-  private String[] selectYujing = { "默认", "派单预警", "处理预警", "回访预警" };
-  //  选中的id
+  private String[] selectYujing = { "默认", "二级派单预警", "二级二次派单预警", "接口人派单时长预警", "处理预警", "回访预警" };
+  //  选中的id二级派单预警、二级二次派单预警、接口人派单时长预警、处理预警、回访预警、
   private ArrayList<AreaBean> beanData;
   private String tareaName;
   private String typeName;
@@ -100,6 +97,11 @@ public class SearchTagWorkOrderActivity extends BackBaseActivity
   private int pn = 1;
   private int mYuJingPosition;//   记录筛选预警类型的位置
   private int mTimeTypePosition;//   记录筛选时间类型的位置
+  private String dispatchwarning1;
+  private String dispatchtime21;
+  private String dispatchtime22;
+  private String interfacetaketime;
+  private String dispatchwarning2;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -142,14 +144,22 @@ public class SearchTagWorkOrderActivity extends BackBaseActivity
           warningValue = null;
         }
         if (mYuJingPosition == 1) {
-          dispatchwarning = warningValue;
+          //派单预警
+          dispatchwarning1 = warningValue;
         }
         if (mYuJingPosition == 2) {
-          installwarning = warningValue;
+          dispatchwarning2 = warningValue;
         }
         if (mYuJingPosition == 3) {
+          dispatchwarning = warningValue;
+        }
+        if (mYuJingPosition == 4) {
+          installwarning = warningValue;
+        }
+        if (mYuJingPosition == 5) {
           visitwarning = warningValue;
         }
+        //  选中的id二级派单预警、二级二次派单预警、接口人派单时长预警、处理预警、回访预警、
       }
     });
     // 预警类型
@@ -165,6 +175,8 @@ public class SearchTagWorkOrderActivity extends BackBaseActivity
         dispatchwarning = null;
         installwarning = null;
         visitwarning = null;
+        dispatchwarning1 = null;
+        dispatchwarning2 = null;
         //case 0:
         //  break;
         //case 1:
@@ -185,14 +197,15 @@ public class SearchTagWorkOrderActivity extends BackBaseActivity
     tvtimeType.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
       @Override
       public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
-        mTimeTypePosition=position;
+        mTimeTypePosition = position;
         //switch (position) {
         //  default:
         //    //   默认清空所有操作
-            taketime = null;
-            dispatchtime = null;
-            installtime = null;
-            overtime = null;
+        taketime = null;
+        dispatchtime = null;
+        installtime = null;
+        dispatchtime21 = null;
+        dispatchtime22 = null;
         //  case 0:
         //    break;
         //  case 1:
@@ -280,22 +293,34 @@ public class SearchTagWorkOrderActivity extends BackBaseActivity
         //  mainPresenter.addFixWorkOrder(selectAreaId + "", mAccount.getText().toString(),
         //      tvAddress.getText().toString(), Integer.parseInt(tvPhone.getText().toString()));
         //}
-        //   整理数据
-        if (mTimeTypePosition==1){
-          //  安装时间
-          installtime=timeValue;
+        //   整理数据 "默认", "一级派单时间","二级派单时间","二级二次派单时间","接口人接单时间","接单时间", "派单时间", "安装时间", "结束时间"
+        if (mTimeTypePosition == 1) {
+          //  一级派单时间
+          dispatchtime = timeValue;
         }
-        if (mTimeTypePosition==2){
-          //  安装时间
-          dispatchtime=timeValue;
+        if (mTimeTypePosition == 2) {
+          //  二级派单时间
+          dispatchtime21 = timeValue;
         }
-        if (mTimeTypePosition==3){
-          //  安装时间
-          installtime=timeValue;
+        if (mTimeTypePosition == 3) {
+          //  二级二次派单时间
+          dispatchtime22 = timeValue;
         }
-        if (mTimeTypePosition==4){
+        if (mTimeTypePosition == 4) {
+          //  接口人接单时间
+          interfacetaketime = timeValue;
+        }
+        if (mTimeTypePosition == 5) {
+          //  接单时间
+          taketime = timeValue;
+        }
+        if (mTimeTypePosition == 6) {
           //  安装时间
-          overtime=timeValue;
+          installtime = timeValue;
+        }
+        if (mTimeTypePosition == 7) {
+          //  结束时间
+          overtime = timeValue;
         }
         searchForList();
 
@@ -425,10 +450,10 @@ public class SearchTagWorkOrderActivity extends BackBaseActivity
       rvList.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
       rvList.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
       rvList.setArrowImageView(R.drawable.iconfont_downgrey);
-      rvList.setAdapter(adapter == null ? adapter = new MainAdapter(this) : adapter);
+      rvList.setAdapter(adapter == null ? adapter = new FixAdapter(this) : adapter);
       rvList.setPullRefreshEnabled(true);
       rvList.setLoadingMoreEnabled(true);
-      adapter.setOnItemClickListener(new MainAdapter.OnItemListener() {
+      adapter.setOnItemClickListener(new FixAdapter.OnItemListener() {
         @Override public void onItemClick(View view, int position) {
           MainItemNewOrderBean mainItemNewOrderBean = newOrderBeen.get(position);
           //Bundle bundle = new Bundle();
@@ -440,7 +465,7 @@ public class SearchTagWorkOrderActivity extends BackBaseActivity
           bundle.putParcelable(Constant.ORDER_DETAIL, mainItemNewOrderBean);
           bundle.putBoolean(Constant.isNewOreder, false);
           //bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
-          InvokeStartActivityUtils.startActivity(SearchTagWorkOrderActivity.this,
+          InvokeStartActivityUtils.startActivity(SearchTagWorkFixOrderActivity.this,
               OrderDetialActivity.class, bundle, false);
         }
       });
@@ -463,10 +488,11 @@ public class SearchTagWorkOrderActivity extends BackBaseActivity
    * 查询相关数据
    */
   public void searchForList() {
-    mainPresenter.statisticsWorkOrderList(SharedPreferenceHelper.getUserRole(),
+    mainPresenter.statisticsSingleFault(SharedPreferenceHelper.getUserRole(),
         Integer.parseInt(SharedPreferenceHelper.getUserAccount()), pn, selectAreaId + "",
         mAccount.getText().toString(), tvPhone.getText().toString(), dispatchtime, taketime,
         installtime, overtime, dispatchwarning, installwarning, visitwarning,
-        tvIsrepeat.getText().toString(), iscancel, isOver);
+        tvIsrepeat.getText().toString(), iscancel, isOver, dispatchwarning1, dispatchwarning1,
+        dispatchtime21, dispatchtime22);
   }
 }

@@ -172,6 +172,7 @@ public class OrderDetialActivity extends BackBaseActivity
               //点击此处指派工单;
               Bundle bundle = new Bundle();
               bundle.putInt(Constant.ORDER_ID, orderDetialBean.getId());
+              bundle.putBoolean(Constant.isNewOreder, true);
               bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
               InvokeStartActivityUtils.startActivity(this, PaiWorkerListActivity.class, bundle,
                   false);
@@ -186,6 +187,7 @@ public class OrderDetialActivity extends BackBaseActivity
               //  接口人派单
               Bundle bundle = new Bundle();
               bundle.putInt(Constant.ORDER_ID, orderDetialBean.getId());
+              bundle.putBoolean(Constant.isNewOreder, true);
               bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
               InvokeStartActivityUtils.startActivity(this, PaiWorkerListActivity.class, bundle,
                   false);
@@ -249,6 +251,10 @@ public class OrderDetialActivity extends BackBaseActivity
 
   @Override public void onisCancelOrderSuccess(MainBean bean) {
     finish();
+  }
+
+  @Override public void updateSingleFault(MainBean bean) {
+
   }
 
   @Override public void showProgress() {

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import butterknife.Bind;
 import cn.hugeterry.updatefun.UpdateFunGO;
 import cn.hugeterry.updatefun.config.UpdateKey;
@@ -19,6 +20,7 @@ import com.bei.yd.ui.base.activity.BackBaseActivity;
 import com.bei.yd.ui.main.fragment.AboutFragment;
 import com.bei.yd.ui.main.fragment.MineFragment;
 import com.bei.yd.utils.DeviceUtils;
+import com.bei.yd.utils.SharedPreferenceHelper;
 import com.bei.yd.utils.ToastUtil;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -36,7 +38,7 @@ import rx.functions.Action1;
  */
 public class MainActivity extends BackBaseActivity {
 
-    //@Bind(R.id.tab_layout)
+    @Bind(R.id.login_fragment_title_name_tv) TextView mTvTopName;
      private CommonTabLayout tabLayout;
     /**
      * 两次点击返回按钮时，记录时间
@@ -83,6 +85,7 @@ public class MainActivity extends BackBaseActivity {
         initFragment(savedInstanceState);
         tabLayout.measure(0,0);
         tabLayoutHeight=tabLayout.getMeasuredHeight();
+        mTvTopName.setText(SharedPreferenceHelper.getUserNickName());
         initTab();
         //监听菜单显示或隐藏
     }

@@ -42,6 +42,9 @@
     <activity android:name=".ui.main.activity.SearchTagWorkOrderActivity"
         android:screenOrientation="portrait"
         android:theme="@style/BaseActivity"/>
+    <activity android:name=".ui.main.activity.SearchTagWorkFixOrderActivity"
+        android:screenOrientation="portrait"
+        android:theme="@style/BaseActivity"/>
   </application>
 
 </manifest>

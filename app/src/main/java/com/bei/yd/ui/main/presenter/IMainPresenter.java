@@ -41,5 +41,15 @@ public interface IMainPresenter {
       int pn,  String area, String account_u,
       String phone,String dispatchtime, String taketime ,
       String installtime,  String overtime, String dispatchwarning ,
-      String installwarning,String visitwarning);
+      String installwarning,String visitwarning,String repeatnum, String iscancel, String isend);
+  /**
+   * 所有工单获取(故障)
+   */
+  void statisticsSingleFault(String role,int account,
+      int pn,  String area, String account_u,
+      String phone,String dispatchtime, String taketime ,
+      String installtime,  String overtime, String dispatchwarning ,
+      String installwarning,String visitwarning,String repeatnum, String iscancel, String isend,String dispatchwarning1,
+      String dispatchwarning2,
+      String dispatchtime21, String dispatchtime22);
 }

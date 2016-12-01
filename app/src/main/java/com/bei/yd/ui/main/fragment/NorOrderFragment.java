@@ -185,7 +185,7 @@ public class NorOrderFragment extends BaseLoadFragment implements View.OnClickLi
           //    bundle, false);
           Bundle bundle = new Bundle();
           bundle.putParcelable(Constant.ORDER_DETAIL, mainItemNewOrderBean);
-          bundle.putBoolean(Constant.isNewOreder, false);
+          bundle.putBoolean(Constant.isNewOreder, true);
           //bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
           InvokeStartActivityUtils.startActivity(getActivity(), OrderDetialActivity.class, bundle,
               false);

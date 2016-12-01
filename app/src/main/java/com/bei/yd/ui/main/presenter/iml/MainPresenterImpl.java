@@ -48,15 +48,16 @@ public class MainPresenterImpl implements IMainPresenter {
       }
 
       @Override public void onNext(MainBean mainBean) {
-        if (mainBean.isSuccessful()){
+        if (mainBean.isSuccessful()) {
           view.onAddGD(mainBean);
           ToastUtil.showNormalShortToast("新建工单成功");
-        }else{
+        } else {
           ToastUtil.showNormalShortToast(mainBean.getMessage());
         }
       }
     });
   }
+
   @Override public void addFixWorkOrder(String arae, String account, String address, int phone) {
     view.showProgress();
     model.addFixWO(arae, account, address, phone, new Subscriber<MainBean>() {
@@ -69,15 +70,16 @@ public class MainPresenterImpl implements IMainPresenter {
       }
 
       @Override public void onNext(MainBean mainBean) {
-        if (mainBean.isSuccessful()){
-        view.onAddGD(mainBean);
-        ToastUtil.showNormalShortToast("新建故障工单成功");
-        }else{
+        if (mainBean.isSuccessful()) {
+          view.onAddGD(mainBean);
+          ToastUtil.showNormalShortToast("新建故障工单成功");
+        } else {
           ToastUtil.showNormalShortToast(mainBean.getMessage());
         }
       }
     });
   }
+
   @Override public void getAllNewWorkOrderList(String role, int account, final int pn) {
     view.showProgress();
     model.getAllNewWOList(role, account, pn, new Subscriber<MainItemNewOrderBean>() {
@@ -96,7 +98,6 @@ public class MainPresenterImpl implements IMainPresenter {
         } else {
           view.onGetNewGDListMore(mainItemNewOrderBean);
         }
-
       }
     });
   }
@@ -142,27 +143,58 @@ public class MainPresenterImpl implements IMainPresenter {
 
   @Override public void statisticsWorkOrderList(String role, int account, final int pn, String area,
       String account_u, String phone, String dispatchtime, String taketime, String installtime,
-      String overtime, String dispatchwarning, String installwarning, String visitwarning) {
+      String overtime, String dispatchwarning, String installwarning, String visitwarning,
+      String repeatnum, String iscancel, String isend) {
     view.showProgress();
-    model.statisticsWorkOrderList(role, account, pn,area, account_u, phone, dispatchtime,
-        taketime, installtime,overtime ,dispatchwarning ,installwarning ,visitwarning, new Subscriber<MainItemNewOrderBean>() {
-      @Override public void onCompleted() {
+    model.statisticsWorkOrderList(role, account, pn, area, account_u, phone, dispatchtime, taketime,
+        installtime, overtime, dispatchwarning, installwarning, visitwarning, repeatnum, iscancel,
+        isend, new Subscriber<MainItemNewOrderBean>() {
+          @Override public void onCompleted() {
 
-      }
+          }
 
-      @Override public void onError(Throwable e) {
+          @Override public void onError(Throwable e) {
 
-      }
+          }
 
-      @Override public void onNext(MainItemNewOrderBean mainItemNewOrderBean) {
-        view.hideProgress();
-        if (pn <= 1) {
-          view.onGetNewGDList(mainItemNewOrderBean);
-        } else {
-          view.onGetNewGDListMore(mainItemNewOrderBean);
-        }
+          @Override public void onNext(MainItemNewOrderBean mainItemNewOrderBean) {
+            view.hideProgress();
+            if (pn <= 1) {
+              view.onGetNewGDList(mainItemNewOrderBean);
+            } else {
+              view.onGetNewGDListMore(mainItemNewOrderBean);
+            }
+          }
+        });
+  }
 
-      }
-    });
+  @Override
+  public void statisticsSingleFault(String role, int account, final int pn, String area, String account_u,
+      String phone, String dispatchtime, String taketime, String installtime, String overtime,
+      String dispatchwarning, String installwarning, String visitwarning, String repeatnum,
+      String iscancel, String isend, String dispatchwarning1, String dispatchwarning2,
+      String dispatchtime21, String dispatchtime22) {
+    view.showProgress();
+    model.statisticsSingleFault(role, account, pn, area, account_u, phone, dispatchtime, taketime,
+        installtime, overtime, dispatchwarning, installwarning, visitwarning, repeatnum, iscancel,
+        isend, dispatchwarning1, dispatchwarning2, dispatchtime21, dispatchtime22,
+        new Subscriber<MainItemNewOrderBean>() {
+          @Override public void onCompleted() {
+
+          }
+
+          @Override public void onError(Throwable e) {
+
+          }
+
+          @Override public void onNext(MainItemNewOrderBean mainItemNewOrderBean) {
+            view.hideProgress();
+            if (pn <= 1) {
+              view.onGetNewGDList(mainItemNewOrderBean);
+            } else {
+              view.onGetNewGDListMore(mainItemNewOrderBean);
+            }
+          }
+        });
   }
 }

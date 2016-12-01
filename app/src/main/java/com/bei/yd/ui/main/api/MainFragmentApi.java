@@ -113,9 +113,34 @@ public interface MainFragmentApi {
    * 统计筛选工单（普通）
    */
   @POST("statisticsWorkOrderList") Observable<MainItemNewOrderBean> statisticsWorkOrderList(
-      @Query("role") String role, @Query("account") int account,@Query("pageIndex") int address,
-      @Query("pageSize") int pageSize, @Query("area") String area, @Query("account_u") String account_u,
-      @Query("phone") String phone, @Query("dispatchtime") String dispatchtime, @Query("taketime") String taketime ,
-      @Query("installtime") String installtime, @Query("overtime") String overtime, @Query("dispatchwarning") String dispatchwarning ,
-      @Query("installwarning") String installwarning, @Query("visitwarning") String visitwarning);
+      @Query("role") String role, @Query("account") int account, @Query("pageIndex") int address,
+      @Query("pageSize") int pageSize, @Query("area") String area,
+      @Query("account_u") String account_u, @Query("phone") String phone,
+      @Query("dispatchtime") String dispatchtime, @Query("taketime") String taketime,
+      @Query("installtime") String installtime, @Query("overtime") String overtime,
+      @Query("dispatchwarning") String dispatchwarning,
+      @Query("installwarning") String installwarning, @Query("visitwarning") String visitwarning,
+      @Query("repeatnum") String repeatnum, @Query("iscancel") String iscancel ,
+      @Query("isend") String isend);
+  /**
+   * 统计筛选工单（故障）
+   */
+  @POST("statisticsSingleFault") Observable<MainItemNewOrderBean> statisticsSingleFault(
+      @Query("role") String role, @Query("account") int account, @Query("pageIndex") int address,
+      @Query("pageSize") int pageSize, @Query("area") String area,
+      @Query("account_u") String account_u, @Query("phone") String phone,
+      @Query("dispatchtime") String dispatchtime, @Query("taketime") String taketime,
+      @Query("installtime") String installtime, @Query("overtime") String overtime,
+      @Query("dispatchwarning") String dispatchwarning,
+      @Query("installwarning") String installwarning, @Query("visitwarning") String visitwarning,
+      @Query("repeatnum") String repeatnum, @Query("iscancel") String iscancel ,@Query("isend") String isend,
+      @Query("dispatchwarning1") String dispatchwarning1 ,
+      @Query("dispatchwarning2") String dispatchwarning2,
+      @Query("dispatchtime21") String dispatchtime21,
+      @Query("dispatchtime22") String dispatchtime22);
+
+  /**
+   * 二级派单员修改工单(故障)
+   */
+  @POST("updateSingleFault") Observable<MainBean> updateSingleFault(@Query("area") String area,@Query("sid") String id);
 }
