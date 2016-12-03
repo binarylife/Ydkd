@@ -22,6 +22,7 @@ import com.bei.yd.ui.main.view.IMainView;
 import com.bei.yd.ui.main.view.IpaiView;
 import com.bei.yd.utils.Constant;
 import com.bei.yd.utils.InvokeStartActivityUtils;
+import com.bei.yd.utils.MyUtils;
 import com.bei.yd.utils.SharedPreferenceHelper;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import java.util.ArrayList;
@@ -61,7 +62,7 @@ public class FixOrderDetialActivity extends BackBaseActivity
   @Bind(R.id.ll_area) LinearLayout llArea;
   @Bind(R.id.ll_area_bottom) LinearLayout llAreaBottom;
   @Bind(R.id.tv_save_area) TextView tvSaveArea;
-
+  @Bind(R.id.ll_bottom) LinearLayout ll_bottom;
   //@Bind(R.id.bt_login) TextView mlogin;
   //  网络交互的逻辑层
   private MainPresenterImpl mineInfoPresenter;
@@ -76,7 +77,7 @@ public class FixOrderDetialActivity extends BackBaseActivity
   private int selectAreaId;
   private ArrayList<AreaBean> beanData;
   private String tareaName;
-
+  private boolean misSearch;
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_fix_order_detial);
@@ -137,9 +138,13 @@ public class FixOrderDetialActivity extends BackBaseActivity
     repeatnum.setText(orderDetialBean.getRepeatNum() + "");
     iscancle.setText(orderDetialBean.getIsCancel() + "");
     isend.setText(orderDetialBean.getIsEnd() + "");
-    status.setText(orderDetialBean.getStatus() + "");
+    status.setText(MyUtils.getTextByType(orderDetialBean.getStatus()));
     statusValue = orderDetialBean.getStatus();
-    showBottomButton();
+    if (!misSearch) {
+      showBottomButton();
+    }else {
+      ll_bottom.setVisibility(View.GONE);
+    }
   }
 
   /**

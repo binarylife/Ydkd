@@ -143,4 +143,8 @@ public class Constant implements IApiConfig {
    * 传递对象
    */
   public static final String isNewOreder = BUNDLE_KEY_7;
+  /**
+   * 传递对象
+   */
+  public static final String ISSEARCH = BUNDLE_KEY_6;
 }

@@ -189,4 +189,25 @@ public class MyUtils {
         textView.setVisibility(View.GONE);
     }
   }
+  /**
+   * 展示预警文字
+   */
+  public static void showYuJinggButtonText(TextView textView, int warnming) {
+    switch (warnming) {
+      //  判断用户的角色
+      //case "A":
+      //  break;
+      case 1:// 一级预警(红色)
+        textView.setText("一级预警");
+        break;
+      case 2:// er级预警(红色)
+        textView.setText("二级预警");
+        break;
+      case 3:// san级预警(红色)
+        textView.setText("三级预警");
+        break;
+      default:
+        textView.setVisibility(View.GONE);
+    }
+  }
 }

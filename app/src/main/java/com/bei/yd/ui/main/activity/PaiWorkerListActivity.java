@@ -90,7 +90,7 @@ public class PaiWorkerListActivity extends BackBaseActivity
           /**
            * 派单
            */
-          showMutiDialog("是否指派给" + userInfoBeanses.get(position).getRole(),
+          showMutiDialog("是否指派给" + userInfoBeanses.get(position).getUsername(),
               new DialogBuilder.ClickCallbak() {
                 @Override public void onConfirm() {
                   if (misNewOreder) {

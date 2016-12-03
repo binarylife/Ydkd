@@ -54,15 +54,8 @@
 
         <TextView
             style="@style/About.ItemLable"
-            android:id="@+id/about_share"
-            android:text="分享给好友"/>
-
-        <View style="@style/Divider"/>
-
-        <TextView
-            style="@style/About.ItemLable"
-            android:id="@+id/about_thanks"
-            android:text="感谢"/>
+            android:id="@+id/about_loginout"
+            android:text="退出登录"/>
 
     </LinearLayout>
 

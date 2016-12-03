@@ -439,6 +439,7 @@ public class SearchTagWorkOrderActivity extends BackBaseActivity
           Bundle bundle = new Bundle();
           bundle.putParcelable(Constant.ORDER_DETAIL, mainItemNewOrderBean);
           bundle.putBoolean(Constant.isNewOreder, false);
+          bundle.putBoolean(Constant.ISSEARCH, true);
           //bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
           InvokeStartActivityUtils.startActivity(SearchTagWorkOrderActivity.this,
               OrderDetialActivity.class, bundle, false);

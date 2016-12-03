@@ -51,7 +51,7 @@
           style="@style/ItemText.Gray.Normal"
           android:id="@+id/item_consumer_detail_tag"
           android:layout_below="@id/item_consumer_detail_top_layout"
-          android:drawableLeft="@drawable/ic_tag"
+          android:drawableLeft="@drawable/address"
           android:drawablePadding="@dimen/margin_normal"
           android:layout_marginLeft="@dimen/margin_large"
           android:layout_marginTop="@dimen/margin_normal"
@@ -62,7 +62,7 @@
           style="@style/ItemText.Gray.Normal"
           android:id="@+id/item_consumer_detail_time"
           android:layout_below="@id/item_consumer_detail_tag"
-          android:drawableLeft="@drawable/ic_time"
+          android:drawableLeft="@drawable/username"
           android:drawablePadding="@dimen/margin_normal"
           android:layout_marginLeft="@dimen/margin_large"
           android:layout_marginTop="@dimen/margin_normal"
@@ -87,13 +87,14 @@
       <TextView
           android:layout_marginLeft="@dimen/margin_large"
           style="@style/ItemText.Gray.Normal"
-          android:drawableLeft="@drawable/ic_notes"
+          android:drawableLeft="@drawable/telephone"
           android:drawablePadding="@dimen/margin_normal"
           android:id="@+id/item_consumer_detail_notes"
           android:layout_below="@id/item_consumer_detail_time"
           android:layout_marginTop="@dimen/margin_normal"
           android:layout_marginBottom="5dp"
           android:layout_marginRight="@dimen/margin_normal"
+          tools:text="eeeeeee"
           />
     </RelativeLayout>
   </android.support.v7.widget.CardView>

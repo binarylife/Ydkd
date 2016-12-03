@@ -13,6 +13,7 @@ import com.bei.yd.ui.main.activity.SearchTagWorkFixOrderActivity;
 import com.bei.yd.ui.main.activity.SearchTagWorkOrderActivity;
 import com.bei.yd.utils.InvokeStartActivityUtils;
 import com.bei.yd.utils.SharedPreferenceHelper;
+import com.bei.yd.widget.DialogBuilder;
 import com.jaydenxiao.common.commonutils.LogUtils;
 
 /**
@@ -22,6 +23,7 @@ public class AboutFragment extends BaseLoadFragment implements View.OnClickListe
   private Context context;
   @Bind(R.id.about_nor_order) TextView mNorOrder;
   @Bind(R.id.about_fix_order) TextView mFixOrder;
+  @Bind(R.id.about_loginout) TextView mLoginOut;
 
   @Override public void onAttach(Context context) {
     this.context = context;
@@ -60,22 +62,36 @@ public class AboutFragment extends BaseLoadFragment implements View.OnClickListe
   }
 
   @OnClick({
-      R.id.about_nor_order,R.id.about_fix_order
+      R.id.about_nor_order, R.id.about_fix_order, R.id.about_loginout
   }) public void onClick(View v) {
     switch (v.getId()) {
-     case  R.id.about_nor_order:
-         //跳转到工单条件筛选页面
-      Bundle bundle1 = new Bundle();
-      //bundle.putParcelable(Constant.ORDER_DETAIL, mainItemNewOrderBean);
-      //bundle.putBoolean(Constant.isNewOreder, isNorOrder);
-      InvokeStartActivityUtils.startActivity(context, SearchTagWorkOrderActivity.class, bundle1, false);
-      break;
-      case  R.id.about_fix_order:
+      case R.id.about_nor_order:
+        //跳转到工单条件筛选页面
+        Bundle bundle1 = new Bundle();
+        //bundle.putParcelable(Constant.ORDER_DETAIL, mainItemNewOrderBean);
+        //bundle.putBoolean(Constant.isNewOreder, isNorOrder);
+        InvokeStartActivityUtils.startActivity(context, SearchTagWorkOrderActivity.class, bundle1,
+            false);
+        break;
+      case R.id.about_fix_order:
         //跳转到工单条件筛选页面
         Bundle bundle2 = new Bundle();
         //bundle.putParcelable(Constant.ORDER_DETAIL, mainItemNewOrderBean);
         //bundle.putBoolean(Constant.isNewOreder, isNorOrder);
-        InvokeStartActivityUtils.startActivity(context, SearchTagWorkFixOrderActivity.class, bundle2, false);
+        InvokeStartActivityUtils.startActivity(context, SearchTagWorkFixOrderActivity.class,
+            bundle2, false);
+        break;
+      case R.id.about_loginout:
+        showMutiDialog("确定退出登录？", "温馨提示", new DialogBuilder.ClickCallbak() {
+          @Override public void onConfirm() {
+            SharedPreferenceHelper.setRememberAccout(false);
+          }
+
+          @Override public void onCancle() {
+
+          }
+        });
+
         break;
     }
   }

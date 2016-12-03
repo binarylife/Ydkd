@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.Bind;
 import com.bei.yd.R;
+import com.bei.yd.utils.SharedPreferenceHelper;
 import com.jaydenxiao.common.base.BaseActivity;
 
 /**
@@ -52,7 +53,11 @@ public class SplashActivity extends BaseActivity {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                LoginActivity.startAction(SplashActivity.this);
+                if (!SharedPreferenceHelper.isRememberAccount()) {
+                    LoginActivity.startAction(SplashActivity.this);
+                }else{
+                    MainActivity.startAction(SplashActivity.this);
+                }
                 finish();
             }
 

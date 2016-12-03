@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -57,6 +58,7 @@ public class OrderDetialActivity extends BackBaseActivity
   @Bind(R.id.tv_dispatch) TextView tv_dispatch;
   @Bind(R.id.tv_chedan) TextView tv_chedan;
   @Bind(R.id.tv_huidan) TextView tv_huidan;
+  @Bind(R.id.ll_bottom) LinearLayout ll_bottom;
 
   //@Bind(R.id.bt_login) TextView mlogin;
   //  网络交互的逻辑层
@@ -68,6 +70,7 @@ public class OrderDetialActivity extends BackBaseActivity
   private int statusValue;
   private PaiPresenterImpl paiPresenter;
   private boolean misNewOreder;
+  private boolean misSearch;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -75,6 +78,7 @@ public class OrderDetialActivity extends BackBaseActivity
     Bundle bundle = getIntent().getExtras();
     orderDetialBean = bundle.getParcelable(Constant.ORDER_DETAIL);
     misNewOreder = bundle.getBoolean(Constant.isNewOreder);
+    misSearch = bundle.getBoolean(Constant.ISSEARCH);
     //orderCreater = bundle.getString(Constant.ORDER_CREATER);
     //  初始化上传头像的逻辑层
     initView();
@@ -108,11 +112,15 @@ public class OrderDetialActivity extends BackBaseActivity
     installwarning.setText(orderDetialBean.getInstallWarning() + "");
     visitwarning.setText(orderDetialBean.getVisitWarning() + "");
     repeatnum.setText(orderDetialBean.getRepeatNum() + "");
-    iscancle.setText(orderDetialBean.getIsCancel() + "");
-    isend.setText(orderDetialBean.getIsEnd() + "");
-    status.setText(orderDetialBean.getStatus() + "");
+    iscancle.setText(orderDetialBean.getIsCancel() ==1?"是": "否");
+    isend.setText(orderDetialBean.getIsEnd() ==1?"是": "否");
+    status.setText(MyUtils.getNorTextByType(orderDetialBean.getStatus()));
     statusValue = orderDetialBean.getStatus();
-    showBottomButton();
+    if (!misSearch) {
+      showBottomButton();
+    }else {
+      ll_bottom.setVisibility(View.GONE);
+    }
   }
 
   /**
