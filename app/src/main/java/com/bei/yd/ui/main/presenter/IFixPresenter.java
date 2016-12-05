@@ -11,13 +11,13 @@ public interface IFixPresenter {
     /**
      * 指派工单给工人
      */
-    void querySingleFault(String role, int account,int pn);
+    void querySingleFault(String role, String account,int pn);
     /**
      * 指派工单给工人
      */
-    void affirmOrder(int wid);
+    void affirmOrder(String wid);
     /**
      * 指派工单给工人
      */
-    void isCancelOrder(int wid, int isSuccess);
+    void isCancelOrder(String wid, int isSuccess);
 }

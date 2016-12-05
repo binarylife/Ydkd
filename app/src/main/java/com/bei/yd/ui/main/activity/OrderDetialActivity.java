@@ -179,7 +179,7 @@ public class OrderDetialActivity extends BackBaseActivity
               //  新建工单
               //点击此处指派工单;
               Bundle bundle = new Bundle();
-              bundle.putInt(Constant.ORDER_ID, orderDetialBean.getId());
+              bundle.putString(Constant.ORDER_ID, orderDetialBean.getId());
               bundle.putBoolean(Constant.isNewOreder, true);
               bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
               InvokeStartActivityUtils.startActivity(this, PaiWorkerListActivity.class, bundle,
@@ -194,7 +194,7 @@ public class OrderDetialActivity extends BackBaseActivity
             if (statusValue == 2) {
               //  接口人派单
               Bundle bundle = new Bundle();
-              bundle.putInt(Constant.ORDER_ID, orderDetialBean.getId());
+              bundle.putString(Constant.ORDER_ID, orderDetialBean.getId());
               bundle.putBoolean(Constant.isNewOreder, true);
               bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
               InvokeStartActivityUtils.startActivity(this, PaiWorkerListActivity.class, bundle,

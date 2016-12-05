@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.webkit.ValueCallback;
 import android.widget.EditText;
@@ -76,6 +77,14 @@ public class LoginActivity extends BackBaseActivity implements IMainView, View.O
         //  提交修改的数据
         newPassWord = mPassWord.getText().toString();
         newNickname = mNickName.getText().toString();
+        if (TextUtils.isEmpty(newPassWord)){
+          ToastUtil.showNormalShortToast("请输入密码");
+          return;
+        }
+        if (TextUtils.isEmpty(newNickname)){
+          ToastUtil.showNormalShortToast("请输入用户名");
+          return;
+        }
         mainPresenter.login(newNickname, newPassWord);
         break;
     }
@@ -93,7 +102,6 @@ public class LoginActivity extends BackBaseActivity implements IMainView, View.O
   }
 
   @Override public void onLoginSuccess(UserInfoBean bean) {
-    ToastUtil.showNormalShortToast("登录成功!");
     if (bean.isSuccessful()) {
       SharedPreferenceHelper.saveUserInfo(bean.getData());
       SharedPreferenceHelper.setRememberAccout(true);

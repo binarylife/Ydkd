@@ -11,31 +11,31 @@ public interface IPaiPresenter {
     /**
      * 获取可派工单人员(故障)
      */
-    void getFixArea(String role,int areaid,int uid);
+    void getFixArea(String role,int areaid,String uid);
     /**
      * 指派工单给工人
      */
-    void dispatchOrder(int id,String accountA,String accountB);
+    void dispatchOrder(String id,String accountA,String accountB);
     /**
      * 指派故障工单给工人
      */
-    void dispatchSingleFault(int id,String accountA,String accountB);
+    void dispatchSingleFault(String id,String accountA,String accountB);
     /**
      * 指派工单给工人
      */
-    void affirmOrder(int wid);
+    void affirmOrder(String wid);
     /**
      * 指派工单给工人
      */
-    void isCancelOrder(int wid,int isSuccess);
+    void isCancelOrder(String wid,int isSuccess);
     /**
      * 指派工单给工人
      */
-    void affirmSingleFault(int wid);
+    void affirmSingleFault(String wid);
     /**
      * 指派工单给工人
      */
-    void isCancelSingleFault(int wid,int isSuccess);
+    void isCancelSingleFault(String wid,int isSuccess);
     /**
      * 保存工单区县
      */

@@ -490,7 +490,7 @@ public class SearchTagWorkFixOrderActivity extends BackBaseActivity
    */
   public void searchForList() {
     mainPresenter.statisticsSingleFault(SharedPreferenceHelper.getUserRole(),
-        Integer.parseInt(SharedPreferenceHelper.getUserAccount()), pn, selectAreaId + "",
+        SharedPreferenceHelper.getUserAccount(), pn, selectAreaId + "",
         mAccount.getText().toString(), tvPhone.getText().toString(), dispatchtime, taketime,
         installtime, overtime, dispatchwarning, installwarning, visitwarning,
         tvIsrepeat.getText().toString(), iscancel, isOver, dispatchwarning1, dispatchwarning1,

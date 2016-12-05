@@ -38,7 +38,7 @@ public class MainModelImpl implements MainModel, IApiConfig {
   /**
    * 新建工单
    */
-  @Override public void addNewWO(String arae, String account, String address, int phone,
+  @Override public void addNewWO(String arae, String account, String address, String phone,
       Subscriber<MainBean> callback) {
     MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
     api.addNewWorkOrder(arae, account, address, phone)
@@ -50,7 +50,7 @@ public class MainModelImpl implements MainModel, IApiConfig {
   /**
    * 新建故障工单
    */
-  @Override public void addFixWO(String arae, String account, String address, int phone,
+  @Override public void addFixWO(String arae, String account, String address, String phone,
       Subscriber<MainBean> callback) {
     MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
     api.addFixWorkOrder(arae, account, address, phone)
@@ -62,7 +62,7 @@ public class MainModelImpl implements MainModel, IApiConfig {
   /**
    * 获取全部工单
    */
-  @Override public void getAllNewWOList(String role, int account, int pageIndex,
+  @Override public void getAllNewWOList(String role, String account, int pageIndex,
       Subscriber<MainItemNewOrderBean> callback) {
     MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
     api.getAllNewWorkOrderList(role, account, pageIndex, PAGESIZE)
@@ -88,7 +88,7 @@ public class MainModelImpl implements MainModel, IApiConfig {
   }
 
   @Override
-  public void statisticsWorkOrderList(String role, int account, int pageIndex, String area,
+  public void statisticsWorkOrderList(String role, String account, int pageIndex, String area,
       String account_u, String phone, String dispatchtime, String taketime, String installtime,
       String overtime, String dispatchwarning, String installwarning, String visitwarning,
       String repeatnum, String iscancel, String isend,
@@ -102,7 +102,7 @@ public class MainModelImpl implements MainModel, IApiConfig {
         .subscribe(callback);
   }
 
-  @Override public void statisticsSingleFault(String role, int account, int pageIndex, String area,
+  @Override public void statisticsSingleFault(String role, String account, int pageIndex, String area,
       String account_u, String phone, String dispatchtime, String taketime, String installtime,
       String overtime, String dispatchwarning, String installwarning, String visitwarning,
       String repeatnum, String iscancel, String isend, String dispatchwarning1,

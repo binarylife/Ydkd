@@ -15,7 +15,7 @@ public interface FixModel {
   /**
    * 所有工单维修获取
    */
-  void querySingleFault( String role,int account,int pageIndex ,
+  void querySingleFault( String role,String account,int pageIndex ,
       Subscriber<MainItemNewOrderBean> callback);
 
   /**
@@ -31,10 +31,10 @@ public interface FixModel {
   /**
    * 装机人安装完成--进行回单
    */
-  void affirmOrder(int wid, Subscriber<MainBean> callback);
+  void affirmOrder(String wid, Subscriber<MainBean> callback);
 
   /**
    * 确认装机成功/撤单/退单
    */
-  void isCancelOrder(int wid, int isSuccess, Subscriber<MainBean> callback);
+  void isCancelOrder(String wid, int isSuccess, Subscriber<MainBean> callback);
 }

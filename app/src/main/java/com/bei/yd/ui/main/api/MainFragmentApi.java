@@ -18,20 +18,20 @@ public interface MainFragmentApi {
    */
   @POST("addWorkOrder") Observable<MainBean> addNewWorkOrder(@Query("area") String area,
       @Query("account") String account, @Query("address") String address,
-      @Query("phone") int phone);
+      @Query("phone") String phone);
 
   /**
    * 新增故障工单
    */
   @POST("addSingleFault") Observable<MainBean> addFixWorkOrder(@Query("area") String area,
       @Query("account") String account, @Query("address") String address,
-      @Query("phone") int phone);
+      @Query("phone") String phone);
 
   /**
    * 获取最新工单列表
    */
   @POST("queryWorkOrderList") Observable<MainItemNewOrderBean> getAllNewWorkOrderList(
-      @Query("role") String role, @Query("account") int account, @Query("pageIndex") int address,
+      @Query("role") String role, @Query("account") String account, @Query("pageIndex") int address,
       @Query("pageSize") int pageSize);
 
   /**
@@ -55,13 +55,13 @@ public interface MainFragmentApi {
    * 获取可派人员列表(故障)
    */
   @POST("queryOtherUserTwo") Observable<UserInfoBeans> getAllFixPaiWorker(
-      @Query("role") String role, @Query("areaid") int areaid, @Query("uid") int uid);
+      @Query("role") String role, @Query("areaid") int areaid, @Query("uid") String uid);
 
   /**
    * @param accountA 派单人
    * @param accountB 指定人
    */
-  @POST("dispatchOrder") Observable<MainBean> dispatchOrder(@Query("id") int id,
+  @POST("dispatchOrder") Observable<MainBean> dispatchOrder(@Query("id") String id,
       @Query("accountA") String accountA, @Query("accountB") String accountB);
 
   /**
@@ -70,18 +70,18 @@ public interface MainFragmentApi {
    * @param accountA 派单人
    * @param accountB 指定人
    */
-  @POST("dispatchSingleFault") Observable<MainBean> dispatchSingleFault(@Query("id") int id,
+  @POST("dispatchSingleFault") Observable<MainBean> dispatchSingleFault(@Query("id") String id,
       @Query("accountA") String accountA, @Query("accountB") String accountB);
 
   /**
    * 装机人安装完成--进行回单
    */
-  @POST("affirmOrder") Observable<MainBean> affirmOrder(@Query("wid") int wid);
+  @POST("affirmOrder") Observable<MainBean> affirmOrder(@Query("wid") String wid);
 
   /**
    * 装机人安装完成--进行回单
    */
-  @POST("isCancelOrder") Observable<MainBean> isCancelOrder(@Query("wid") int wid,
+  @POST("isCancelOrder") Observable<MainBean> isCancelOrder(@Query("wid") String wid,
       @Query("isSuccess") int isSuccess);
 
   /**
@@ -89,31 +89,31 @@ public interface MainFragmentApi {
    */
   @POST("addSingleFault") Observable<MainBean> addSingleFault(@Query("area") String area,
       @Query("account") String account, @Query("address") String address,
-      @Query("phone") int phone);
+      @Query("phone") String phone);
 
   /**
    * 获取最新工单列表
    */
   @POST("querySingleFault") Observable<MainItemNewOrderBean> querySingleFault(
-      @Query("role") String role, @Query("account") int account, @Query("pageIndex") int address,
+      @Query("role") String role, @Query("account") String account, @Query("pageIndex") int address,
       @Query("pageSize") int pageSize);
 
   /**
    * 装机人安装完成--进行回单(故障)
    */
-  @POST("affirmSingleFault") Observable<MainBean> affirmSingleFault(@Query("sid") int wid);
+  @POST("affirmSingleFault") Observable<MainBean> affirmSingleFault(@Query("sid") String wid);
 
   /**
    * 装机人安装完成--进行回单（故障）
    */
-  @POST("isCancelSingleFault") Observable<MainBean> isCancelSingleFault(@Query("sid") int wid,
+  @POST("isCancelSingleFault") Observable<MainBean> isCancelSingleFault(@Query("sid") String wid,
       @Query("isSuccess") int isSuccess);
 
   /**
    * 统计筛选工单（普通）
    */
   @POST("statisticsWorkOrderList") Observable<MainItemNewOrderBean> statisticsWorkOrderList(
-      @Query("role") String role, @Query("account") int account, @Query("pageIndex") int address,
+      @Query("role") String role, @Query("account") String account, @Query("pageIndex") int address,
       @Query("pageSize") int pageSize, @Query("area") String area,
       @Query("account_u") String account_u, @Query("phone") String phone,
       @Query("dispatchtime") String dispatchtime, @Query("taketime") String taketime,
@@ -126,7 +126,7 @@ public interface MainFragmentApi {
    * 统计筛选工单（故障）
    */
   @POST("statisticsSingleFault") Observable<MainItemNewOrderBean> statisticsSingleFault(
-      @Query("role") String role, @Query("account") int account, @Query("pageIndex") int address,
+      @Query("role") String role, @Query("account") String account, @Query("pageIndex") int address,
       @Query("pageSize") int pageSize, @Query("area") String area,
       @Query("account_u") String account_u, @Query("phone") String phone,
       @Query("dispatchtime") String dispatchtime, @Query("taketime") String taketime,

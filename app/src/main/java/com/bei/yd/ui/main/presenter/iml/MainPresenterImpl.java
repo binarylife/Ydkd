@@ -36,7 +36,7 @@ public class MainPresenterImpl implements IMainPresenter {
     model = new MainModelImpl(context, this);
   }
 
-  @Override public void addWorkOrder(String arae, String account, String address, int phone) {
+  @Override public void addWorkOrder(String arae, String account, String address, String phone) {
     view.showProgress();
     model.addNewWO(arae, account, address, phone, new Subscriber<MainBean>() {
       @Override public void onCompleted() {
@@ -58,7 +58,7 @@ public class MainPresenterImpl implements IMainPresenter {
     });
   }
 
-  @Override public void addFixWorkOrder(String arae, String account, String address, int phone) {
+  @Override public void addFixWorkOrder(String arae, String account, String address, String phone) {
     view.showProgress();
     model.addFixWO(arae, account, address, phone, new Subscriber<MainBean>() {
       @Override public void onCompleted() {
@@ -80,7 +80,7 @@ public class MainPresenterImpl implements IMainPresenter {
     });
   }
 
-  @Override public void getAllNewWorkOrderList(String role, int account, final int pn) {
+  @Override public void getAllNewWorkOrderList(String role, String account, final int pn) {
     view.showProgress();
     model.getAllNewWOList(role, account, pn, new Subscriber<MainItemNewOrderBean>() {
       @Override public void onCompleted() {
@@ -141,7 +141,7 @@ public class MainPresenterImpl implements IMainPresenter {
     });
   }
 
-  @Override public void statisticsWorkOrderList(String role, int account, final int pn, String area,
+  @Override public void statisticsWorkOrderList(String role, String account, final int pn, String area,
       String account_u, String phone, String dispatchtime, String taketime, String installtime,
       String overtime, String dispatchwarning, String installwarning, String visitwarning,
       String repeatnum, String iscancel, String isend) {
@@ -169,7 +169,7 @@ public class MainPresenterImpl implements IMainPresenter {
   }
 
   @Override
-  public void statisticsSingleFault(String role, int account, final int pn, String area, String account_u,
+  public void statisticsSingleFault(String role, String account, final int pn, String area, String account_u,
       String phone, String dispatchtime, String taketime, String installtime, String overtime,
       String dispatchwarning, String installwarning, String visitwarning, String repeatnum,
       String iscancel, String isend, String dispatchwarning1, String dispatchwarning2,

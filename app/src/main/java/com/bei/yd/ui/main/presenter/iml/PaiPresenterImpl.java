@@ -69,7 +69,7 @@ public class PaiPresenterImpl implements IPaiPresenter {
   /**
    * 获取可派人员列表
    */
-  @Override public void getFixArea(String role, int areaid,int uid) {
+  @Override public void getFixArea(String role, int areaid,String uid) {
     view.showProgress();
     model.getAllAreaFixPaiWorker(role,areaid,uid,new Subscriber<UserInfoBeans>() {
       @Override public void onCompleted() {
@@ -96,7 +96,7 @@ public class PaiPresenterImpl implements IPaiPresenter {
    * @param accountA
    * @param accountB
    */
-  @Override public void dispatchOrder(int id,String accountA,String accountB) {
+  @Override public void dispatchOrder(String id,String accountA,String accountB) {
     view.showProgress();
     model.dispatchOrder(id,accountA,accountB,new Subscriber<MainBean>() {
       @Override public void onCompleted() {
@@ -124,7 +124,7 @@ public class PaiPresenterImpl implements IPaiPresenter {
    * @param accountA
    * @param accountB
    */
-  @Override public void dispatchSingleFault(int id,String accountA,String accountB) {
+  @Override public void dispatchSingleFault(String id,String accountA,String accountB) {
     view.showProgress();
     model.dispatchSingleFault(id,accountA,accountB,new Subscriber<MainBean>() {
       @Override public void onCompleted() {
@@ -147,7 +147,7 @@ public class PaiPresenterImpl implements IPaiPresenter {
     });
   }
 
-  @Override public void affirmOrder(int wid) {
+  @Override public void affirmOrder(String wid) {
     view.showProgress();
     model.affirmOrder(wid,new Subscriber<MainBean>() {
       @Override public void onCompleted() {
@@ -170,7 +170,7 @@ public class PaiPresenterImpl implements IPaiPresenter {
     });
   }
 
-  @Override public void isCancelOrder(int wid, int isSuccess) {
+  @Override public void isCancelOrder(String wid, int isSuccess) {
     model.isCancelOrder(wid,isSuccess,new Subscriber<MainBean>() {
       @Override public void onCompleted() {
 
@@ -191,7 +191,7 @@ public class PaiPresenterImpl implements IPaiPresenter {
       }
     });
   }
-  @Override public void affirmSingleFault(int wid) {
+  @Override public void affirmSingleFault(String wid) {
     view.showProgress();
     model.affirmSingleFault(wid,new Subscriber<MainBean>() {
       @Override public void onCompleted() {
@@ -214,7 +214,7 @@ public class PaiPresenterImpl implements IPaiPresenter {
     });
   }
 
-  @Override public void isCancelSingleFault(int wid, int isSuccess) {
+  @Override public void isCancelSingleFault(String wid, int isSuccess) {
     model.isCancelSingleFault(wid,isSuccess,new Subscriber<MainBean>() {
       @Override public void onCompleted() {
 

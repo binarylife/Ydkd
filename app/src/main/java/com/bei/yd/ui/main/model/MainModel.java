@@ -16,19 +16,19 @@ public interface MainModel {
   /**
    * 新建neworder
    */
-  void addNewWO(String arae, String account, String address, int phone,
+  void addNewWO(String arae, String account, String address, String phone,
       Subscriber<MainBean> callback);
 
   /**
    * 新建Fixorder
    */
-  void addFixWO(String arae, String account, String address, int phone,
+  void addFixWO(String arae, String account, String address, String phone,
       Subscriber<MainBean> callback);
 
   /**
    * 所有工单获取
    */
-  void getAllNewWOList(String role, int account, int pageIndex,
+  void getAllNewWOList(String role, String account, int pageIndex,
       Subscriber<MainItemNewOrderBean> callback);
 
   /**
@@ -44,7 +44,7 @@ public interface MainModel {
   /**
    * 所有工单获取(查询)
    */
-  void statisticsWorkOrderList(String role, int account, int pageIndex, String area,
+  void statisticsWorkOrderList(String role, String account, int pageIndex, String area,
       String account_u, String phone, String dispatchtime, String taketime, String installtime,
       String overtime, String dispatchwarning, String installwarning, String visitwarning,
       String repeatnum, String iscancel, String isend, Subscriber<MainItemNewOrderBean> callback);
@@ -52,7 +52,7 @@ public interface MainModel {
   /**
    * 所有工单获取(故障)
    */
-  void statisticsSingleFault(String role, int account, int pageIndex, String area, String account_u,
+  void statisticsSingleFault(String role, String account, int pageIndex, String area, String account_u,
       String phone, String dispatchtime, String taketime, String installtime, String overtime,
       String dispatchwarning, String installwarning, String visitwarning, String repeatnum,
       String iscancel, String isend,String dispatchwarning1,

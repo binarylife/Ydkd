@@ -45,7 +45,7 @@ public class FixModelImpl implements FixModel, IApiConfig {
      * @param pageIndex
      * @param callback
    */
-    @Override public void querySingleFault(String role, int account, int pageIndex,
+    @Override public void querySingleFault(String role, String account, int pageIndex,
         Subscriber<MainItemNewOrderBean> callback) {
         MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
         api.querySingleFault(role, account,pageIndex,PAGESIZE)
@@ -64,11 +64,11 @@ public class FixModelImpl implements FixModel, IApiConfig {
 
     }
 
-    @Override public void affirmOrder(int wid, Subscriber<MainBean> callback) {
+    @Override public void affirmOrder(String wid, Subscriber<MainBean> callback) {
 
     }
 
-    @Override public void isCancelOrder(int wid, int isSuccess, Subscriber<MainBean> callback) {
+    @Override public void isCancelOrder(String wid, int isSuccess, Subscriber<MainBean> callback) {
 
     }
 

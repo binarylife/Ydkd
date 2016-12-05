@@ -252,7 +252,7 @@ public class FixOrderDetialActivity extends BackBaseActivity
               //  新建工单
               //点击此处指派工单;
               Bundle bundle = new Bundle();
-              bundle.putInt(Constant.ORDER_ID, orderDetialBean.getId());
+              bundle.putString(Constant.ORDER_ID, orderDetialBean.getId());
               bundle.putBoolean(Constant.isNewOreder, false);
               bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
               InvokeStartActivityUtils.startActivity(this, PaiWorkerListActivity.class, bundle,
@@ -264,7 +264,7 @@ public class FixOrderDetialActivity extends BackBaseActivity
               //  新建工单
               //点击此处指派工单;
               Bundle bundle = new Bundle();
-              bundle.putInt(Constant.ORDER_ID, orderDetialBean.getId());
+              bundle.putString(Constant.ORDER_ID, orderDetialBean.getId());
               bundle.putBoolean(Constant.isNewOreder, false);
               bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
               InvokeStartActivityUtils.startActivity(this, PaiWorkerListActivity.class, bundle,
@@ -276,14 +276,14 @@ public class FixOrderDetialActivity extends BackBaseActivity
             } else if (statusValue == 3) {
               //  二级二次派单
               Bundle bundle = new Bundle();
-              bundle.putInt(Constant.ORDER_ID, orderDetialBean.getId());
+              bundle.putString(Constant.ORDER_ID, orderDetialBean.getId());
               bundle.putBoolean(Constant.isNewOreder, false);
               bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
               InvokeStartActivityUtils.startActivity(this, PaiWorkerListActivity.class, bundle,
                   false);
             }else if (statusValue==1){
               Bundle bundle = new Bundle();
-              bundle.putInt(Constant.ORDER_ID, orderDetialBean.getId());
+              bundle.putString(Constant.ORDER_ID, orderDetialBean.getId());
               bundle.putBoolean(Constant.isNewOreder, false);
               bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
               InvokeStartActivityUtils.startActivity(this, PaiWorkerListActivity.class, bundle,false);
@@ -293,7 +293,7 @@ public class FixOrderDetialActivity extends BackBaseActivity
             if (statusValue == 2) {
               //  接口人二级派单
               Bundle bundle = new Bundle();
-              bundle.putInt(Constant.ORDER_ID, orderDetialBean.getId());
+              bundle.putString(Constant.ORDER_ID, orderDetialBean.getId());
               bundle.putBoolean(Constant.isNewOreder, false);
               bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
               InvokeStartActivityUtils.startActivity(this, PaiWorkerListActivity.class, bundle,

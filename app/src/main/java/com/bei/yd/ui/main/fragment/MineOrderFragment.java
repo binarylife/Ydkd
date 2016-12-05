@@ -43,7 +43,7 @@ public class MineOrderFragment extends BaseLoadFragment implements View.OnClickL
   protected void onLoadData() {
     mainPresenter = new MainPresenterImpl(getActivity(), this);
     mainPresenter.getAllNewWorkOrderList(SharedPreferenceHelper.getUserRole(),
-        Integer.parseInt(SharedPreferenceHelper.getUserAccount()), pn);
+        SharedPreferenceHelper.getUserAccount(), pn);
   }
 
   @Override public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -171,7 +171,7 @@ public class MineOrderFragment extends BaseLoadFragment implements View.OnClickL
         @Override public void onItemClick(View view, int position) {
           MainItemNewOrderBean mainItemNewOrderBean = newOrderBeen.get(position);
           Bundle bundle = new Bundle();
-          bundle.putInt(Constant.ORDER_ID, mainItemNewOrderBean.getId());
+          bundle.putString(Constant.ORDER_ID, mainItemNewOrderBean.getId());
           bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
           InvokeStartActivityUtils.startActivity(getActivity(), PaiWorkerListActivity.class, bundle,
               false);

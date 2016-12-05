@@ -111,10 +111,10 @@ public class AddWorkOrderActivity extends BackBaseActivity
       case R.id.tv_save://  保存修改
         if (misNewOreder) {
           mainPresenter.addWorkOrder(selectAreaId + "", mAccount.getText().toString(),
-              tvAddress.getText().toString(), Integer.parseInt(tvPhone.getText().toString()));
+              tvAddress.getText().toString(), tvPhone.getText().toString());
         }else {
           mainPresenter.addFixWorkOrder(selectAreaId + "", mAccount.getText().toString(),
-              tvAddress.getText().toString(), Integer.parseInt(tvPhone.getText().toString()));
+              tvAddress.getText().toString(), tvPhone.getText().toString());
         }
         break;
     }

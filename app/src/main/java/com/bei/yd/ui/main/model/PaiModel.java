@@ -21,32 +21,32 @@ public interface PaiModel {
   /**
    * 获取所有可派的worker(故障)
    */
-  void getAllAreaFixPaiWorker(String role, int areaid,int uid, Subscriber<UserInfoBeans> callback);
+  void getAllAreaFixPaiWorker(String role, int areaid,String uid, Subscriber<UserInfoBeans> callback);
   /**
    * 向指定的worker派单uid
    */
-  void dispatchOrder(int id, String accountA, String accountB, Subscriber<MainBean> callback);
+  void dispatchOrder(String id, String accountA, String accountB, Subscriber<MainBean> callback);
   /**
    * 向指定的worker派故障单
    */
-  void dispatchSingleFault(int id, String accountA, String accountB, Subscriber<MainBean> callback);
+  void dispatchSingleFault(String id, String accountA, String accountB, Subscriber<MainBean> callback);
   /**
    * 装机人安装完成--进行回单
    */
-  void affirmOrder(int wid, Subscriber<MainBean> callback);
+  void affirmOrder(String wid, Subscriber<MainBean> callback);
   /**
    * 装机人安装完成--进行回单（故障）
    */
-  void affirmSingleFault(int wid, Subscriber<MainBean> callback);
+  void affirmSingleFault(String wid, Subscriber<MainBean> callback);
 
   /**
    * 确认装机成功/撤单/退单
    */
-  void isCancelOrder(int wid, int isSuccess, Subscriber<MainBean> callback);
+  void isCancelOrder(String wid, int isSuccess, Subscriber<MainBean> callback);
   /**
    * 确认装机成功/撤单/退单
    */
-  void isCancelSingleFault(int wid, int isSuccess, Subscriber<MainBean> callback);
+  void isCancelSingleFault(String wid, int isSuccess, Subscriber<MainBean> callback);
   /**
    * 确认装机成功/撤单/退单
    */

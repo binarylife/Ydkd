@@ -12,7 +12,7 @@ public interface IMainPresenter {
    * @param address  地址
    * @param phone  电话
    */
-    void addWorkOrder(String arae, String account, String address, int phone);
+    void addWorkOrder(String arae, String account, String address, String phone);
   /**
    * 新建故障工单
    * @param arae  区域id
@@ -20,11 +20,11 @@ public interface IMainPresenter {
    * @param address  地址
    * @param phone  电话
    */
-  void addFixWorkOrder(String arae, String account, String address, int phone);
+  void addFixWorkOrder(String arae, String account, String address, String phone);
     /**
      * 获取工单列表
      */
-    void getAllNewWorkOrderList(String role, int account,int pn);
+    void getAllNewWorkOrderList(String role, String account,int pn);
     /**
      * 登录
      */
@@ -37,7 +37,7 @@ public interface IMainPresenter {
   /**
    * 所有工单获取(查询)
    */
-  void statisticsWorkOrderList(String role,int account,
+  void statisticsWorkOrderList(String role,String account,
       int pn,  String area, String account_u,
       String phone,String dispatchtime, String taketime ,
       String installtime,  String overtime, String dispatchwarning ,
@@ -45,7 +45,7 @@ public interface IMainPresenter {
   /**
    * 所有工单获取(故障)
    */
-  void statisticsSingleFault(String role,int account,
+  void statisticsSingleFault(String role,String account,
       int pn,  String area, String account_u,
       String phone,String dispatchtime, String taketime ,
       String installtime,  String overtime, String dispatchwarning ,

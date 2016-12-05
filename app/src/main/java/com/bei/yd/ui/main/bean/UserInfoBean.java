@@ -21,7 +21,7 @@ public class UserInfoBean extends BaseBean<UserInfoBean> {
 
     private String account;
     private int areaid;
-    private int id;
+    private String id;
     private String pwd;
     private String remark;
     private String role;
@@ -35,7 +35,7 @@ public class UserInfoBean extends BaseBean<UserInfoBean> {
     public UserInfoBean(Parcel in) {
         account = in.readString();
         areaid = in.readInt();
-        id = in.readInt();
+        id = in.readString();
         pwd = in.readString();
         remark = in.readString();
         role = in.readString();
@@ -59,7 +59,7 @@ public class UserInfoBean extends BaseBean<UserInfoBean> {
     @Override public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(account);
         dest.writeInt(areaid);
-        dest.writeInt(id);
+        dest.writeString(id);
         dest.writeString(pwd);
         dest.writeString(remark);
         dest.writeString(role);
@@ -82,11 +82,11 @@ public class UserInfoBean extends BaseBean<UserInfoBean> {
         this.areaid = areaid;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

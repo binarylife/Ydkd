@@ -42,7 +42,7 @@ public class MainItemNewOrderBean  extends BaseBean<ArrayList<MainItemNewOrderBe
     private String dispatchPeople;
     private String dispatchTime;
     private int dispatchWarning;
-    private int id;
+    private String id;
     private int installDuration;
     private String installPeople;
     private String installTime;
@@ -74,7 +74,7 @@ public class MainItemNewOrderBean  extends BaseBean<ArrayList<MainItemNewOrderBe
         dispatchPeople = in.readString();
         dispatchTime = in.readString();
         dispatchWarning = in.readInt();
-        id = in.readInt();
+        id = in.readString();
         installDuration = in.readInt();
         installPeople = in.readString();
         installTime = in.readString();
@@ -166,11 +166,11 @@ public class MainItemNewOrderBean  extends BaseBean<ArrayList<MainItemNewOrderBe
         this.dispatchWarning = dispatchWarning;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -291,7 +291,7 @@ public class MainItemNewOrderBean  extends BaseBean<ArrayList<MainItemNewOrderBe
         dest.writeString(dispatchPeople);
         dest.writeString(dispatchTime);
         dest.writeInt(dispatchWarning);
-        dest.writeInt(id);
+        dest.writeString(id);
         dest.writeInt(installDuration);
         dest.writeString(installPeople);
         dest.writeString(installTime);
@@ -316,7 +316,7 @@ public class MainItemNewOrderBean  extends BaseBean<ArrayList<MainItemNewOrderBe
         dest.writeInt(dispatchDuration22);
     }
 
-    public MainItemNewOrderBean(String address, int id) {
+    public MainItemNewOrderBean(String address, String id) {
         this.address = address;
         this.id = id;
     }

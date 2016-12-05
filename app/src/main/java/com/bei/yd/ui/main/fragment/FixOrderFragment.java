@@ -48,7 +48,7 @@ public class FixOrderFragment extends BaseLoadFragment implements View.OnClickLi
   protected void onLoadData() {
     mainPresenter = new FixPresenterImpl(getActivity(), this);
     mainPresenter.querySingleFault(SharedPreferenceHelper.getUserRole(),
-        Integer.parseInt(SharedPreferenceHelper.getUserAccount()), pn);
+        SharedPreferenceHelper.getUserAccount(), pn);
   }
 
   @Override public void onCreate(@Nullable Bundle savedInstanceState) {

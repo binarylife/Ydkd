@@ -90,7 +90,7 @@
         app:met_floatingLabel="highlight"
         app:met_textColorHint="@color/secondary_text"
         app:met_baseColor="@color/primary_text"
-        app:met_maxCharacters="100"
+        app:met_maxCharacters="11"
         app:met_primaryColor="@color/colorPrimary" />
     <LinearLayout style="@style/AddConsumerLayout"
         android:layout_marginTop="@dimen/margin_normal" >

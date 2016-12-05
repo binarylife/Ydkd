@@ -229,7 +229,7 @@ public class SharedPreferenceHelper {
         .edit()
         .putString(USER_ACCOUNT, userInfo.getAccount())
         .putInt(USER_AREAID, userInfo.getAreaid())
-        .putInt(USER_ID, userInfo.getId())
+        .putString(USER_ID, userInfo.getId())
         .putString(USER_NICKNAME, userInfo.getUsername())
         .putString(USER_REMARK, userInfo.getRemark())//
         .putString(USER_ROLE, userInfo.getRole())
@@ -253,7 +253,7 @@ public class SharedPreferenceHelper {
     SharedPreferences preferences = SharedPreferenceUtil.getSharedPreferences();
     bean.setAccount(preferences.getString(USER_ACCOUNT, null));
     bean.setAreaid(preferences.getInt(USER_AREAID, 0));
-    bean.setId(preferences.getInt(USER_ID, 0));
+    bean.setId(preferences.getString(USER_ID, null));
     bean.setUsername(preferences.getString(USER_NICKNAME, null));
     bean.setRemark(preferences.getString(USER_REMARK, null));
     bean.setRole(preferences.getString(USER_ROLE, null));
@@ -279,8 +279,8 @@ public class SharedPreferenceHelper {
   public static int getUserAreaid() {
     return SharedPreferenceUtil.getInt(USER_AREAID);
   }
-  public static int getUseId() {
-    return SharedPreferenceUtil.getInt(USER_ID);
+  public static String getUseId() {
+    return SharedPreferenceUtil.getString(USER_ID);
   }
   /**
    * 是否是第一次使用APP

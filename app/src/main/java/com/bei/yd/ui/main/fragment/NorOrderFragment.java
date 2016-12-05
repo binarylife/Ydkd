@@ -50,7 +50,7 @@ public class NorOrderFragment extends BaseLoadFragment implements View.OnClickLi
   protected void onLoadData() {
     mainPresenter = new MainPresenterImpl(getActivity(), this);
     mainPresenter.getAllNewWorkOrderList(SharedPreferenceHelper.getUserRole(),
-        Integer.parseInt(SharedPreferenceHelper.getUserAccount()), pn);
+        SharedPreferenceHelper.getUserAccount(), pn);
   }
 
   @Override public void onCreate(@Nullable Bundle savedInstanceState) {

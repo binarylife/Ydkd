@@ -39,7 +39,7 @@ public class PaiModelImpl implements PaiModel, IApiConfig {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(callback);
     }
-    @Override public void getAllAreaFixPaiWorker(String role, int areaid,int uid,
+    @Override public void getAllAreaFixPaiWorker(String role, int areaid,String uid,
         Subscriber<UserInfoBeans> callback) {
         MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
         api.getAllFixPaiWorker(role,areaid,uid)
@@ -54,7 +54,7 @@ public class PaiModelImpl implements PaiModel, IApiConfig {
      * @param accountB
      * @param callback
    */
-    @Override public void dispatchSingleFault(int id, String accountA, String accountB,
+    @Override public void dispatchSingleFault(String id, String accountA, String accountB,
         Subscriber<MainBean> callback) {
         MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
         api.dispatchSingleFault(id,accountA,accountB)
@@ -62,7 +62,7 @@ public class PaiModelImpl implements PaiModel, IApiConfig {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(callback);
     }
-    @Override public void dispatchOrder(int id, String accountA, String accountB,
+    @Override public void dispatchOrder(String id, String accountA, String accountB,
         Subscriber<MainBean> callback) {
         MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
         api.dispatchOrder(id,accountA,accountB)
@@ -70,7 +70,7 @@ public class PaiModelImpl implements PaiModel, IApiConfig {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(callback);
     }
-    @Override public void affirmOrder(int wid, Subscriber<MainBean> callback) {
+    @Override public void affirmOrder(String wid, Subscriber<MainBean> callback) {
         MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
         api.affirmOrder(wid)
             .subscribeOn(Schedulers.io())
@@ -83,14 +83,14 @@ public class PaiModelImpl implements PaiModel, IApiConfig {
      * @param wid
      * @param callback
    */
-    @Override public void affirmSingleFault(int wid, Subscriber<MainBean> callback) {
+    @Override public void affirmSingleFault(String wid, Subscriber<MainBean> callback) {
         MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
         api.affirmSingleFault(wid)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(callback);
     }
-    @Override public void isCancelOrder(int wid,int isSuccess, Subscriber<MainBean> callback) {
+    @Override public void isCancelOrder(String wid,int isSuccess, Subscriber<MainBean> callback) {
         MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
         api.isCancelOrder(wid,isSuccess)
             .subscribeOn(Schedulers.io())
@@ -104,7 +104,7 @@ public class PaiModelImpl implements PaiModel, IApiConfig {
    * @param isSuccess
    * @param callback
    */
-    @Override public void isCancelSingleFault(int wid,int isSuccess, Subscriber<MainBean> callback) {
+    @Override public void isCancelSingleFault(String wid,int isSuccess, Subscriber<MainBean> callback) {
         MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
         api.isCancelSingleFault(wid,isSuccess)
             .subscribeOn(Schedulers.io())

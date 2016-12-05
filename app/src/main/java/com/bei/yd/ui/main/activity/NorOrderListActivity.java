@@ -32,7 +32,7 @@ public class NorOrderListActivity extends BackBaseActivity
   private PaiWorkerListAdapter adapter;
   private int pn;
   private PaiPresenterImpl paiPresenter;
-  private int orderId;
+  private String orderId;
   private String orderCreater;
   private ArrayList<UserInfoBeans> userInfoBeanses;
   private String accountB;//被派单人
@@ -43,7 +43,7 @@ public class NorOrderListActivity extends BackBaseActivity
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_pai_workerlist);
     Bundle bundle = getIntent().getExtras();
-    orderId = bundle.getInt(Constant.ORDER_ID);
+    orderId = bundle.getString(Constant.ORDER_ID);
     misNewOreder = bundle.getBoolean(Constant.isNewOreder);
     orderCreater = bundle.getString(Constant.ORDER_CREATER);
     //  初始化上传头像的逻辑层

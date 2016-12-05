@@ -45,7 +45,7 @@ public class FixPresenterImpl implements IFixPresenter {
 
   }
 
-  @Override public void querySingleFault(String role, int account, final int pn) {
+  @Override public void querySingleFault(String role, String account, final int pn) {
     view.showProgress();
     model.querySingleFault(role, account, pn, new Subscriber<MainItemNewOrderBean>() {
       @Override public void onCompleted() {
@@ -68,11 +68,12 @@ public class FixPresenterImpl implements IFixPresenter {
     });
   }
 
-  @Override public void affirmOrder(int wid) {
+  @Override public void affirmOrder(String wid) {
 
   }
 
-  @Override public void isCancelOrder(int wid, int isSuccess) {
+  @Override public void isCancelOrder(String
+      wid, int isSuccess) {
 
   }
 }

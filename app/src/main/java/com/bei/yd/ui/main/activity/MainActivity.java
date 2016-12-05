@@ -182,29 +182,29 @@ public class MainActivity extends BackBaseActivity {
     /**
      * 菜单显示隐藏动画
      */
-    //private void startAnimation(boolean showOrHide){
-    //    final ViewGroup.LayoutParams layoutParams = tabLayout.getLayoutParams();
-    //    ValueAnimator valueAnimator;
-    //    ObjectAnimator alpha;
-    //    if(!showOrHide){
-    //         valueAnimator = ValueAnimator.ofInt(tabLayoutHeight, 0);
-    //        alpha = ObjectAnimator.ofFloat(tabLayout, "alpha", 1, 0);
-    //    }else{
-    //         valueAnimator = ValueAnimator.ofInt(0, tabLayoutHeight);
-    //        alpha = ObjectAnimator.ofFloat(tabLayout, "alpha", 0, 1);
-    //    }
-    //    valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-    //        @Override
-    //        public void onAnimationUpdate(ValueAnimator valueAnimator) {
-    //            layoutParams.height= (int) valueAnimator.getAnimatedValue();
-    //            tabLayout.setLayoutParams(layoutParams);
-    //        }
-    //    });
-    //    AnimatorSet animatorSet=new AnimatorSet();
-    //    animatorSet.setDuration(500);
-    //    animatorSet.playTogether(valueAnimator,alpha);
-    //    animatorSet.start();
-    //}
+    private void startAnimation(boolean showOrHide){
+        final ViewGroup.LayoutParams layoutParams = tabLayout.getLayoutParams();
+        ValueAnimator valueAnimator;
+        ObjectAnimator alpha;
+        if(!showOrHide){
+             valueAnimator = ValueAnimator.ofInt(tabLayoutHeight, 0);
+            alpha = ObjectAnimator.ofFloat(tabLayout, "alpha", 1, 0);
+        }else{
+             valueAnimator = ValueAnimator.ofInt(0, tabLayoutHeight);
+            alpha = ObjectAnimator.ofFloat(tabLayout, "alpha", 0, 1);
+        }
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                layoutParams.height= (int) valueAnimator.getAnimatedValue();
+                tabLayout.setLayoutParams(layoutParams);
+            }
+        });
+        AnimatorSet animatorSet=new AnimatorSet();
+        animatorSet.setDuration(500);
+        animatorSet.playTogether(valueAnimator,alpha);
+        animatorSet.start();
+    }
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
