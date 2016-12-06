@@ -11,14 +11,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_larger"
-        android:src="@drawable/logo"/>
+        android:src="@drawable/ic_launcher"/>
 
     <TextView
         style="@style/ItemText.Gray.Normal"
         android:id="@+id/about_version"
         android:layout_marginTop="@dimen/margin_normal"
         android:layout_marginBottom="@dimen/margin_larger"
-        tools:text="v1.0"/>
+        android:text="v1.0"
+        android:textColor="@color/black"/>
 
     <LinearLayout
         android:layout_width="match_parent"

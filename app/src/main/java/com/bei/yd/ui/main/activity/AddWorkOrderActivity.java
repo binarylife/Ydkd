@@ -3,6 +3,7 @@ package com.bei.yd.ui.main.activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.webkit.ValueCallback;
 import android.widget.EditText;
@@ -109,6 +110,18 @@ public class AddWorkOrderActivity extends BackBaseActivity
         //  请求服务器更新
         break;
       case R.id.tv_save://  保存修改
+        if (TextUtils.isEmpty(mAccount.getText().toString())){
+          ToastUtil.showNormalShortToast("请输入客户单号");
+          return;
+        }
+        if (TextUtils.isEmpty(tvAddress.getText().toString())){
+          ToastUtil.showNormalShortToast("请输入详细地址");
+          return;
+        }
+        if (TextUtils.isEmpty(tvPhone.getText().toString())){
+          ToastUtil.showNormalShortToast("请输入电话");
+          return;
+        }
         if (misNewOreder) {
           mainPresenter.addWorkOrder(selectAreaId + "", mAccount.getText().toString(),
               tvAddress.getText().toString(), tvPhone.getText().toString());
