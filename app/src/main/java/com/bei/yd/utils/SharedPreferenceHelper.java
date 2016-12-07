@@ -300,7 +300,7 @@ public class SharedPreferenceHelper {
    * 是否需要记住账户
    */
   public static boolean isRememberAccount() {
-    return SharedPreferenceUtil.getBoolean(REMEMBER_ACCOUNT, true);
+    return SharedPreferenceUtil.getBoolean(REMEMBER_ACCOUNT, false);
   }
 
   public static void setRememberAccout(boolean b) {

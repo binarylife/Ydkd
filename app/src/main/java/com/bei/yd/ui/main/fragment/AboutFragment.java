@@ -11,6 +11,7 @@ import com.bei.yd.R;
 import com.bei.yd.ui.base.fragment.BaseLoadFragment;
 import com.bei.yd.ui.main.activity.SearchTagWorkFixOrderActivity;
 import com.bei.yd.ui.main.activity.SearchTagWorkOrderActivity;
+import com.bei.yd.utils.DeviceUtils;
 import com.bei.yd.utils.InvokeStartActivityUtils;
 import com.bei.yd.utils.SharedPreferenceHelper;
 import com.bei.yd.widget.DialogBuilder;
@@ -85,6 +86,7 @@ public class AboutFragment extends BaseLoadFragment implements View.OnClickListe
         showMutiDialog("确定退出登录？", "温馨提示", new DialogBuilder.ClickCallbak() {
           @Override public void onConfirm() {
             SharedPreferenceHelper.setRememberAccout(false);
+            DeviceUtils.exitBaiDai();
           }
 
           @Override public void onCancle() {
