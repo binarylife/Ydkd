@@ -36,5 +36,6 @@
       android:layout_marginRight="20dp"
       android:layout_alignParentRight="true"
       app:fab_colorNormal="@color/colorPrimary"
+      android:visibility="gone"
       />
 </RelativeLayout>

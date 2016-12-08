@@ -2,7 +2,16 @@ apply plugin: 'com.android.application'
 def releaseTime() {
   return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
 }
+
 android {
+  signingConfigs {
+    config {
+      keyAlias 'bei'
+      keyPassword '123456'
+      storeFile file('C:/Users/bei/yd.jks')
+      storePassword '123456'
+    }
+  }
   compileSdkVersion 23
   buildToolsVersion "24.0.1"
   defaultConfig {
@@ -29,8 +38,9 @@ android {
           }
         }
       }
+      signingConfig signingConfigs.config
     }
-    debug{
+    debug {
       signingConfig signingConfigs.debug
       buildConfigField "boolean", "LOG_DEBUG", "true"
     }
@@ -48,7 +58,7 @@ android {
 }
 
 dependencies {
-  compile fileTree(dir: 'libs', include: ['*.jar'])
+  compile fileTree(include: ['*.jar'], dir: 'libs')
   androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
     exclude group: 'com.android.support', module: 'support-annotations'
   })

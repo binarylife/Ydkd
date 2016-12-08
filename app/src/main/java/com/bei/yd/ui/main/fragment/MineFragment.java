@@ -59,13 +59,21 @@ public class MineFragment extends BaseLoadFragment implements View.OnClickListen
         //FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         if (tab.getPosition() == 0) {
           isNorOrder = true;
-          if (SharedPreferenceHelper.getUserRole().equals("A")) {
-            //   一级派单 不能新建普通工单
+          if (SharedPreferenceHelper.getUserRole().equals("B")) {
+            //   只有区县派单员才能新建工单
+            mbtNewOrder.setVisibility(View.VISIBLE);
+          } else {
             mbtNewOrder.setVisibility(View.GONE);
           }
         } else {
           isNorOrder = false;
-          mbtNewOrder.setVisibility(View.VISIBLE);
+          if (SharedPreferenceHelper.getUserRole().equals("B")
+              || SharedPreferenceHelper.getUserRole().equals("A")) {
+            //   只有区县派单员才能新建工单和故障单
+            mbtNewOrder.setVisibility(View.VISIBLE);
+          } else {
+            mbtNewOrder.setVisibility(View.GONE);
+          }
         }
         viewPager.setCurrentItem(tab.getPosition());
       }
@@ -89,8 +97,7 @@ public class MineFragment extends BaseLoadFragment implements View.OnClickListen
     viewPager.setAdapter(adapter);
     tabLayout.setupWithViewPager(viewPager);
     LogUtils.loge("角色" + SharedPreferenceHelper.getUserRole());
-    if (SharedPreferenceHelper.getUserRole().equals("A") || SharedPreferenceHelper.getUserRole()
-        .equals("B")) {
+    if (SharedPreferenceHelper.getUserRole().equals("B")) {
       mbtNewOrder.setVisibility(View.VISIBLE);
     } else {
       mbtNewOrder.setVisibility(View.GONE);
