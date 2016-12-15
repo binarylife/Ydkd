@@ -63,14 +63,14 @@ public class FixOrderDetialActivity extends BackBaseActivity
   @Bind(R.id.ll_area_bottom) LinearLayout llAreaBottom;
   @Bind(R.id.tv_save_area) TextView tvSaveArea;
   @Bind(R.id.ll_bottom) LinearLayout ll_bottom;
-  @Bind(R.id.ll_bottom) TextView dispatchPeople21;
-  @Bind(R.id.ll_bottom) TextView dispatchPeople22;
-  @Bind(R.id.ll_bottom) TextView dispatchTime21;
-  @Bind(R.id.ll_bottom) TextView dispatchTime22;
-  @Bind(R.id.ll_bottom) TextView dispatchWarning1;
-  @Bind(R.id.ll_bottom) TextView dispatchWarning2;
-  @Bind(R.id.ll_bottom) TextView dispatchDuration21;
-  @Bind(R.id.ll_bottom) TextView dispatchDuration22;
+  @Bind(R.id.dispatchPeople21) TextView dispatchPeople21;
+  @Bind(R.id.dispatchPeople22) TextView dispatchPeople22;
+  @Bind(R.id.dispatchTime21) TextView dispatchTime21;
+  @Bind(R.id.dispatchTime22) TextView dispatchTime22;
+  @Bind(R.id.dispatchWarning1) TextView dispatchWarning1;
+  @Bind(R.id.dispatchWarning2) TextView dispatchWarning2;
+  @Bind(R.id.dispatchDuration21) TextView dispatchDuration21;
+  @Bind(R.id.dispatchDuration22) TextView dispatchDuration22;
   //@Bind(R.id.bt_login) TextView mlogin;
   //  网络交互的逻辑层
   private MainPresenterImpl mineInfoPresenter;
