@@ -112,13 +112,13 @@ public class OrderDetialActivity extends BackBaseActivity
     installwarning.setText(orderDetialBean.getInstallWarning() + "");
     visitwarning.setText(orderDetialBean.getVisitWarning() + "");
     repeatnum.setText(orderDetialBean.getRepeatNum() + "");
-    iscancle.setText(orderDetialBean.getIsCancel() ==1?"是": "否");
-    isend.setText(orderDetialBean.getIsEnd() ==1?"是": "否");
+    iscancle.setText(orderDetialBean.getIsCancel() == 1 ? "是" : "否");
+    isend.setText(orderDetialBean.getIsEnd() == 1 ? "是" : "否");
     status.setText(MyUtils.getNorTextByType(orderDetialBean.getStatus()));
     statusValue = orderDetialBean.getStatus();
     if (!misSearch) {
       showBottomButton();
-    }else {
+    } else {
       ll_bottom.setVisibility(View.GONE);
     }
   }
@@ -156,6 +156,18 @@ public class OrderDetialActivity extends BackBaseActivity
           //  派单
           tv_dispatch.setText("装机完成 点击此处进行回单");
         }
+
+      case "CD":
+        //装机人和接口人一个角色
+        if (statusValue == 2) {
+          //  派单
+          tv_dispatch.setText("点击此处指派工单");
+        }
+        //  装机人
+        if (statusValue == 3) {
+          //  派单
+          tv_dispatch.setText("装机完成 点击此处进行回单");
+        }
         break;
     }
   }
@@ -165,7 +177,7 @@ public class OrderDetialActivity extends BackBaseActivity
   }
 
   @OnClick({
-      R.id.tv_dispatch,R.id.tv_chedan,R.id.tv_huidan,
+      R.id.tv_dispatch, R.id.tv_chedan, R.id.tv_huidan,
   }) public void onClick(View view) {
     switch (view.getId()) {
       case R.id.tv_dispatch:
@@ -184,9 +196,9 @@ public class OrderDetialActivity extends BackBaseActivity
               bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
               InvokeStartActivityUtils.startActivity(this, PaiWorkerListActivity.class, bundle,
                   false);
-            }else if (statusValue == 4){
-                //  回访状态下
-              paiPresenter.isCancelOrder(orderDetialBean.getId(),1);
+            } else if (statusValue == 4) {
+              //  回访状态下
+              paiPresenter.isCancelOrder(orderDetialBean.getId(), 1);
               //  成功
             }
             break;
@@ -208,17 +220,33 @@ public class OrderDetialActivity extends BackBaseActivity
               paiPresenter.affirmOrder(orderDetialBean.getId());
             }
             break;
+          case "CD":
+            if (statusValue == 2) {
+              //  接口人派单
+              Bundle bundle = new Bundle();
+              bundle.putString(Constant.ORDER_ID, orderDetialBean.getId());
+              bundle.putBoolean(Constant.isNewOreder, true);
+              bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
+              InvokeStartActivityUtils.startActivity(this, PaiWorkerListActivity.class, bundle,
+                  false);
+            }
+            //  装机人
+            if (statusValue == 3) {
+              //  装机完成
+              paiPresenter.affirmOrder(orderDetialBean.getId());
+            }
+            break;
         }
         break;
       case R.id.tv_chedan:
         if (statusValue == 4) {
-          paiPresenter.isCancelOrder(orderDetialBean.getId(),2);
+          paiPresenter.isCancelOrder(orderDetialBean.getId(), 2);
         }
         break;
       case R.id.tv_huidan:
         if (statusValue == 4) {
           // 回访中
-          paiPresenter.isCancelOrder(orderDetialBean.getId(),3);
+          paiPresenter.isCancelOrder(orderDetialBean.getId(), 3);
           //tv_dispatch.setText("装机成功");
           //tv_chedan.setVisibility(View.VISIBLE);
           //tv_chedan.setText("撤单");

@@ -191,6 +191,27 @@ public class FixAdapter extends BaseRecyclerAdapter<MainItemNewOrderBean>
           }
         }
         break;
+
+      case "CD":
+        if (statusValue == 2) {
+          //  接口人 派单预警
+          if (bean.getDispatchWarning()!=0) {
+            textView.setText(bean.getDispatchWarning() + "");
+            MyUtils.showYuJinggButtonBG(textView,bean.getDispatchWarning());
+          }else{
+            textView.setVisibility(View.GONE);
+          }
+        }
+        if (statusValue == 4) {
+          //  装机预警
+          if (bean.getInstallWarning()!=0) {
+            textView.setText(bean.getInstallWarning() + "");
+            MyUtils.showYuJinggButtonBG(textView,bean.getInstallWarning());
+          }else{
+            textView.setVisibility(View.GONE);
+          }
+        }
+        break;
       default:
         textView.setVisibility(View.GONE);
     }

@@ -163,6 +163,8 @@ public class MyUtils {
         return "装机人";
       case "E":
         return "管理员";
+      case "CD":
+        return "接口人/装机人";
       default:
         return "未知状态";
     }

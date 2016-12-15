@@ -63,6 +63,14 @@ public class FixOrderDetialActivity extends BackBaseActivity
   @Bind(R.id.ll_area_bottom) LinearLayout llAreaBottom;
   @Bind(R.id.tv_save_area) TextView tvSaveArea;
   @Bind(R.id.ll_bottom) LinearLayout ll_bottom;
+  @Bind(R.id.ll_bottom) TextView dispatchPeople21;
+  @Bind(R.id.ll_bottom) TextView dispatchPeople22;
+  @Bind(R.id.ll_bottom) TextView dispatchTime21;
+  @Bind(R.id.ll_bottom) TextView dispatchTime22;
+  @Bind(R.id.ll_bottom) TextView dispatchWarning1;
+  @Bind(R.id.ll_bottom) TextView dispatchWarning2;
+  @Bind(R.id.ll_bottom) TextView dispatchDuration21;
+  @Bind(R.id.ll_bottom) TextView dispatchDuration22;
   //@Bind(R.id.bt_login) TextView mlogin;
   //  网络交互的逻辑层
   private MainPresenterImpl mineInfoPresenter;
@@ -78,6 +86,7 @@ public class FixOrderDetialActivity extends BackBaseActivity
   private ArrayList<AreaBean> beanData;
   private String tareaName;
   private boolean misSearch;
+
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_fix_order_detial);
@@ -142,9 +151,17 @@ public class FixOrderDetialActivity extends BackBaseActivity
     statusValue = orderDetialBean.getStatus();
     if (!misSearch) {
       showBottomButton();
-    }else {
+    } else {
       ll_bottom.setVisibility(View.GONE);
     }
+    dispatchPeople21.setText(orderDetialBean.getDispatchPeople21());;
+    dispatchPeople22.setText(orderDetialBean.getDispatchPeople22());;
+    dispatchTime21.setText(orderDetialBean.getDispatchTime21());;
+    dispatchTime22.setText(orderDetialBean.getDispatchTime22());;
+    dispatchWarning1.setText(orderDetialBean.getDispatchWarning1()+"");;
+    dispatchWarning2.setText(orderDetialBean.getDispatchWarning2()+"");;
+    dispatchDuration21.setText(orderDetialBean.getDispatchDuration21()+"");;
+    dispatchDuration22.setText(orderDetialBean.getDispatchDuration22()+"");;
   }
 
   /**
@@ -167,8 +184,8 @@ public class FixOrderDetialActivity extends BackBaseActivity
         } else if (statusValue == 5) {
           // 回访中
           tv_dispatch.setText("装机成功");
-          tv_chedan.setVisibility(View.VISIBLE);
-          tv_chedan.setText("撤单");
+          //tv_chedan.setVisibility(View.VISIBLE);
+          //tv_chedan.setText("撤单");
           tv_huidan.setVisibility(View.VISIBLE);
           tv_huidan.setText("退单");
         } else if (statusValue == 1) {
@@ -187,6 +204,17 @@ public class FixOrderDetialActivity extends BackBaseActivity
         break;
       case "D":
         //  装机人
+        if (statusValue == 4) {
+          //  派单
+          tv_dispatch.setText("装机完成 点击此处进行回单");
+        }
+        break;
+      case "CD":
+        //  装机人  接口人
+        if (statusValue == 2) {
+          //  派单
+          tv_dispatch.setText("点击此处指派工单");
+        }
         if (statusValue == 4) {
           //  派单
           tv_dispatch.setText("装机完成 点击此处进行回单");
@@ -281,12 +309,13 @@ public class FixOrderDetialActivity extends BackBaseActivity
               bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
               InvokeStartActivityUtils.startActivity(this, PaiWorkerListActivity.class, bundle,
                   false);
-            }else if (statusValue==1){
+            } else if (statusValue == 1) {
               Bundle bundle = new Bundle();
               bundle.putString(Constant.ORDER_ID, orderDetialBean.getId());
               bundle.putBoolean(Constant.isNewOreder, false);
               bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
-              InvokeStartActivityUtils.startActivity(this, PaiWorkerListActivity.class, bundle,false);
+              InvokeStartActivityUtils.startActivity(this, PaiWorkerListActivity.class, bundle,
+                  false);
             }
             break;
           case "C":
@@ -301,6 +330,23 @@ public class FixOrderDetialActivity extends BackBaseActivity
             }
             break;
           case "D":
+            //  装机人
+            if (statusValue == 4) {
+              //  装机完成
+              paiPresenter.affirmSingleFault(orderDetialBean.getId());
+            }
+            break;
+          case "CD":
+            //  装机人  接口人
+            if (statusValue == 2) {
+              //  接口人二级派单
+              Bundle bundle = new Bundle();
+              bundle.putString(Constant.ORDER_ID, orderDetialBean.getId());
+              bundle.putBoolean(Constant.isNewOreder, false);
+              bundle.putString(Constant.ORDER_CREATER, SharedPreferenceHelper.getUserAccount());
+              InvokeStartActivityUtils.startActivity(this, PaiWorkerListActivity.class, bundle,
+                  false);
+            }
             //  装机人
             if (statusValue == 4) {
               //  装机完成

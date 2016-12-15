@@ -167,6 +167,28 @@ public class MainAdapter extends BaseRecyclerAdapter<MainItemNewOrderBean>
           }
         }
         break;
+
+      case "CD":
+        //  装机人和接口人两个角色一起
+        if (statusValue == 2) {
+          //  派单预警
+          if (bean.getDispatchWarning()!=0) {
+            textView.setText(bean.getDispatchWarning() + "");
+            MyUtils.showYuJinggButtonBG(textView, bean.getDispatchWarning());
+          }else{
+            textView.setVisibility(View.GONE);
+          }
+        }
+        if (statusValue == 3) {
+          //  装机预警
+          if (bean.getInstallWarning()!=0) {
+            textView.setText(bean.getInstallWarning() + "");
+            MyUtils.showYuJinggButtonBG(textView, bean.getInstallWarning());
+          }else{
+            textView.setVisibility(View.GONE);
+          }
+        }
+        break;
       default:
         textView.setVisibility(View.GONE);
     }

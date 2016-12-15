@@ -108,6 +108,8 @@ public class LoginActivity extends BackBaseActivity implements IMainView, View.O
       //InvokeStartActivityUtils.startActivity(this, MainActivity.class, null, true);
       MainActivity.startAction(LoginActivity.this);
       finish();
+    }else{
+      ToastUtil.showNormalShortToast(bean.getMessage());
     }
   }
 

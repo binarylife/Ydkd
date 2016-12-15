@@ -551,6 +551,174 @@
             />
 
       </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="二级二次派单人："
+            />
+
+        <TextView
+            android:id="@+id/dispatchPeople22"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="二级一次派单人："
+            />
+
+        <TextView
+            android:id="@+id/dispatchPeople21"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="二级一次派单时间："
+            />
+
+        <TextView
+            android:id="@+id/dispatchTime21"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="二级二次派单时间："
+            />
+
+        <TextView
+            android:id="@+id/dispatchTime22"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="二级一次派单预警："
+            />
+
+        <TextView
+            android:id="@+id/dispatchWarning1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="二级二次次派单预警："
+            />
+
+        <TextView
+            android:id="@+id/dispatchWarning2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="二级一次派单时长："
+            />
+
+        <TextView
+            android:id="@+id/dispatchDuration21"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="二级二次派单时长："
+            />
+
+        <TextView
+            android:id="@+id/dispatchDuration22"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
     </LinearLayout>
   </ScrollView>
 
