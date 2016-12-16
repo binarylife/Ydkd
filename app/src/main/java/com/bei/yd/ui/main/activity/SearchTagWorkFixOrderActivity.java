@@ -426,15 +426,16 @@ public class SearchTagWorkFixOrderActivity extends BackBaseActivity
       mScrollView.setVisibility(View.GONE);
       tvSave.setVisibility(View.GONE);
       rvList.setVisibility(View.VISIBLE);
+      tvTitle.setText("数量："+bean.getSize()+"条");
+      newOrderBeen = bean.getData();
+      adapter.updateItems(newOrderBeen);
+      if (rvList != null) {
+        rvList.refreshComplete();
+        rvList.loadMoreComplete();
+      }
     } else {
       ToastUtil.showNormalShortToast("查询不到相关工单，请重新查询！");
       return;
-    }
-    newOrderBeen = bean.getData();
-    adapter.updateItems(newOrderBeen);
-    if (rvList != null) {
-      rvList.refreshComplete();
-      rvList.loadMoreComplete();
     }
     //if (pn == 1) {
     //  rvList.reset();

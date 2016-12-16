@@ -185,14 +185,14 @@ public class SearchTagWorkOrderActivity extends BackBaseActivity
     tvtimeType.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
       @Override
       public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
-        mTimeTypePosition=position;
+        mTimeTypePosition = position;
         //switch (position) {
         //  default:
         //    //   默认清空所有操作
-            taketime = null;
-            dispatchtime = null;
-            installtime = null;
-            overtime = null;
+        taketime = null;
+        dispatchtime = null;
+        installtime = null;
+        overtime = null;
         //  case 0:
         //    break;
         //  case 1:
@@ -281,21 +281,21 @@ public class SearchTagWorkOrderActivity extends BackBaseActivity
         //      tvAddress.getText().toString(), Integer.parseInt(tvPhone.getText().toString()));
         //}
         //   整理数据
-        if (mTimeTypePosition==1){
+        if (mTimeTypePosition == 1) {
           //  安装时间
-          installtime=timeValue;
+          installtime = timeValue;
         }
-        if (mTimeTypePosition==2){
+        if (mTimeTypePosition == 2) {
           //  安装时间
-          dispatchtime=timeValue;
+          dispatchtime = timeValue;
         }
-        if (mTimeTypePosition==3){
+        if (mTimeTypePosition == 3) {
           //  安装时间
-          installtime=timeValue;
+          installtime = timeValue;
         }
-        if (mTimeTypePosition==4){
+        if (mTimeTypePosition == 4) {
           //  安装时间
-          overtime=timeValue;
+          overtime = timeValue;
         }
         searchForList();
 
@@ -401,15 +401,16 @@ public class SearchTagWorkOrderActivity extends BackBaseActivity
       mScrollView.setVisibility(View.GONE);
       tvSave.setVisibility(View.GONE);
       rvList.setVisibility(View.VISIBLE);
+      tvTitle.setText("数量:"+bean.getSize()+"条");
+      newOrderBeen = bean.getData();
+      adapter.updateItems(newOrderBeen);
+      if (rvList != null) {
+        rvList.refreshComplete();
+        rvList.loadMoreComplete();
+      }
     } else {
       ToastUtil.showNormalShortToast("查询不到相关工单，请重新查询！");
       return;
-    }
-    newOrderBeen = bean.getData();
-    adapter.updateItems(newOrderBeen);
-    if (rvList != null) {
-      rvList.refreshComplete();
-      rvList.loadMoreComplete();
     }
     //if (pn == 1) {
     //  rvList.reset();
