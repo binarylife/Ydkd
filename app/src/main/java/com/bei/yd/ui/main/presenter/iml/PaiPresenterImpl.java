@@ -170,8 +170,8 @@ public class PaiPresenterImpl implements IPaiPresenter {
     });
   }
 
-  @Override public void isCancelOrder(String wid, int isSuccess) {
-    model.isCancelOrder(wid,isSuccess,new Subscriber<MainBean>() {
+  @Override public void isCancelOrder(String wid,String reason, int isSuccess) {
+    model.isCancelOrder(wid,reason,isSuccess,new Subscriber<MainBean>() {
       @Override public void onCompleted() {
 
       }

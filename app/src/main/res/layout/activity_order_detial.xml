@@ -511,6 +511,27 @@
             />
 
       </LinearLayout>
+      <LinearLayout
+          style="@style/AddConsumerLayout"
+          android:background="@color/windowBackground"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ItemText_Black_Large"
+            android:text="撤单原因："
+            />
+
+        <TextView
+            android:id="@+id/reason"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/ItemText_Black_right"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_large"
+            />
+
+      </LinearLayout>
     </LinearLayout>
   </ScrollView>
 

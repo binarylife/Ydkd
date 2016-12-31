@@ -82,7 +82,7 @@ public interface MainFragmentApi {
    * 装机人安装完成--进行回单
    */
   @POST("isCancelOrder") Observable<MainBean> isCancelOrder(@Query("wid") String wid,
-      @Query("isSuccess") int isSuccess);
+      @Query("reason")  String reason, @Query("isSuccess") int isSuccess);
 
   /**
    * 新增维修工单

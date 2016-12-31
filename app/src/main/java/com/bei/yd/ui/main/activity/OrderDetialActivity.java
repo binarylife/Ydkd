@@ -1,9 +1,11 @@
 package com.bei.yd.ui.main.activity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -55,6 +57,7 @@ public class OrderDetialActivity extends BackBaseActivity
   @Bind(R.id.iscancle) TextView iscancle;
   @Bind(R.id.isend) TextView isend;
   @Bind(R.id.status) TextView status;
+  @Bind(R.id.reason) TextView reason;
   @Bind(R.id.tv_dispatch) TextView tv_dispatch;
   @Bind(R.id.tv_chedan) TextView tv_chedan;
   @Bind(R.id.tv_huidan) TextView tv_huidan;
@@ -116,6 +119,7 @@ public class OrderDetialActivity extends BackBaseActivity
     isend.setText(orderDetialBean.getIsEnd() == 1 ? "是" : "否");
     status.setText(MyUtils.getNorTextByType(orderDetialBean.getStatus()));
     statusValue = orderDetialBean.getStatus();
+    reason.setText(orderDetialBean.getReason());
     if (!misSearch) {
       showBottomButton();
     } else {
@@ -198,7 +202,7 @@ public class OrderDetialActivity extends BackBaseActivity
                   false);
             } else if (statusValue == 4) {
               //  回访状态下
-              paiPresenter.isCancelOrder(orderDetialBean.getId(), 1);
+              paiPresenter.isCancelOrder(orderDetialBean.getId(),"", 1);
               //  成功
             }
             break;
@@ -240,13 +244,13 @@ public class OrderDetialActivity extends BackBaseActivity
         break;
       case R.id.tv_chedan:
         if (statusValue == 4) {
-          paiPresenter.isCancelOrder(orderDetialBean.getId(), 2);
+          showAlterDialog(orderDetialBean.getId());
         }
         break;
       case R.id.tv_huidan:
         if (statusValue == 4) {
           // 回访中
-          paiPresenter.isCancelOrder(orderDetialBean.getId(), 3);
+          paiPresenter.isCancelOrder(orderDetialBean.getId(),"", 3);
           //tv_dispatch.setText("装机成功");
           //tv_chedan.setVisibility(View.VISIBLE);
           //tv_chedan.setText("撤单");
@@ -303,5 +307,28 @@ public class OrderDetialActivity extends BackBaseActivity
 
   @Override public void showLoadFailMsg(String msg) {
 
+  }
+
+  /**
+   * 撤单时填写相关备注
+   */
+  public void showAlterDialog(String content){
+    final EditText et = new EditText(this);
+    new AlertDialog.Builder(this).setTitle("请填写撤单原因")
+        .setIcon(android.R.drawable.ic_dialog_info)
+        .setView(et)
+        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+          public void onClick(DialogInterface dialog, int which) {
+            String input = et.getText().toString();
+            if (input.equals("")) {
+              ToastUtil.showNormalShortToast("撤单原因不能为空！" );
+            }
+            else {
+              paiPresenter.isCancelOrder(orderDetialBean.getId(),input, 2);
+            }
+          }
+        })
+        .setNegativeButton("取消", null)
+        .show();
   }
 }

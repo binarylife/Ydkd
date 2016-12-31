@@ -42,7 +42,7 @@ public interface PaiModel {
   /**
    * 确认装机成功/撤单/退单
    */
-  void isCancelOrder(String wid, int isSuccess, Subscriber<MainBean> callback);
+  void isCancelOrder(String wid,String reason, int isSuccess, Subscriber<MainBean> callback);
   /**
    * 确认装机成功/撤单/退单
    */

@@ -27,7 +27,7 @@ public interface IPaiPresenter {
     /**
      * 指派工单给工人
      */
-    void isCancelOrder(String wid,int isSuccess);
+    void isCancelOrder(String wid,String reason,int isSuccess);
     /**
      * 指派工单给工人
      */

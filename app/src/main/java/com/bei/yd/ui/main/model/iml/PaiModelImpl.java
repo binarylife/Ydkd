@@ -90,9 +90,9 @@ public class PaiModelImpl implements PaiModel, IApiConfig {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(callback);
     }
-    @Override public void isCancelOrder(String wid,int isSuccess, Subscriber<MainBean> callback) {
+    @Override public void isCancelOrder(String wid,String reason,int isSuccess, Subscriber<MainBean> callback) {
         MainFragmentApi api = RestAdapterUtils.getRestAPI(BASE_URL, MainFragmentApi.class);
-        api.isCancelOrder(wid,isSuccess)
+        api.isCancelOrder(wid,reason,isSuccess)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(callback);

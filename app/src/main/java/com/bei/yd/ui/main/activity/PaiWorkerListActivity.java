@@ -194,7 +194,7 @@ public class PaiWorkerListActivity extends BackBaseActivity
    * 派单成功的回调
    */
   @Override public void onDispatchSuccess(MainBean bean) {
-    finish();
+    InvokeStartActivityUtils.startActivity(this,MainActivity.class,null,true);
   }
 
   @Override public void onaffirmOrderSuccess(MainBean bean) {

@@ -57,6 +57,7 @@ public class MainItemNewOrderBean  extends BaseBean<ArrayList<MainItemNewOrderBe
     private int visitDuration;
     private int visitWarning;
     private int status;
+    private String reason;
     private String dispatchPeople21;
     private String dispatchPeople22;
     private String dispatchTime21;
@@ -89,6 +90,7 @@ public class MainItemNewOrderBean  extends BaseBean<ArrayList<MainItemNewOrderBe
         visitDuration = in.readInt();
         visitWarning = in.readInt();
         status = in.readInt();
+        reason = in.readString();
         dispatchPeople21 = in.readString();
         dispatchPeople22 = in.readString();
         dispatchTime21 = in.readString();
@@ -306,6 +308,7 @@ public class MainItemNewOrderBean  extends BaseBean<ArrayList<MainItemNewOrderBe
         dest.writeInt(visitDuration);
         dest.writeInt(visitWarning);
         dest.writeInt(status);
+        dest.writeString(reason);
         dest.writeString(dispatchPeople21);
         dest.writeString(dispatchPeople22);
         dest.writeString(dispatchTime21);
@@ -391,5 +394,13 @@ public class MainItemNewOrderBean  extends BaseBean<ArrayList<MainItemNewOrderBe
 
     public int getDispatchDuration22() {
         return dispatchDuration22;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 }
