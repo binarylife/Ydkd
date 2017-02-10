@@ -15,10 +15,12 @@ public interface IApiConfig {
   /**
    * API地址
    */
-  String BASE_URL = "http://www.ordos-edu.com/yd/" ;
+  //String BASE_URL = "http://www.ordos-edu.com/yd/" ;
+  String BASE_URL = "http://101.200.122.213:8080/yd/" ;
   //String BASE_URL = "http://192.168.1.109/yd/" ;
   /**
    * H5地址
+   *
    */
   //String H5_BASE_URL = BaiDaiApp.mContext.getString(R.string.H5_URL);
   /**
