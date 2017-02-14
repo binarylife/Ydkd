@@ -3,11 +3,15 @@ package com.bei.yd.app;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.multidex.MultiDex;
-import android.text.TextUtils;
 import com.bei.yd.BuildConfig;
 import com.jaydenxiao.common.commonutils.LogUtils;
+import com.tencent.tinker.lib.service.PatchResult;
+import com.tencent.tinker.loader.app.ApplicationLike;
+import com.tencent.tinker.loader.app.TinkerApplication;
+import com.tinkerpatch.sdk.TinkerPatch;
+import com.tinkerpatch.sdk.loader.TinkerPatchApplicationLike;
+import com.tinkerpatch.sdk.tinker.callback.ResultCallBack;
 import java.util.List;
 
 /**
@@ -26,7 +30,7 @@ public class YDApp extends Application {
    * 城市编号
    */
   private int cityID = UN_SELECTED_CITY_ID;
-
+  private ApplicationLike tinkerApplicationLike;
 
   @Override public void onCreate() {
     super.onCreate();
@@ -49,6 +53,25 @@ public class YDApp extends Application {
     mContext = this;
     String processName = getProcessName(this, android.os.Process.myPid());
     LogUtils.logInit(BuildConfig.LOG_DEBUG);
+    tinkerApplicationLike = TinkerPatchApplicationLike.getTinkerPatchApplicationLike();
+    //开始检查是否有补丁，这里配置的是每隔访问3小时服务器是否有更新。
+    TinkerPatch.init(tinkerApplicationLike)
+        //.reflectPatchLibrary()
+        //若参数为true,即每次调用都会真正的访问后台配置
+        .fetchPatchUpdate(true)
+        .setPatchRollbackOnScreenOff(true)
+        .setPatchRestartOnSrceenOff(true)
+        //设置访问后台补丁包更新配置的时间间隔,默认为3个小时
+        .setFetchPatchIntervalByHours(1)
+        //向后台获得动态配置,默认的访问间隔为3个小时
+        //若参数为true,即每次调用都会真正的访问后台配置
+        //例如弹框什么
+        .setPatchResultCallback(new ResultCallBack() {
+            @Override public void onPatchResult(PatchResult patchResult) {
+                //DialogBuilder db = new DialogBuilder(BaiDaiApp.this).setTitle("提示");
+
+            }
+        });
     }
     /**
      * 进来先获取用户信息,取出Token

@@ -87,6 +87,7 @@ public class MainActivity extends BackBaseActivity {
         tabLayoutHeight=tabLayout.getMeasuredHeight();
         mTvTopName.setText(SharedPreferenceHelper.getUserNickName());
         initTab();
+        ToastUtil.showNormalShortToast("热更新成功！！！");
         //监听菜单显示或隐藏
     }
     /**
