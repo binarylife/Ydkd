@@ -49,8 +49,9 @@ public class AddWorkOrderActivity extends BackBaseActivity
   //  网络交互的逻辑层
 
   private MainPresenterImpl mainPresenter;
-  private ArrayList<String> selectArea= new ArrayList<>();//  选中的id
-  private String[] selectType= {"普通工单","维修工单"};//  选中的id
+  private ArrayList<String> selectArea = new ArrayList<>();//  选中的id
+  private ArrayList<Integer> selectAreaIds = new ArrayList<>();//  选中的id
+  private String[] selectType = { "普通工单", "维修工单" };//  选中的id
   private ArrayList<AreaBean> beanData;
   private String tareaName;
   private String typeName;
@@ -74,15 +75,21 @@ public class AddWorkOrderActivity extends BackBaseActivity
    * 初始化控y件
    */
   private void initView() {
-    tvTitle.setText(misNewOreder?"新建普通工单":"新建故障工单");
-    selectAreaId=beanData.get(0).getId();
+    tvTitle.setText(misNewOreder ? "新建普通工单" : "新建故障工单");
     tvarea.setItems(selectArea);
-    tvarea.setSelectedIndex(0);
+    int userAreaid = SharedPreferenceHelper.getUserAreaid();
+    for (int i = 0; i < selectArea.size(); i++) {
+      if (userAreaid==selectAreaIds.get(i)) {
+        tvarea.setSelectedIndex(i);
+        selectAreaId = beanData.get(i).getId();
+        break;
+      }
+    }
     tvarea.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
       @Override
       public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
         tareaName = selectArea.get(position);
-        selectAreaId=beanData.get(position).getId();
+        selectAreaId = beanData.get(position).getId();
       }
     });
     //mTypey.setItems(selectType);
@@ -101,7 +108,7 @@ public class AddWorkOrderActivity extends BackBaseActivity
   }
 
   @OnClick({
-      R.id.tv_save,R.id.title_back
+      R.id.tv_save, R.id.title_back
   }) public void onClick(View view) {
     switch (view.getId()) {
       case R.id.title_back:
@@ -110,22 +117,22 @@ public class AddWorkOrderActivity extends BackBaseActivity
         //  请求服务器更新
         break;
       case R.id.tv_save://  保存修改
-        if (TextUtils.isEmpty(mAccount.getText().toString())){
+        if (TextUtils.isEmpty(mAccount.getText().toString())) {
           ToastUtil.showNormalShortToast("请输入客户单号");
           return;
         }
-        if (TextUtils.isEmpty(tvAddress.getText().toString())){
+        if (TextUtils.isEmpty(tvAddress.getText().toString())) {
           ToastUtil.showNormalShortToast("请输入详细地址");
           return;
         }
-        if (TextUtils.isEmpty(tvPhone.getText().toString())){
+        if (TextUtils.isEmpty(tvPhone.getText().toString())) {
           ToastUtil.showNormalShortToast("请输入电话");
           return;
         }
         if (misNewOreder) {
           mainPresenter.addWorkOrder(selectAreaId + "", mAccount.getText().toString(),
               tvAddress.getText().toString(), tvPhone.getText().toString());
-        }else {
+        } else {
           mainPresenter.addFixWorkOrder(selectAreaId + "", mAccount.getText().toString(),
               tvAddress.getText().toString(), tvPhone.getText().toString());
         }
@@ -165,9 +172,10 @@ public class AddWorkOrderActivity extends BackBaseActivity
   @Override public void onGetAreaSuccess(AreaBean bean) {
     if (bean.isSuccessful()) {
       beanData = bean.getData();//  区域集合
-      for (int i = 0; i <beanData.size() ; i++) {
+      for (int i = 0; i < beanData.size(); i++) {
         selectArea.add(beanData.get(i).getAreaName());
-        selectAreaId=beanData.get(i).getId();
+        selectAreaIds.add(beanData.get(i).getId());
+        //selectAreaId = beanData.get(i).getId();
       }
       initView();
     }

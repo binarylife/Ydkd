@@ -32,7 +32,7 @@ public class MineFragment extends BaseLoadFragment implements View.OnClickListen
   @Bind(R.id.view_pager) ViewPager viewPager;
   @Bind(R.id.main_fab) FloatingActionButton mbtNewOrder;
   private MainPagerAdapter adapter;
-  private boolean isNorOrder;
+  private boolean isNorOrder = true;
   private OnViewPagerCreated mOnViewPagerCreated;
 
   @Override public void onAttach(Context context) {

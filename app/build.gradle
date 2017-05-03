@@ -8,7 +8,7 @@ android {
     config {
       keyAlias 'bei'
       keyPassword '123456'
-      storeFile file('C:/Users/bei/yd.jks')
+      storeFile file('/Users/beifeng/AndroidStudioProjects/Ydkd/app/keystroke/yd.jks')
       storePassword '123456'
     }
   }
